@@ -150,7 +150,7 @@ class Item(Resource):
         super().__init__()
 
     def get(self):
-        items = AdminModel.query.all()
+        items = ItemModel.query.all()
         return jsonify(items=item_schema_many.dump(items).data)
 
     def post(self):
@@ -216,7 +216,7 @@ class Order(Resource):
 
     def get(self):
         orders = OrderModel.query.all()
-        return jsonify(admins=admin_schema_many.dump(orders).data)
+        return jsonify(orders=order_schema_many.dump(orders).data)
 
     def post(self):
         try:
