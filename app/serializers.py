@@ -1,21 +1,26 @@
 from marshmallow_sqlalchemy import ModelSchema
 from app.models import AdminModel, UserModel, ItemModel, OrderModel
 
+
 class UserSchema(ModelSchema):
     class Meta:
         model = UserModel
+
 
 class AdminSchema(ModelSchema):
     class Meta:
         model = AdminModel
 
+
 class ItemSchema(ModelSchema):
     class Meta:
         model = ItemModel
 
+
 class OrderSchema(ModelSchema):
     class Meta:
         model = OrderModel
+
 
 user_schema_many = UserSchema(many=True)
 user_schema = UserSchema()
