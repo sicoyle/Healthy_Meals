@@ -3,7 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from app.models import AdminModel, UserModel
 from flask import jsonify, abort
 from sqlalchemy.exc import DatabaseError
-from app.serializers import admin_schema_many, user_schema_many,  user_schema
+from app.serializers import admin_schema_many
 
 api = Api(app)
 
