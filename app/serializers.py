@@ -1,4 +1,4 @@
-#from flask_marshmallow import Marshmallow
+from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import ModelSchema
 from app.models import AdminModel, UserModel
 
