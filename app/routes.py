@@ -8,6 +8,10 @@ from app.serializers import admin_schema_many, user_schema_many, item_schema_man
 api = Api(app)
 
 
+def hello():
+    return "<h1>Home Page</h1>"
+
+
 class Admin(Resource):
     def __init__(self):
         parser = reqparse.RequestParser()

@@ -1,5 +1,5 @@
 from marshmallow_sqlalchemy import ModelSchema
-from app.models import AdminModel, UserModel, ItemModel, OrderModel, PackageModel
+from app.models import AdminModel, UserModel, ItemModel, OrderModel, PackageModel, FoodModel, IngredientModel, GiftCardModel
 
 
 class AdminSchema(ModelSchema):
@@ -26,6 +26,18 @@ class OrderSchema(ModelSchema):
     class Meta:
         model = OrderModel
 
+class FoodSchema(ModelSchema):
+    class Meta:
+        model = FoodModel
+
+class IngredientSchema(ModelSchema):
+    class Meta:
+        model = IngredientModel
+
+class GiftCardSchema(ModelSchema):
+    class Meta:
+        model = GiftCardModel
+
 
 admin_schema_many = AdminSchema(many=True)
 admin_schema = AdminSchema()
@@ -41,3 +53,12 @@ package_schema = PackageSchema()
 
 order_schema_many = OrderSchema(many=True)
 order_schema = OrderSchema()
+
+food_schema_many = FoodSchema(many=True)
+food_schema = FoodSchema()
+
+ingredient_schema_many = IngredientSchema(many=True)
+ingredient_schema = IngredientSchema()
+
+gift_card_schema_many = GiftCardSchema(many=True)
+gift_card_schema = GiftCardSchema()
