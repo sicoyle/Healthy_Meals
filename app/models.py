@@ -1,6 +1,26 @@
 from app import db
 
 """
+System Controller
+
+This controller will have three paramaters, id (which will be 0), users and admins
+
+This controller will controll the access of all traffic of temporary users coming 
+in and out of the website.
+
+When a person enters the website, the system controller checks the incoming IP against all saved
+ip address of the user in the system. If the IP is found, user is found. If not, a new temp User is 
+created.
+
+"""
+class SystemModel(db.Model):
+    __tablename__ = 'system'
+
+    id = db.Column(db.Integer, primary_key=True)
+    admins = db.relationship('AdminModel', backref='system_controller')
+    users = db.relationship('UserModel', backref='system_controller')
+
+"""
 Admin Model
 
 @Parameters
@@ -11,6 +31,9 @@ Admin Model
                 will be used to see if the admin needs to have order delivered
                 
     Admin should NOT be deletable
+    
+    The admin will be able to add and delete food items as-well-as ingredients.
+    The admin will be able to see a list of all orders, active orders, and completed orders
 """
 
 
@@ -23,18 +46,15 @@ class AdminModel(db.Model):
 
     orders = db.relationship('OrderModel', backref='admin_in_charge')
 
+    system_controller_id = db.Column(db.Integer, db.ForeignKey('system.id'))
+
+
     def __repr__(self):
         return '<Admin {}>'.format(self.name)
 
 
 """
 User Model
-
-When a person enters the website, on any page, A temp User object is created for that person where
-all values are NULL except an id will be created and first_name will become 'guest'. If the user logs
-into the system all temporary information will be replaced with the information the user logged in as
-
-If the page is left, or the user never completes an order. The order will be completely deleted
 
 @Parameters
     id - The id of the User
@@ -55,6 +75,7 @@ class UserModel(db.Model):
     __tablename__ = "user"
     
     id = db.Column(db.Integer, primary_key=True)
+    ip_address = db.Column(db.String(64), index=True, unique=False)
     first_name = db.Column(db.String(64), index=True, unique=False)
     last_name = db.Column(db.String(64), index=True, unique=False)
     address1 = db.Column(db.String(64), index=True, unique=False)
@@ -65,6 +86,9 @@ class UserModel(db.Model):
 
     orders = db.relationship('OrderModel', backref='related_orders')
 
+    system_controller_id = db.Column(db.Integer, db.ForeignKey('system.id'))
+
+
     def __repr__(self):
         return '<User {}>'.format(self.name)
 
@@ -72,8 +96,7 @@ class UserModel(db.Model):
 """
 Order Model (Cart Model)
 
-When a person enters the website, a temp user is created for that person that has a single 
-order listed under orders. The order contains a number of items contained in that order (order cart)
+Order is empty and contains no items until user presses add to cart
 
 @Parameters
     id - id number of that order, ever order ever created will have a new number, if a person enters
