@@ -1,4 +1,6 @@
 from app import db
+import llist
+
 
 """
 System Controller
@@ -7,11 +9,6 @@ This controller will have three paramaters, id (which will be 0), users and admi
 
 This controller will controll the access of all traffic of temporary users coming 
 in and out of the website.
-
-When a person enters the website, the system controller checks the incoming IP against all saved
-ip address of the user in the system. If the IP is found, user is found. If not, a new temp User is 
-created.
-
 """
 class SystemModel(db.Model):
     __tablename__ = 'system'
