@@ -6,6 +6,4 @@ flask_marshmallow
 marshmallow_sqlalchemy
 flask_wtf
 flask_debugtoolbar
-flask_sqlalchemy
-flask_migrate
 flask-login
