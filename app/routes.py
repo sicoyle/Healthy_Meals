@@ -6,20 +6,28 @@ from flask import jsonify, abort
 from sqlalchemy.exc import DatabaseError
 from app.serializers import system_schema_many, admin_schema_many, user_schema_many, item_schema_many, order_schema_many, package_schema_many, food_schema_many, ingredient_schema_many, gift_card_schema_many
 
+from flask import render_template, flash, redirect, url_for
+from app import app
+from app.forms import LoginForm
+from flask_login import current_user, login_user
+from flask_login import logout_user
+from app.models import UserModel
+from flask_login import login_required
+from flask import request
+from werkzeug.urls import url_parse
+from app import db
+from app.forms import RegistrationForm
+from app.forms import PostForm
+
 
 api = Api(app)
 
-@app.route('/getsession')
-def getsession():
-    if 'user' in session:
-        return session['user']
+# TODO - LOGIN!
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html')
 
-    return 'Not logged in!'''
-
-@app.route('/dropsession')
-def dropsession():
-    session.pop('user', None)
-    return 'Dropped!'
+# 
 
 """
 We probably wont use any of this but it is a good reference.
