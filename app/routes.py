@@ -27,6 +27,10 @@ api = Api(app)
 def index():
     return render_template('Front_Page.html')
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
+
 # 
 
 """
