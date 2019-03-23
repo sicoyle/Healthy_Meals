@@ -11,7 +11,7 @@ source venv/bin/activate
 ```
 Install dependencies to virtual environment
 ```
-pip install -r requirements.txt
+source requirements.txt
 ```
 NOTE: You must use at least Python 3 and have *virtualenv* installed. To install *virtualenv*:
 ```
