@@ -17,6 +17,11 @@ NOTE: You must use at least Python 3 and have *virtualenv* installed. To install
 ```
 pip install virtualenv
 ```
+If using for the first time, clear the database
+```
+./create_database.sh
+```
+
 Launch the server and go to localhost:5000 in your web browser
 ```
 python main.py
