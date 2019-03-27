@@ -11,9 +11,11 @@
 </head>
 
 <body>
-    <div class="login-clean">
+<!--    <div class="login-clean">
 	    <form method="post">
 		    <h2 class="sr-only">Registration Form</h2>
+		    
+		    
 		    <div class="illustration"><i class="icon ion-android-person"></i></div>
 		    <div class="form-group"><input class="form-control" type="username" name="username" placeholder="User name"></div>
 		    <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
@@ -24,15 +26,15 @@
     </div>
 
 
+-->
 
-
-
-<!--    <h1 style="text-align: center;">Register</h1>
-    <form action="" method="post" style="text-align: center;">
+<div class="login-clean">
+    <h1 style="text-align: center;">Register</h1>
+    <form action="" method="post" style="text-align: center;" class="form-group">
         {{ form.hidden_tag() }}
         <p>
             {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+	    {{ form.username(size=32) }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
@@ -59,8 +61,8 @@
             {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
-    </form>-->
-
+    </form>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </body>
