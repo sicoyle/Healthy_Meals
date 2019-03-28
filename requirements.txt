@@ -8,4 +8,5 @@ pip install flask_wtf
 pip install flask_debugtoolbar
 pip install flask-login
 pip install Flask-Social
+pip install Flask-Security
 pip install http://github.com/pythonforfacebook/facebook-sdk/tarball/master
