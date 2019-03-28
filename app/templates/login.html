@@ -7,7 +7,7 @@
     <title>CS4398_LoginPage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.styles.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sam.styles.min.css') }}">
 </head>
 
 <body>
@@ -21,29 +21,30 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
-    <div class="form-control">
-    <h1 style="text-align: center;">Sign In</h1>
-    <form action="" method="post" novalidate style="text-align: center;">
+    <div class="login-clean">
+    <h1 class="sr-only">Sign In</h1>
+    <form action="" method="post" novalidate style="text-align: center;" class="form-group">
         {{ form.hidden_tag() }}
+        <div class="illustration"><i class="icon ion-android-person"></i></div>
         <p>
             {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
+            {{ form.username(class_="form-group") }}<br>
             {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
             {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
+            {{ form.password(class_="form-group") }}<br>
             {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class_="btn btn-primary btn-block") }}</p>
+    <p style="text-align: center;"><a href="{{ url_for('register') }}">Click to Register!</a></p>
     </form>
 
-    <p style="text-align: center;">New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
     </div>
 </body>
 
