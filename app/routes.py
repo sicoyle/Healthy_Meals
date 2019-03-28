@@ -26,6 +26,14 @@ api = Api(app)
 def index():
     return render_template('index.html')
 
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    return render_template('Sams_Login.html')
+
+@app.route('/zac', methods=['GET', 'POST'])
+def zac():
+    return render_template('zac.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
