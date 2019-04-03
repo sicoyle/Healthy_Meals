@@ -18,9 +18,21 @@ from werkzeug.urls import url_parse
 from app import db
 from app.forms import RegistrationForm
 from app.forms import PostForm
-
+from app import facebook_blueprint, facebook
 
 api = Api(app)
+app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
+
+@app.route('/facebook_login')
+def facebook_login():
+    if not facebook.authorized:
+        return redirect(url_for('facebook.login'))
+    account_info = facebook.get('account/settings.json')
+    if account_info.ok:
+        account_info_json = account_info.json()
+        print(account_info_json)
+        exit(1)
+        return 
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
