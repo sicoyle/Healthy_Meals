@@ -36,12 +36,12 @@
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-        
+
+    </script>
+    <script>
         FB.getLoginStatus(function (response) {
             statusChangeCallback(response);
-        });
-        
-    </script>
+        });</script>
 
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
