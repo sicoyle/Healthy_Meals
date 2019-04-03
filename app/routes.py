@@ -25,10 +25,12 @@ app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
 
 @app.route('/facebook_login')
 def facebook_login():
-    
+    print("FIRST LINE")
     if not facebook.authorized:
         return redirect(url_for("facebook.login"))
+    print("Were authorized")
     resp = facebook.get("/me")
+    print("GOT RESP")
     assert resp.ok, resp.text
     return "You are {name} on Facebook".format(name=resp.json()["name"])
 
