@@ -25,14 +25,23 @@ app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
 
 @app.route('/facebook_login')
 def facebook_login():
-    print("FIRST LINE")
+
     if not facebook.authorized:
         return redirect(url_for("facebook.login"))
-    print("Were authorized")
     resp = facebook.get("/me")
-    print("GOT RESP")
     assert resp.ok, resp.text
-    return "You are {name} on Facebook".format(name=resp.json()["name"])
+    
+    user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    # Add user to the database if not already there
+    if user is None:
+        user = UserModel(username=resp.json()["name"])
+        db.session.add(user)
+        db.session.commit()
+        user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    login_user(user)
+    return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -50,7 +59,7 @@ def zac():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = UserModel.query.filter_by(username=form.username.data).first()
