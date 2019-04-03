@@ -1,12 +1,12 @@
-pip install flask
-pip install flask_sqlalchemy
-pip install flask_migrate
-pip install flask_restful
-pip install flask_marshmallow
-pip install marshmallow_sqlalchemy
-pip install flask_wtf
-pip install flask_debugtoolbar
-pip install flask-login
-pip install Flask-Social
-pip install Flask-Security
-pip install http://github.com/pythonforfacebook/facebook-sdk/tarball/master
+flask
+flask_sqlalchemy
+flask_migrate
+flask_restful
+flask_marshmallow
+marshmallow_sqlalchemy
+flask_wtf
+flask_debugtoolbar
+flask-login
+Flask-Social
+Flask-Security
+-e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
