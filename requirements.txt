@@ -9,4 +9,5 @@ flask_debugtoolbar
 flask-login
 Flask-Social
 Flask-Security
+gunicorn
 -e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
