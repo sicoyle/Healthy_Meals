@@ -23,6 +23,7 @@ from app.forms import PostForm
 api = Api(app)
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
