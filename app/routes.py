@@ -65,14 +65,25 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/user/<username>')
+@app.route('/profile', methods=['GET'])
 @login_required
-def user(username):
-    user = User.query.filter_by(username=username).first_or_404()
+def profile():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    
     
     #add other user information here!!
 
-    return render_template('user.html', user=user)
+    return render_template('profile.html', user=user)
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    
+    
+    #add other user information here!!
+
+    return render_template('edit_profile.html', user=user)
 
 @app.route('/logout')
 def logout():

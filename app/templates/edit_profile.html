@@ -1,0 +1,20 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+	{% block content %}
+	<h1> User: {{ current_user.username }}</h1>
+
+	<h1> User: {{ current_user.address }}</h1>
+
+	<h1> User: {{ current_user.state }}</h1>
+
+	<h1> User: {{ current_user.zip }}</h1>
+
+	<h1> User: {{ current_user.phone_number }}</h1>
+	{% endblock %}
+
+
+</html>
