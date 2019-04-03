@@ -15,6 +15,34 @@
 </head>
 
 <body>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '433391737423638',
+                cookie: true,
+                xfbml: true,
+                version: 'v3.2'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+        
+    </script>
+
     <div>
         <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
             style="height: 80px;background-color: #5ebe79;color: #ffffff;">
@@ -34,10 +62,11 @@
                         {% if current_user.username %}
 
                         <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
-                                aria-expanded="false" style="color:#ffffff;" href="#">Hi, {{ current_user.username }}&nbsp;</a>
+                                aria-expanded="false" style="color:#ffffff;" href="#">Hi,
+                                {{ current_user.username }}&nbsp;</a>
                             <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
                                     href="#">My Profile</a><a class="dropdown-item" role="presentation" href="#">Orders
-                                    </a><a class="dropdown-item" role="presentation" href="/logout">Sign Out</a>
+                                </a><a class="dropdown-item" role="presentation" href="/logout">Sign Out</a>
                             </div>
                         </li>
                         {% else %}
