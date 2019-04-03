@@ -25,14 +25,19 @@ app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
 
 @app.route('/facebook_login')
 def facebook_login():
+    
     if not facebook.authorized:
         return redirect(url_for('facebook.login'))
+    
     account_info = facebook.get('account/settings.json')
+
+    print("ACCOUNT INFO: {}".format(account_info))
+
     if account_info.ok:
+        print("IN ACCOUNT INFO")
         account_info_json = account_info.json()
         print(account_info_json)
-        exit(1)
-        return 
+        return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
