@@ -25,6 +25,10 @@ api = Api(app)
 app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
 app.register_blueprint(google_blueprint, url_prefix='/google_login')
 
+@app.route('/google83147c170400ef36.html')
+def verify_google():
+    return render_template('google83147c170400ef36.html')
+
 @app.route('/google_login')
 def google_login():
     if not google.authorized:
