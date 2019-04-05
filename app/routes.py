@@ -34,9 +34,9 @@ def google_login():
     if not google.authorized:
         return redirect(url_for("google.login"))
     resp = google.get("/oauth2/v1/userinfo")
-    print(resp); 
+    print("THIS IS RESP: {}".format(resp.json())); 
     assert resp.ok, resp.text
-    return "You are {email} on Google".format(email=resp.json()["email"])
+    return "You are {email} on Google".format(email=resp.json()["name"])
 
 @app.route('/facebook_login')
 def facebook_login():
