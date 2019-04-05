@@ -19,9 +19,34 @@ from app import db
 from app.forms import RegistrationForm, EditProfileForm
 from app.forms import PostForm
 from app import facebook_blueprint, facebook
+from app import google_blueprint, google
 
 api = Api(app)
 app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
+app.register_blueprint(google_blueprint, url_prefix='/google_login')
+
+@app.route('/google83147c170400ef36.html')
+def verify_google():
+    return render_template('google83147c170400ef36.html')
+
+@app.route('/google_login')
+def google_login():
+    if not google.authorized:
+        return redirect(url_for("google.login"))
+    resp = google.get("/oauth2/v1/userinfo")
+    assert resp.ok, resp.text
+
+    user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    # Add user to the database if not already there
+    if user is None:
+        user = UserModel(username=resp.json()["name"])
+        db.session.add(user)
+        db.session.commit()
+        user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    login_user(user)
+    return render_template('index.html')
 
 @app.route('/facebook_login')
 def facebook_login():
