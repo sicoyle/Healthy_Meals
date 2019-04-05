@@ -1,5 +1,4 @@
 venv/
-*.db
 *.zip
 __pycache__/
 .idea/

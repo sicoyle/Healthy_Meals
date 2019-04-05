@@ -9,7 +9,6 @@ from app.serializers import system_schema_many, admin_schema_many, user_schema_m
 from flask import render_template, flash, redirect, url_for
 from app import app
 from app.forms import LoginForm
-from app.forms import EditProfileForm
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from app.models import UserModel
@@ -17,13 +16,35 @@ from flask_login import login_required
 from flask import request
 from werkzeug.urls import url_parse
 from app import db
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, EditProfileForm
 from app.forms import PostForm
-
+from app import facebook_blueprint, facebook
 
 api = Api(app)
+app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
+
+@app.route('/facebook_login')
+def facebook_login():
+
+    if not facebook.authorized:
+        return redirect(url_for("facebook.login"))
+    resp = facebook.get("/me")
+    assert resp.ok, resp.text
+    
+    user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    # Add user to the database if not already there
+    if user is None:
+        user = UserModel(username=resp.json()["name"])
+        db.session.add(user)
+        db.session.commit()
+        user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    login_user(user)
+    return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
@@ -38,7 +59,7 @@ def zac():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('login'))
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = UserModel.query.filter_by(username=form.username.data).first()
@@ -71,30 +92,30 @@ def register():
 def profile():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     
-    
-    #add other user information here!!
-
     return render_template('profile.html', user=user)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         current_user.username = form.username.data
+        current_user.email = form.email.data
         current_user.address = form.address.data
         current_user.state = form.state.data
         current_user.zip = form.zip.data
         current_user.phone_number = form.phone_number.data
         db.session.commit()
         flash('Your changes have been saved.')
-        return redirect(url_for('edit_profile'))
+        return redirect(url_for('profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
+        form.email.data = current_user.email
         form.address.data = current_user.address
         form.state.data = current_user.state
         form.zip.data = current_user.zip
         form.phone_number.data = current_user.phone_number
+        #return redirect(url_for('profile'))
     return render_template('edit_profile.html', title='Edit Profile', form=form)
         
 
