@@ -34,6 +34,7 @@ def google_login():
     if not google.authorized:
         return redirect(url_for("google.login"))
     resp = google.get("/oauth2/v1/userinfo")
+    print(resp); 
     assert resp.ok, resp.text
     return "You are {email} on Google".format(email=resp.json()["email"])
 
