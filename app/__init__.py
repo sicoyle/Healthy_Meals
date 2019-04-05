@@ -13,7 +13,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 facebook_blueprint = make_facebook_blueprint(client_id='433391737423638', client_secret = '19ecf5a071d73202cb10701c94dfe5de', redirect_url = 'https://cs4398-final-project.herokuapp.com/facebook_login')
-google_blueprint = make_google_blueprint(client_id='274684128639-vjg9q06q5ut6hkvq091ft3bkcmms419i.apps.googleusercontent.com', client_secret='lkEMegdQ2NaceJP5cwTXCcDT', redirect_url='https://cs4398-final-project.herokuapp.com/')
+google_blueprint = make_google_blueprint(client_id='535013055834-9jk2rccnrb4cr2a4equ3st7ov7fkbqur.apps.googleusercontent.com', client_secret='cKhV7gREwZ7S_MnoPjZeiuD2', redirect_url='https://cs4398-final-project.herokuapp.com/google_login/google/authorized')
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
