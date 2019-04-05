@@ -34,9 +34,19 @@ def google_login():
     if not google.authorized:
         return redirect(url_for("google.login"))
     resp = google.get("/oauth2/v1/userinfo")
-    print("THIS IS RESP: {}".format(resp.json())); 
     assert resp.ok, resp.text
-    return "You are {email} on Google".format(email=resp.json()["name"])
+
+    user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    # Add user to the database if not already there
+    if user is None:
+        user = UserModel(username=resp.json()["name"])
+        db.session.add(user)
+        db.session.commit()
+        user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+
+    login_user(user)
+    return render_template('index.html')
 
 @app.route('/facebook_login')
 def facebook_login():
