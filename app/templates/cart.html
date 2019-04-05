@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Cart Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.min.css') }}">
+        <!-- <link rel="stylesheet" href="assets/css/styles.min.css"> -->
+    </head>
+    
+
+    <body>
+        <div>
+            <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button"
+                style="height: 80px;background-color: #5ebe79;color: #ffffff;">
+                <div class="container-fluid"><a class="navbar-brand" href="/">Farmacy Meals</a><button
+                        class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle
+                            navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="/menu"
+                                    style="color:#ffffff;">Menu</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="/packages"
+                                    style="color:#ffffff;">Packages</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="/gift"
+                                    style="color:#ffffff;">Gift</a></li>
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="/cart"
+                                    style="color:#ffffff;">Cart</a></li>
+                            {% if current_user.username %}
+
+                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
+                                    aria-expanded="false" style="color:#ffffff;" href="#">Hi, {{ current_user.username }}&nbsp;</a>
+                                <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                                        href="#">My Profile</a><a class="dropdown-item" role="presentation" href="#">Orders
+                                        </a><a class="dropdown-item" role="presentation" href="/logout">Sign Out</a>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li class="nav-item" role="presentation"><a class="nav-link" href="/login"
+                                    style="color:#ffffff;">Sign In</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </body>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>trythis</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/styles.min.css">
+    </head>
+    
+    <body>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Cart</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h4>Name </h4>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4>Amount </h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="media">
+                                            <div><img class="rounded-circle mr-3" src="assets/img/user-photo3.jpg" width="50" height="50"></div>
+                                            <div class="media-body">
+                                                <h4><a href="#">Flu-Flu-Item #1</a><span class="badge badge-success">In Stock</span></h4>
+                                                <p class="text-muted">Description blah blah blah<br>
+    </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><span class="h3">$100 </span><br>
+    <strong> </strong><a href="#">View Details</a></p>
+                                        <p></p>
+                                    </div>
+                                    <div class="col-md-3 text-right">
+                                        <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i class="fa fa-pencil"></i> Edit</button><button class="btn btn-primary" type="button"> <i class="fa fa-trash-o"></i></button></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="media">
+                                            <div><img class="rounded-circle mr-3" src="assets/img/user-photo4.jpg" width="50" height="50"></div>
+                                            <div class="media-body">
+                                                <h4><a href="#">Flu-Flu- Item #2</a><span class="badge badge-success">In Stock</span></h4>
+                                                <p class="text-muted">Description blah blah blah</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><span class="h3">$100 </span><br>
+    <strong> </strong><a href="#">View Details</a></p>
+                                        <p></p>
+                                    </div>
+                                    <div class="col-md-3 text-right">
+                                        <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i class="fa fa-pencil"></i> Edit </button><button class="btn btn-primary" type="button"> <i class="fa fa-trash-o"></i></button></div>
+                                        <p> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Order Summary</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h4 class="text-left">Items:</h4>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4>$calculatedAmt </h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h4 class="text-left">Tax:</h4>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4 class="text-left">$calculatedTax</h4>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h4 class="text-left">Order Total:</h4>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4 class="text-left">$calculatedTotal</h4>
+                                    </div>
+                                </div><button class="btn btn-primary text-center bg-warning" type="button">Proceed to Checkout</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    </body>
+    
+    
+</html>
