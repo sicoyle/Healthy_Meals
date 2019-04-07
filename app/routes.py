@@ -69,6 +69,7 @@ def facebook_login():
     return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
+
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
@@ -80,6 +81,11 @@ def test():
 @app.route('/zac', methods=['GET', 'POST'])
 def zac():
     return render_template('zac.html')
+
+@app.route('/menu', methods=['GET', 'POST'])
+def menu():
+    return render_template('menu.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
