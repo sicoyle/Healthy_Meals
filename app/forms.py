@@ -35,10 +35,20 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 
+class EditProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    address = StringField('Address', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
+    zip = StringField('Zip', validators=[DataRequired()])
+    phone_number = StringField('Phone')
+    submit = SubmitField('Submit')
+
+
 class PostForm(FlaskForm):
     post = TextField('Add a ToDo item', validators=[
         DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Submit')
 
-
+#test
 #Length(min=1, max=140)]
