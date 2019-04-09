@@ -209,8 +209,6 @@ If the user creates the package, it becomes an item, and gets added to an order,
     package_type - type of package, used to determine how many food items will be added
     cost - the sum of all the food item costs
 """
-
-
 class PackageModel(db.Model):
     __tablename__ = "package"
 
@@ -249,14 +247,13 @@ class FoodModel(db.Model):
     __tablename__ = "food"
 
     id = db.Column(db.Integer, primary_key=True)
+    cost = db.Column(db.Float, primary_key=True)
     category = db.Column(db.String(64), index=True, unique=False)
     name = db.Column(db.String(64), index=True, unique=False)
+    withInformation = db.Column(db.String(64), index=True, unique=False)
+    picturePath = db.Column(db.String(64), index=True, unique=False)
+    iconPath = db.Column(db.String(64), index=True, unique=False)
     ingredients = db.relationship("IngredientModel", backref='related_food')
-    healthy_fact_one = db.Column(db.String(64), index=True, unique=False)
-    healthy_fact_two = db.Column(db.String(64), index=True, unique=False)
-    healthy_fact_three = db.Column(db.String(64), index=True, unique=False)
-    healthy_fact_four = db.Column(db.String(64), index=True, unique=False)
-    healthy_fact_five = db.Column(db.String(64), index=True, unique=False)
 
     def __repr__(self):
         return '<Food {}>'.format(self.name)
@@ -285,7 +282,6 @@ class IngredientModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=False)
-    icon = db.Column(db.String(64), index=True, unique=False)
     food_id = db.Column(db.Integer, db.ForeignKey('food.id'))
 
     def __repr__(self):
