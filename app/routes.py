@@ -82,6 +82,10 @@ def test():
 def zac():
     return render_template('zac.html')
 
+@app.route('/cart', methods=['GET', 'POST'])
+def cart():
+    return render_template('cart.html')
+
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
     food = FoodModel.query.all()

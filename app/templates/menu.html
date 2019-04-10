@@ -10,19 +10,61 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Artifika">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+KR">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.styles.min.css') }}">
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+
 </head>
 
 <body style="font-family: Artifika, serif;">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="padding: 14px;">
-        <div class="container-fluid"><a class="navbar-brand" href="/zac" style="height: 47px;margin: 0px;font-size: 31px;font-family: Artifika, serif;width: 253px;padding: 0px;">Farmacy Meals</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div
-                class="collapse navbar-collapse d-lg-flex flex-shrink-1" id="navcol-1">
+        <div class="container-fluid"><a class="navbar-brand" href="/zac"
+                style="height: 47px;margin: 0px;font-size: 31px;font-family: Artifika, serif;width: 253px;padding: 0px;">Farmacy
+                Meals</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
+                    class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse d-lg-flex flex-shrink-1" id="navcol-1">
                 <ul class="nav navbar-nav d-xl-flex">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/menu" style="font-size: 24px;font-family: 'Noto Serif KR', serif;">Menu</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Packages</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Gift</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Order</a></li>
-                </ul><span class="ml-auto navbar-text actions"> <a class="btn btn-light action-button" role="button" href="/login" style="background-color: #bdecb6;">Log in</a></span></div>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/menu"
+                            style="font-size: 24px;font-family: 'Noto Serif KR', serif;">Menu</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
+                            style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Packages</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
+                            style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Gift</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
+                            style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Order</a></li>
+                {% if current_user.username %}
+                </ul>
+                    <div class="nav-item dropdown" style="font-size: 22px; font-family: 'Noto Serif KR', serif;"><a class="dropdown-toggle nav-link"  data-toggle="dropdown"
+                    aria-expanded="false" style="color:#82b87a;" href="#">Hi,
+                    {{ current_user.username }}&nbsp;</a>
+                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                        href="/profile">My Profile</a><a class="dropdown-item" role="presentation" href="#">Orders
+                        </a><a class="dropdown-item" role="presentation" href="/logout">Sign Out</a></div></div>
+                {% else %}
+                </ul>
+                <span class="ml-auto navbar-text actions"> <a class="btn btn-light action-button" role="button"
+                        href="/login" style="background-color: #bdecb6;">Log in</a></span>
+                {% endif %}
+            </div>
         </div>
     </nav>
     <main>
@@ -34,123 +76,237 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h1 class="text-center" style="color: #7ea978;padding: 20px;border-bottom: 1px solid;border-top: 1px solid;">Soups</h1>
+                    <h1 class="text-center"
+                        style="color: #7ea978;padding: 20px;border-bottom: 1px solid;border-top: 1px solid;">Soups</h1>
                 </div>
             </div>
-            <div class="row text-left d-flex d-sm-flex justify-content-center justify-content-sm-center" style="padding-top: 20px;">
-                <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[0].picturePath) }}">
-                    <h4 class="text-break text-left" style="font-size: 25px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[0].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[0].withInformation }}</p><img class="d-md-flex justify-content-md-start" src="{{ url_for('static', filename=food[0].iconPath) }}"></div>
-                <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[1].picturePath) }}">
-                    <h4 class="text-left" style="font-size: 25px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[1].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[1].withInformation }}</p><img class="d-md-flex justify-content-md-start" src="{{ url_for('static', filename=food[1].iconPath) }}"></div>
-                <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[2].picturePath) }}">
-                    <h4 class="text-left" style="font-size: 23px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[2].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[2].withInformation }}</p><img class="d-md-flex justify-content-md-start" src="{{ url_for('static', filename=food[2].iconPath) }}"></div>
+            <div class="row text-left d-flex d-sm-flex justify-content-center justify-content-sm-center"
+                style="padding-top: 20px;">
+                <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" data-style="padding-bottom: 15px;"
+                    onclick="toggleModal()"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[0].picturePath) }}">
+                    <h4 class="text-break text-left"
+                        style="font-size: 25px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[0].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[0].withInformation }}</p>
+                    <img class="d-md-flex justify-content-md-start"
+                        src="{{ url_for('static', filename=food[0].iconPath) }}">
+                </div>
+
+                <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[1].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-size: 25px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[1].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[1].withInformation }}</p>
+                    <img class="d-md-flex justify-content-md-start"
+                        src="{{ url_for('static', filename=food[1].iconPath) }}">
+                </div>
+                <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[2].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-size: 23px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[2].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[2].withInformation }}</p>
+                    <img class="d-md-flex justify-content-md-start"
+                        src="{{ url_for('static', filename=food[2].iconPath) }}">
+                </div>
             </div>
             <div class="row">
                 <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center" style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Salads</h1>
+                    <h1 class="text-center"
+                        style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Salads</h1>
                 </div>
             </div>
-            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center" style="padding-top: 20px;">
-                <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 offset-0 offset-sm-0 offset-md-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[3].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[3].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[3].withInformation }}</p><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[3].iconPath) }}"></div>
-                <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 offset-0 offset-sm-0 offset-md-1 offset-lg-1 offset-xl-2" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[4].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[4].iconPath) }}"></div>
+            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+                style="padding-top: 20px;">
+                <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 offset-0 offset-sm-0 offset-md-0"
+                    style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[3].picturePath) }}">
+                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[3].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[3].withInformation }}</p>
+                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[3].iconPath) }}">
+                </div>
+                <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 offset-0 offset-sm-0 offset-md-1 offset-lg-1 offset-xl-2"
+                    style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[4].picturePath) }}">
+                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[4].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[4].iconPath) }}">
+                </div>
             </div>
             <div class="row">
                 <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center bg-light" style="color: #7ea978;padding: 20px;border-bottom: 1px solid;border-top: 1px solid;">Entrees</h1>
-                    <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center" style="padding-top: 20px;">
-                        <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" data-toggle="modal" data-target="test" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[6].picturePath) }}">
-                            <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[6].name }}</h4>
-                            <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[6].withInformation }}</p><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                                src="{{ url_for('static', filename=food[6].iconPath) }}"></div>
-                        <div class="col-9 col-sm-7 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[7].picturePath) }}">
-                            <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[7].name }};</h4>
-                            <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[7].withInformation }}</p><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                                src="{{ url_for('static', filename=food[7].iconPath) }}"></div>
-                        <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[8].picturePath) }}">
-                            <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[8].name }}</h4>
-                            <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[8].withInformation }}</p>
+                    <h1 class="text-center bg-light"
+                        style="color: #7ea978;padding: 20px;border-bottom: 1px solid;border-top: 1px solid;">Entrees
+                    </h1>
+                    <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+                        style="padding-top: 20px;">
+                        <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" data-toggle="modal"
+                            data-target="test" style="padding-bottom: 15px;"><img class="img-fluid"
+                                src="{{ url_for('static', filename=food[6].picturePath) }}">
+                            <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                                {{ food[6].name }}</h4>
+                            <p class="text-left" style="font-family: 'Noto Serif KR', serif;">
+                                {{ food[6].withInformation }}</p><img
+                                class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                                src="{{ url_for('static', filename=food[6].iconPath) }}">
+                        </div>
+                        <div class="col-9 col-sm-7 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0"
+                            style="padding-bottom: 15px;"><img class="img-fluid"
+                                src="{{ url_for('static', filename=food[7].picturePath) }}">
+                            <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                                {{ food[7].name }};</h4>
+                            <p class="text-left" style="font-family: 'Noto Serif KR', serif;">
+                                {{ food[7].withInformation }}</p><img
+                                class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                                src="{{ url_for('static', filename=food[7].iconPath) }}">
+                        </div>
+                        <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0"
+                            style="padding-bottom: 15px;"><img class="img-fluid"
+                                src="{{ url_for('static', filename=food[8].picturePath) }}">
+                            <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                                {{ food[8].name }}</h4>
+                            <p class="text-left" style="font-family: 'Noto Serif KR', serif;">
+                                {{ food[8].withInformation }}</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center" style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Boxes</h1>
+                    <h1 class="text-center"
+                        style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Boxes</h1>
                 </div>
             </div>
-            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center" style="padding-top: 20px;">
-                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[10].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[10].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[10].withInformation }}</p><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[10].iconPath) }}"></div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[11].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[11].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[11].withInformation }}</p><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[11].iconPath) }}"></div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[12].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[12].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[12].withInformation }}</p><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[12].iconPath) }}"></div>
+            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+                style="padding-top: 20px;">
+                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0"
+                    style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[10].picturePath) }}">
+                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[10].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[10].withInformation }}</p>
+                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[10].iconPath) }}">
+                </div>
+                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[11].picturePath) }}">
+                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[11].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[11].withInformation }}</p>
+                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[11].iconPath) }}">
+                </div>
+                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[12].picturePath) }}">
+                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[12].name }}</h4>
+                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[12].withInformation }}</p>
+                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[12].iconPath) }}">
+                </div>
             </div>
             <div class="row">
                 <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center" style="padding: 20px;border-top: 1px solid;color: #7ea978;border-bottom: 1px solid;">Sweets</h1>
+                    <h1 class="text-center"
+                        style="padding: 20px;border-top: 1px solid;color: #7ea978;border-bottom: 1px solid;">Sweets</h1>
                 </div>
             </div>
-            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center" style="padding-top: 20px;">
-                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[14].picturePath) }}">
-                    <h4 class="text-left flex-shrink-1 flex-nowrap" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[14].name }}</h4><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start" src="{{ url_for('static', filename=food[14].iconPath) }}"></div>
-                <div
-                    class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[15].picturePath) }}">
-                    <h4 class="text-left d-flex" style="font-size: 24px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[15].name }}</h4><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start" src="{{ url_for('static', filename=food[15].iconPath) }}"></div>
-            <div
-                class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[16].picturePath) }}">
-                <h4 class="text-left flex-shrink-1 flex-nowrap" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[16].name }}</h4><img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start" src="{{ url_for('static', filename=food[16].iconPath) }}"></div>
-        </div>
-        <div class="row">
-            <div class="col" style="padding-top: 20px;">
-                <h1 class="text-center" style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Beverages</h1>
+            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+                style="padding-top: 20px;">
+                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0"
+                    style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[14].picturePath) }}">
+                    <h4 class="text-left flex-shrink-1 flex-nowrap"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[14].name }}</h4><img
+                        class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[14].iconPath) }}">
+                </div>
+                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[15].picturePath) }}">
+                    <h4 class="text-left d-flex"
+                        style="font-size: 24px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                        {{ food[15].name }}</h4><img
+                        class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[15].iconPath) }}">
+                </div>
+                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[16].picturePath) }}">
+                    <h4 class="text-left flex-shrink-1 flex-nowrap"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[16].name }}</h4><img
+                        class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                        src="{{ url_for('static', filename=food[16].iconPath) }}">
+                </div>
             </div>
-        </div>
-        <div class="row d-flex justify-content-center" style="padding-top: 20px;">
-            <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[18].picturePath) }}">
-                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[18].name }}</h4>
+            <div class="row">
+                <div class="col" style="padding-top: 20px;">
+                    <h1 class="text-center"
+                        style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Beverages
+                    </h1>
+                </div>
             </div>
-            <div class="col-9 col-sm-8 col-md-3 col-xl-3" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[19].picturePath) }}">
-                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[19].name }}</h4>
+            <div class="row d-flex justify-content-center" style="padding-top: 20px;">
+                <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[18].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[18].name }}</h4>
+                </div>
+                <div class="col-9 col-sm-8 col-md-3 col-xl-3" style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[19].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[19].name }}</h4>
+                </div>
+                <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[20].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[20].name }}</h4>
+                </div>
+                <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[21].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[21].name }}</h4>
+                </div>
             </div>
-            <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[20].picturePath) }}">
-                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[20].name }}</h4>
+            <div class="row">
+                <div class="col" style="padding-top: 20px;">
+                    <h1 class="text-center"
+                        style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Elixirs
+                    </h1>
+                </div>
             </div>
-            <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[21].picturePath) }}">
-                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[21].name }}</h4>
+            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+                style="padding-top: 20px;padding-bottom: 20px;">
+                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0"
+                    style="padding-bottom: 15px;"><img class="img-fluid"
+                        src="{{ url_for('static', filename=food[22].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[22].name }}</h4>
+                </div>
+                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[23].picturePath) }}">
+                    <h4 class="text-left"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                        {{ food[23].name }}</h4>
+                </div>
+                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
+                        class="img-fluid" src="{{ url_for('static', filename=food[24].picturePath) }}">
+                    <h4 class="text-left d-xl-flex"
+                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding: 5px;">{{ food[24].name }}
+                    </h4>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col" style="padding-top: 20px;">
-                <h1 class="text-center" style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Elixirs</h1>
-            </div>
-        </div>
-        <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center" style="padding-top: 20px;padding-bottom: 20px;">
-            <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[22].picturePath) }}">
-                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[22].name }}</h4>
-            </div>
-            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[23].picturePath) }}">
-                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">{{ food[23].name }}</h4>
-            </div>
-            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[24].picturePath) }}">
-                <h4 class="text-left d-xl-flex" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding: 5px;">{{ food[24].name }}</h4>
-            </div>
-        </div>
         </div>
     </main>
     <div class="footer-clean">
@@ -181,8 +337,11 @@
                             <li></li>
                         </ul>
                     </div>
-                    <div class="col-md-4 col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook" style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-twitter" style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-instagram" style="color: rgb(75,76,77);"></i></a>
-                            <p class="copyright">Company Name © 2017</p>
+                    <div class="col-md-4 col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"
+                                style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-twitter"
+                                style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-instagram"
+                                style="color: rgb(75,76,77);"></i></a>
+                        <p class="copyright">Company Name © 2017</p>
                     </div>
                 </div>
             </div>
@@ -190,6 +349,7 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/connect.js') }}"></script>
 </body>
 
 </html>
