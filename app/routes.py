@@ -46,7 +46,7 @@ def google_login():
         user = UserModel.query.filter_by(username=resp.json()["name"]).first()
 
     login_user(user)
-    return render_template('index.html')
+    return render_template('front_page.html')
 
 @app.route('/facebook_login')
 def facebook_login():
@@ -66,21 +66,21 @@ def facebook_login():
         user = UserModel.query.filter_by(username=resp.json()["name"]).first()
 
     login_user(user)
-    return render_template('index.html')
+    return render_template('front_page.html')
 
 @app.route('/', methods=['GET', 'POST'])
 
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    return render_template('front_page.html')
+
+@app.route('/front_page', methods=['GET', 'POST'])
+def front_page():
+    return render_template('front_page.html')
 
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     return render_template('Sams_Login.html')
-
-@app.route('/zac', methods=['GET', 'POST'])
-def zac():
-    return render_template('zac.html')
 
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
