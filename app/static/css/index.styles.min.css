@@ -1,0 +1,20 @@
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    border-radius: 15px
+}
+
+.btn.btn-primary.btn-lg {
+    font-size: 30px
+}
+
+.btn.btn-primary.ml-auto {
+    background-color: #f1e683;
+    border-radius: 20px
+}
+
+.btn.btn-primary.border-white.shadow-none.ml-auto {
+    color: #dcffdc
+}
+
+.body {
+    width: auto; 
+}
