@@ -69,18 +69,9 @@ def facebook_login():
     return render_template('index.html')
 
 @app.route('/', methods=['GET', 'POST'])
-
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
-
-@app.route('/test', methods=['GET', 'POST'])
-def test():
-    return render_template('Sams_Login.html')
-
-@app.route('/zac', methods=['GET', 'POST'])
-def zac():
-    return render_template('zac.html')
 
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
