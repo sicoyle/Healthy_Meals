@@ -86,6 +86,14 @@ def test():
 def cart():
     return render_template('cart.html')
 
+@app.route('/block_menu', methods=['GET', 'POST'])
+def block_menu():
+    food = FoodModel.query.all()
+    food.sort(key=lambda x: x.id)
+    print("test")
+    #Query all food items for the menu
+    return render_template('block_menu.html', food=food)
+
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
     food = FoodModel.query.all()

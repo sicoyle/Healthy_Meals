@@ -1,154 +1,123 @@
-<!DOCTYPE html>
-<html class="text-dark">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>home_page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Artifika">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Belgrano">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif">
+{% block css %}
+
+{% endblock %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/front_page.styles.min.css') }}">
-</head>
-
-<body style="font-family: Artifika, serif;">
-    <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="padding: 14px;">
-        <div class="container-fluid"><a class="navbar-brand" href="/zac"
-                style="height: 47px;margin: 0px;font-size: 31px;font-family: Artifika, serif;width: 253px;padding: 0px;">Farmacy
-                Meals</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
-                    class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse d-lg-flex flex-shrink-1" id="navcol-1">
-                <ul class="nav navbar-nav d-xl-flex">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="/menu"
-                            style="font-size: 24px;font-family: 'Noto Serif KR', serif;">Menu</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
-                            style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Packages</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
-                            style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Gift</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#"
-                            style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Order</a></li>
-                {% if current_user.username %}
-                </ul>
-                    <div class="ml-auto nav-item dropdown" style="font-size: 22px; font-family: 'Noto Serif KR', serif;"><a class="dropdown-toggle nav-link"  data-toggle="dropdown"
-                    aria-expanded="false" style="color:#82b87a;" href="#">Hi,
-                    {{ current_user.username }}&nbsp;</a>
-                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
-                        href="/profile">My Profile</a><a class="dropdown-item" role="presentation" href="#">Orders
-                        </a><a class="dropdown-item" role="presentation" href="/logout">Sign Out</a></div></div>
-                {% else %}
-                </ul>
-                <span class="ml-auto navbar-text actions"> <a class="btn btn-light action-button" role="button"
-                        href="/login" style="background-color: #bdecb6;">Log in</a></span>
-                {% endif %}
+{% block content %}
+<main>
+    <div class="container-fluid" style="font-family: 'Noto Serif', serif;">
+        <div class="row">
+            <div class="col d-md-flex justify-content-md-center align-items-md-center"><iframe allowfullscreen=""
+                    frameborder="0" width="560" height="315"></iframe></div>
+        </div>
+        <div class="row d-flex" style="padding: 0px;">
+            <div class="col-10 offset-1 d-flex justify-content-center align-items-lg-center">
+                <h4 class="display-1 text-center"
+                    style="padding: 18px;background-color: #ffffff;font-family: 'Noto Serif', serif;font-size: 60px;">
+                    Who We&nbsp;Are</h4>
             </div>
         </div>
-    </nav>
-    <main>
-        <div class="container-fluid" style="font-family: 'Noto Serif', serif;">
-            <div class="row">
-                <div class="col d-md-flex justify-content-md-center align-items-md-center"><iframe allowfullscreen="" frameborder="0" width="560" height="315"></iframe></div>
-            </div>
-            <div class="row d-flex" style="padding: 0px;">
-                <div class="col-10 offset-1 d-flex justify-content-center align-items-lg-center">
-                    <h4 class="display-1 text-center" style="padding: 18px;background-color: #ffffff;font-family: 'Noto Serif', serif;font-size: 60px;">Who We&nbsp;Are</h4>
-                </div>
-            </div>
-            <div class="row no-gutters d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center">
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-0 offset-sm-0 offset-md-0 offset-xl-0 d-sm-flex justify-content-sm-center"><img class="img-fluid" src="{{ url_for('static', filename='img/front_page/mapFinal.jpg') }}"></div>
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-sm-0 offset-md-1 offset-lg-1 offset-xl-1 d-sm-flex flex-column justify-content-lg-center align-items-lg-center">
-                    <h3 class="text-center d-flex" style="font-family: Artifika, serif;">Local, healthy vegan friendly delivering service catering to the North Houston Area</h3>
-                    <p class="text-center d-flex justify-content-sm-center">We deliver to the Northern Houston area within a 22 mile radius of Humble. Please enter your address to see if we can also deliver to you!</p>
-                </div>
-            </div>
-            <div class="row no-gutters d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center align-items-sm-center justify-content-lg-center">
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-0 offset-lg-0 offset-xl-0 d-sm-flex d-xl-flex flex-column">
-                    <h4 class="text-center d-xl-flex justify-content-xl-center align-items-xl-center">Ingredients Locally Sourced</h4>
-                    <p class="text-center d-xl-flex justify-content-xl-center align-items-xl-center">Ingredients bought and sourced from nearby Texas farms to bring you local, healthy, trusted foods</p>
-                    <h4 class="text-center">Meals prepared by award winning five-star chef</h4>
-                    <p class="text-center d-lg-flex">All meals are cooked and prepared under the direct supervision of Chef Stacy Simonson-Crowe. A nearby award winning chef and owner of Humble's Chez Nous French Restaurant</p>
-                </div>
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 d-flex d-sm-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-lg-center justify-content-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='img/front_page/stacy.jpg') }}"></div>
-            </div>
-            <div class="row no-gutters d-flex d-sm-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-lg-center">
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-0 offset-md-0 offset-lg-0 offset-xl-0 d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='img/front_page/deliverytruck.jpg') }}"></div>
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 flex-column">
-                    <h3 class="text-center" style="font-family: Artifika, serif;">Delivered in one of our trucks directly to your home</h3>
-                    <p class="text-center d-sm-flex d-lg-flex justify-content-sm-center justify-content-lg-center" style="font-family: 'Noto Serif', serif;">One of our trucks will deliver all of your ordered foods to your home every Wendesday and Friday!</p>
-                </div>
-            </div>
-            <div class="row no-gutters" style="padding: 20px;">
-                <div class="col" style="padding: 1px;">
-                    <h1 class="display-3 text-center" style="font-family: 'Noto Serif', serif;font-size: 60px;">How to&nbsp;buy</h1>
-                </div>
-            </div>
-            <div class="row no-gutters d-flex d-sm-flex d-xl-flex flex-shrink-1 justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-lg-center">
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-0 offset-lg-0 offset-xl-0 d-sm-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-lg-center align-items-lg-center justify-content-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='img/front_page/singleitemdishes.jpg') }}"></div>
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 text-center d-flex d-xl-flex flex-column justify-content-center align-items-center justify-content-xl-center align-items-xl-center">
-                    <h2 class="text-center d-flex justify-content-center align-items-center" style="padding: 5px;font-family: Artifika, serif;">Purchase a single item from our menu</h2>
-                    <p class="text-center" style="padding: 7px;">Purchase any one of our single items from our menu. Soups, Salads, Entrees, Elixirs.</p><button class="btn btn-primary btn-lg border rounded" style="height: 60px;background-color: rgb(86,198,198);font-size: 25px;">See Our Menu</button></div>
-            </div>
-            <div class="row no-gutters d-sm-flex d-md-flex flex-shrink-1 justify-content-center align-items-center mx-auto justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center align-items-lg-center">
-                <div class="col-12 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-lg-0 offset-xl-0 d-flex d-md-flex d-xl-flex flex-column justify-content-center align-items-center align-items-md-center justify-content-xl-center align-items-xl-center">
-                    <h2 class="text-center" style="padding: 5px;font-family: Artifika, serif;">Purchase one of our packages</h2>
-                    <p class="text-center" style="padding: 5px;">You can purcahse any one of our three packages. The regular package the includes a lot of stuff and blah blah. The elixir package that includes a bunch of drinkos. Or, the package plus where you get basically everything.</p>
-                    <button
-                        class="btn btn-primary btn-lg text-nowrap d-flex d-md-flex justify-content-center align-items-center justify-content-md-center align-items-md-center" style="margin: 0px;background-color: rgb(86,198,198);font-size: 25px;width: 204px;">Go to Packages</button>
-                </div>
-                <div class="col-12 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 d-flex d-sm-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-lg-center justify-content-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='img/front_page/packages.jpg') }}"></div>
-            </div>
-            <div class="row no-gutters d-flex d-sm-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-lg-center">
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-0 offset-lg-0 offset-xl-0 d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='img/front_page/stacy1.jpg') }}"></div>
-                <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 d-flex d-sm-flex flex-column justify-content-center align-items-center justify-content-sm-center align-items-sm-center">
-                    <h1 class="text-center">Chef Stacy Simonson-Crowe</h1>
-                    <p class="text-center"><br><strong>Stacy Crowe-Simonson, Executive Chef</strong>, a native of Brownsville, Texas, began her culinary career at Chez nous in 1994; in 1998, she continued her training at “Chateau des Reynats,” a prestigious Michelin-starred
-                        establishment in Perigeux, France. She then joined Fabrice Poigin at “Vignola” in San Diego before returning home to Chez nous. She brings great balance and boundless enthusiasm to the kitchen. Her strong classical training shows
-                        thru in her flawlessly executed dishes, and her most innovative offerings are simply delicious. In Stacy’s kitchen, the food tastes like itself.<br><br><br></p>
-                </div>
+        <div
+            class="row no-gutters d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-lg-center justify-content-xl-center align-items-xl-center">
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-0 offset-sm-0 offset-md-0 offset-xl-0 d-sm-flex justify-content-sm-center">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/front_page/mapFinal.jpg') }}"></div>
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-sm-0 offset-md-1 offset-lg-1 offset-xl-1 d-sm-flex flex-column justify-content-lg-center align-items-lg-center">
+                <h3 class="text-center d-flex" style="font-family: Artifika, serif;">Local, healthy vegan friendly
+                    delivering service catering to the North Houston Area</h3>
+                <p class="text-center d-flex justify-content-sm-center">We deliver to the Northern Houston area within a
+                    22 mile radius of Humble. Please enter your address to see if we can also deliver to you!</p>
             </div>
         </div>
-    </main>
-    <div class="footer-clean">
-        <footer>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-4 col-md-2 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Menu</a></li>
-                            <li><a href="#">Packages</a></li>
-                            <li><a href="#">Gift</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 col-md-2 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Our Team</a></li>
-                            <li><a href="#">Restaurant</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 col-md-2 item">
-                        <h3>Customer Support</h3>
-                        <ul>
-                            <li><a href="#">Phone Number</a></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"
-                                style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-twitter"
-                                style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-instagram"
-                                style="color: rgb(75,76,77);"></i></a>
-                        <p class="copyright">Company Name © 2017</p>
-                    </div>
-                </div>
+        <div
+            class="row no-gutters d-sm-flex d-md-flex d-xl-flex justify-content-center align-items-center align-items-sm-center justify-content-lg-center">
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-0 offset-lg-0 offset-xl-0 d-sm-flex d-xl-flex flex-column">
+                <h4 class="text-center d-xl-flex justify-content-xl-center align-items-xl-center">Ingredients Locally
+                    Sourced</h4>
+                <p class="text-center d-xl-flex justify-content-xl-center align-items-xl-center">Ingredients bought and
+                    sourced from nearby Texas farms to bring you local, healthy, trusted foods</p>
+                <h4 class="text-center">Meals prepared by award winning five-star chef</h4>
+                <p class="text-center d-lg-flex">All meals are cooked and prepared under the direct supervision of Chef
+                    Stacy Simonson-Crowe. A nearby award winning chef and owner of Humble's Chez Nous French Restaurant
+                </p>
             </div>
-        </footer>
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 d-flex d-sm-flex d-lg-flex d-xl-flex justify-content-center justify-content-sm-center justify-content-lg-center justify-content-xl-center">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/front_page/stacy.jpg') }}"></div>
+        </div>
+        <div
+            class="row no-gutters d-flex d-sm-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-lg-center">
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-0 offset-md-0 offset-lg-0 offset-xl-0 d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/front_page/deliverytruck.jpg') }}"></div>
+            <div class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 flex-column">
+                <h3 class="text-center" style="font-family: Artifika, serif;">Delivered in one of our trucks directly to
+                    your home</h3>
+                <p class="text-center d-sm-flex d-lg-flex justify-content-sm-center justify-content-lg-center"
+                    style="font-family: 'Noto Serif', serif;">One of our trucks will deliver all of your ordered foods
+                    to your home every Wendesday and Friday!</p>
+            </div>
+        </div>
+        <div class="row no-gutters" style="padding: 20px;">
+            <div class="col" style="padding: 1px;">
+                <h1 class="display-3 text-center" style="font-family: 'Noto Serif', serif;font-size: 60px;">How
+                    to&nbsp;buy</h1>
+            </div>
+        </div>
+        <div
+            class="row no-gutters d-flex d-sm-flex d-xl-flex flex-shrink-1 justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-lg-center">
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-0 offset-lg-0 offset-xl-0 d-sm-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-lg-center align-items-lg-center justify-content-xl-center">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/front_page/singleitemdishes.jpg') }}">
+            </div>
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 text-center d-flex d-xl-flex flex-column justify-content-center align-items-center justify-content-xl-center align-items-xl-center">
+                <h2 class="text-center d-flex justify-content-center align-items-center"
+                    style="padding: 5px;font-family: Artifika, serif;">Purchase a single item from our menu</h2>
+                <p class="text-center" style="padding: 7px;">Purchase any one of our single items from our menu. Soups,
+                    Salads, Entrees, Elixirs.</p><button class="btn btn-primary btn-lg border rounded"
+                    style="height: 60px;background-color: rgb(86,198,198);font-size: 25px;">See Our Menu</button>
+            </div>
+        </div>
+        <div
+            class="row no-gutters d-sm-flex d-md-flex flex-shrink-1 justify-content-center align-items-center mx-auto justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center align-items-lg-center">
+            <div
+                class="col-12 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-lg-0 offset-xl-0 d-flex d-md-flex d-xl-flex flex-column justify-content-center align-items-center align-items-md-center justify-content-xl-center align-items-xl-center">
+                <h2 class="text-center" style="padding: 5px;font-family: Artifika, serif;">Purchase one of our packages
+                </h2>
+                <p class="text-center" style="padding: 5px;">You can purcahse any one of our three packages. The regular
+                    package the includes a lot of stuff and blah blah. The elixir package that includes a bunch of
+                    drinkos. Or, the package plus where you get basically everything.</p>
+                <button
+                    class="btn btn-primary btn-lg text-nowrap d-flex d-md-flex justify-content-center align-items-center justify-content-md-center align-items-md-center"
+                    style="margin: 0px;background-color: rgb(86,198,198);font-size: 25px;width: 204px;">Go to
+                    Packages</button>
+            </div>
+            <div
+                class="col-12 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 d-flex d-sm-flex d-lg-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-lg-center justify-content-xl-center">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/front_page/packages.jpg') }}"></div>
+        </div>
+        <div
+            class="row no-gutters d-flex d-sm-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-lg-center">
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-0 offset-lg-0 offset-xl-0 d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center align-items-xl-center">
+                <img class="img-fluid" src="{{ url_for('static', filename='img/front_page/stacy1.jpg') }}"></div>
+            <div
+                class="col-9 col-sm-9 col-md-5 col-lg-5 col-xl-5 offset-md-1 offset-lg-1 offset-xl-1 d-flex d-sm-flex flex-column justify-content-center align-items-center justify-content-sm-center align-items-sm-center">
+                <h1 class="text-center">Chef Stacy Simonson-Crowe</h1>
+                <p class="text-center"><br><strong>Stacy Crowe-Simonson, Executive Chef</strong>, a native of
+                    Brownsville, Texas, began her culinary career at Chez nous in 1994; in 1998, she continued her
+                    training at “Chateau des Reynats,” a prestigious Michelin-starred
+                    establishment in Perigeux, France. She then joined Fabrice Poigin at “Vignola” in San Diego before
+                    returning home to Chez nous. She brings great balance and boundless enthusiasm to the kitchen. Her
+                    strong classical training shows
+                    thru in her flawlessly executed dishes, and her most innovative offerings are simply delicious. In
+                    Stacy’s kitchen, the food tastes like itself.<br><br><br></p>
+            </div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+</main>
+{% endblock %}
