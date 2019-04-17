@@ -1,58 +1,185 @@
-
-
 <!DOCTYPE html>
-
-<html>
-
-	{% block content %}
+<!--<html>
     <h1>Edit Profile</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(cols=50, rows=4) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-		</p>
-		<p>
-            {{ form.address.label }}<br>
-            {{ form.address(cols=50, rows=4) }}<br>
-            {% for error in form.address.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.state.label }}<br>
-            {{ form.state(cols=50, rows=4) }}<br>
-            {% for error in form.state.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.zip.label }}<br>
-            {{ form.zip(cols=50, rows=4) }}<br>
-            {% for error in form.zip.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-		</p>
-		<p>
-            {{ form.phone_number.label }}<br>
-            {{ form.phone_number(cols=50, rows=4) }}<br>
-            {% for error in form.phone_number.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
+ 
+
+
+
+
+
         <p>{{ form.submit() }}</p>
     </form>
-{% endblock %}
+</html>
 
+
+
+<!DOCTYPE html>-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>customer_account_page(edit)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Artifika">
+    <link rel="stylesheet" href="assets/css/profile.styles.min.css">
+</head>
+
+<body>
+    <div>
+		<nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="padding: 14px;">
+
+            <div class="container-fluid"><a class="navbar-brand" style="height: 47px;margin: 0px;font-size: 31px;font-family: Artifika, serif;width: 253px;padding: 0px;" href="#">Farmacy Meals</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse flex-shrink-1" id="navcol-1">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item" role="presentation"><a class="nav-link active" style="font-size: 24px;" href="#">Menu</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" style="font-size: 25px;" href="#">Packages</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" style="font-size: 25px;" href="#">Gift</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" style="font-size: 25px;" href="#">Order</a></li>
+                    </ul><span class="ml-auto navbar-text actions"> <a class="btn btn-light action-button" role="button" style="background-color: #bdecb6;" href="#">Log in</a></span></div>
+    </div>
+    </nav>
+    </div>
+    <main>
+        <div class="container profile profile-view" id="profile">
+			<form action="" method="post"  class="form-group">
+                <div class="form-row profile-row">
+                    <div class="col-md-4 relative" style="padding: 30px;">
+                        <div class="avatar">
+                            <div class="avatar-bg center"></div>
+                        </div>
+                        <div class="custom-file"><input type="file" class="custom-file-input"><label class="custom-file-label">Upload File</label></div>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <h1 class="text-center">Person's Names Profile </h1>
+                        <div class="form-row">
+                            <div class="col-sm-12 col-md-6">
+								<div class="form-group">
+                                        {{ form.firstname.label }}<br>
+                                        {{ form.firstname(class_="form-control") }}<br>
+										{% for error in form.firstname.errors %}
+										<span style="color: red;">[{{ error }}]</span>
+										{% endfor %}
+								</div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <p>
+										{{ form.lastname.label }}<br>
+										{{ form.lastname(class_="form-control") }}<br>
+										{% for error in form.lastname.errors %}
+										<span style="color: red;">[{{ error }}]</span>
+										{% endfor %}
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                {{ form.email.label }}<br>
+                                {{ form.email(class_="form-control") }}<br>
+                                {% for error in form.email.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                {{ form.address.label }}<br>
+                                {{ form.address(class_="form-control") }}<br>
+                                {% for error in form.address.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                {{ form.phone_number.label }}<br>
+                                {{ form.phone_number(class_="form-control") }}<br>
+                                {% for error in form.phone_number.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <p>
+                                        {{ form.state.label }}<br>
+                                        {{ form.state(class_="form-control") }}<br>
+                                        {% for error in form.state.errors %}
+                                        <span style="color: red;">[{{ error }}]</span>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <p>
+                                    {{ form.zip_code.label }}<br>
+                                    {{ form.zip_code(class_="form-control") }}<br>
+                                    {% for error in form.zip_code.errors %}
+                                    <span style="color: red;">[{{ error }}]</span>
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-sm-12 col-md-6 text-right"><button class="btn btn-light" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);" type="button">Change Password</button><button class="btn btn-light" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);"
+                                    type="button">Cancel</button>
+                                    
+
+                                    <!-- <input type="Submit" value="Submit" name="Submit" class="btn btn-light" role="button" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,255,255);"></input> -->
+                                    {{ form.submit(class_="btn btn-primary btn-block")}}
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+	</main>
+
+    <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#">Menu</a></li>
+                            <li><a href="#">Packages</a></li>
+                            <li><a href="#">Gift</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Our Team</a></li>
+                            <li><a href="#">Restaurant</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3>Customer Support</h3>
+                        <ul>
+                            <li><a href="#">Phone Number</a></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">Company Name © 2017</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
+</body>
 
 </html>

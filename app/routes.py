@@ -36,14 +36,14 @@ def google_login():
     resp = google.get("/oauth2/v1/userinfo")
     assert resp.ok, resp.text
 
-    user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+    user = UserModel.query.filter_by(email=resp.json()["email"]).first()
 
     # Add user to the database if not already there
     if user is None:
-        user = UserModel(username=resp.json()["name"])
+        user = UserModel(email=resp.json()["email"])
         db.session.add(user)
         db.session.commit()
-        user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+        user = UserModel.query.filter_by(email=resp.json()["email"]).first()
 
     login_user(user)
     return render_template('index.html')
@@ -56,14 +56,14 @@ def facebook_login():
     resp = facebook.get("/me")
     assert resp.ok, resp.text
     
-    user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+    user = UserModel.query.filter_by(email=resp.json()["email"]).first()
 
     # Add user to the database if not already there
     if user is None:
-        user = UserModel(username=resp.json()["name"])
+        user = UserModel(email=resp.json()["email"])
         db.session.add(user)
         db.session.commit()
-        user = UserModel.query.filter_by(username=resp.json()["name"]).first()
+        user = UserModel.query.filter_by(email=resp.json()["email"]).first()
 
     login_user(user)
     return render_template('index.html')
@@ -92,9 +92,9 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = UserModel.query.filter_by(username=form.username.data).first()
+        user = UserModel.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash('Invalid email or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
@@ -109,7 +109,8 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = UserModel(username=form.username.data, email=form.email.data)
+        print("YOUR FORM IS VALIDATED!")
+        user = UserModel(email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -120,31 +121,46 @@ def register():
 @app.route('/profile', methods=['GET'])
 @login_required
 def profile():
-    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    user = UserModel.query.filter_by(email=current_user.email).first_or_404() 
     return render_template('profile.html', user=user)
+
+@app.route('/test_edit_profile', methods=['GET', 'POST'])
+def test_edit_profile():
+    form = EditProfileForm()
+
+    if form.validate_on_submit():
+        print("YAY")
+    return render_template('test_edit_profile.html', form=form)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm()
+    
     if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        current_user.address = form.address.data
-        current_user.state = form.state.data
-        current_user.zip = form.zip.data
-        current_user.phone_number = form.phone_number.data
+        #current_user.username = form.username.data
+        user.firstname = form.firstname.data
+        user.lastname = form.lastname.data
+        user.email = form.email.data
+        user.address = form.address.data
+        user.state = form.state.data
+        user.zip = form.zip_code.data
+        user.phone_number = form.phone_number.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('profile'))
     elif request.method == 'GET':
-        form.username.data = current_user.username
+        
+        #form.username.data = current_user.username
+        form.firstname.data = current_user.firstname
+        form.lastname.data = current_user.lastname
         form.email.data = current_user.email
         form.address.data = current_user.address
         form.state.data = current_user.state
-        form.zip.data = current_user.zip
+        form.zip_code.data = current_user.zip
         form.phone_number.data = current_user.phone_number
         #return redirect(url_for('profile'))
+
     return render_template('edit_profile.html', title='Edit Profile', form=form)
         
 

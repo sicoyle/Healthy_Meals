@@ -18,9 +18,16 @@
         {{ form.hidden_tag() }}
 	<div class="illustration"><i class="icon ion-android-person"></i></div>
         <p>
-            {{ form.username.label }}<br>
-	    {{ form.username(class_="form-group") }}<br>
-            {% for error in form.username.errors %}
+            {{ form.firstname.label }}<br>
+	        {{ form.firstname(class_="form-group") }}<br>
+            {% for error in form.firstname.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.lastname.label }}<br>
+	        {{ form.lastname(class_="form-group") }}<br>
+            {% for error in form.lastname.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
@@ -31,6 +38,7 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+
         <p>
             {{ form.password.label }}<br>
             {{ form.password(class_="form-group") }}<br>

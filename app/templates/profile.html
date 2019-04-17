@@ -1,25 +1,40 @@
 
 <!DOCTYPE html>
-
 <html>
 
-	{% block content %}
-	<h1> User: {{ current_user.username }}</h1>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<title>Profile Page</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.styles.min.css') }}">
+	</head>
 
-	<h1> email: {{ current_user.email }}</h1>
+	<body>
+		{% block content %}
+	<!--	<h1> User: {{ current_user.username }}</h1>-->
 
-	<h1> address: {{ current_user.address }}</h1>
+		<h1> first: {{ current_user.firstname }}</h1>
 
-	<h1> state: {{ current_user.state }}</h1>
-
-	<h1> zip: {{ current_user.zip }}</h1>
-
-	<h1> phone number: {{ current_user.phone_number }}</h1>
-
-	<p><a class="btn btn-primary btn-block" role="button" href="/edit_profile">Edit Profile</a></p>
+		<h1> last: {{ current_user.lastname }}</h1>
 
 
-	{% endblock %}
+		<h1> email: {{ current_user.email }}</h1>
 
+		<h1> address: {{ current_user.address }}</h1>
+
+		<h1> state: {{ current_user.state }}</h1>
+
+		<h1> zip: {{ current_user.zip }}</h1>
+
+		<h1> phone number: {{ current_user.phone_number }}</h1>
+
+		<p><a class="btn btn-primary btn-block" role="button" href="/edit_profile">Edit Profile</a></p>
+
+
+		{% endblock %}
+	</body>
 
 </html>
