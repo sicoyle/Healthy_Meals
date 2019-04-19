@@ -192,10 +192,10 @@ class ItemModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=False)
-    cost = db.Column(db.Float, primary_key=True)
+    cost = db.Column(db.Float, unique=False)
     # order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
     # type = db.Column(db.String(64), index=True, unique=False)
-    picture = db.Column(db.String(64), index=True, unique=False)
+    picture_path = db.Column(db.String(64), index=True, unique=False)
     quantity = db.Column(db.Integer, index=True, unique=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

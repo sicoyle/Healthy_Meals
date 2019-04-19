@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.styles.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.styles.min.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
             <div class="col" style="border: 10px;">
                 <h1 class="text-center" style="padding: 20px;">Our Menu</h1>
             </div>
-        </div>  
+        </div>
         <div class="row">
             <div class="col">
                 <h1 class="text-center"
@@ -29,6 +29,44 @@
                 <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[0].withInformation }}</p>
                 <img class="d-md-flex justify-content-md-start"
                     src="{{ url_for('static', filename=food[0].iconPath) }}">
+            </div>
+
+            <div class="modal fade" id="chunky_soup_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl role=" document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">Thai Coconut Chicken
+                                Soup</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">with Lemon Grass
+                                        and Ginger</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid"
+                                        src="{{ url_for('static', filename='img/menuPage/chunckysoup.jpg') }}" /></div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                    <p class="text-left">Free Range Chicken<br />Natural Chicken Stock<br />Shiitake
+                                        Mushrooms<br />Leeks<br />Carrots<br />Garlic<br />Ginger Lemongrass<br />Lime
+                                        Juice<br />Coconut Milk<br />Kafir Leaf<br /></p>
+                                </div>
+                            </div>
+                            <div class="row d-lg-flex justify-content-lg-center">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img
+                                        src="{{ url_for('static', filename='img/menuPage/GF.png') }}" /></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal"
+                                type="button">Cancel</button><input id="quantity_chunky" class="input-number" style="text-align: center;"
+                                type="number" value="1" min="1" max="10"><button id="chunky_soup_button" class="btn btn-primary"
+                                style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img

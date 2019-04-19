@@ -81,7 +81,6 @@ def cart():
 def menu():
     food = FoodModel.query.all()
     food.sort(key=lambda x: x.id)
-    print("test")
     #Query all food items for the menu
     return render_template('menu.html', food=food)
 
@@ -275,5 +274,57 @@ class Ingredient(Resource):
         else:
             return abort(503, 'The ingredient did not exist')
 
+
+class CartItem(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+
+        parser.add_argument('name', type=str)
+        parser.add_argument('quantity', type=int)
+        parser.add_argument('cost', type=int)
+        parser.add_argument('id', type=int)
+        parser.add_argument('picture_path', type=str)
+
+        self.args = parser.parse_args()
+    
+    def get(self):
+        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+        return jsonify(items=user.items) 
+    
+    def post(self):
+        print("Were in post nowwww!")
+        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+        try:
+            print("INSIDE THE TRY BLOCK")
+            new_item = ItemModel(**self.args)
+            new_item.user_id = current_user.id
+            db.session.add(new_item)
+            db.session.commit()
+        except:
+            return abort(502, "Item was not added to the users cart")
+        
+        return jsonify(message='Cart item successfully created!')
+
+class UserClass(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+
+        # parser.add_argument('name', type=str)
+        # parser.add_argument('quantity', type=int)
+        # parser.add_argument('cost', type=int)
+        # parser.add_argument('id', type=int)
+        # parser.add_argument('picture_path', type=str)
+
+        self.args = parser.parse_args()
+    
+    def get(self):
+        user = UserModel.query.all()
+        return jsonify(uesrs = user_schema_many.dump(user).data) 
+
+
+
+
+api.add_resource(UserClass, '/user')
+api.add_resource(CartItem, '/add_cart_item')
 api.add_resource(Food, '/food')
 api.add_resource(Ingredient, '/food/ingredients')
