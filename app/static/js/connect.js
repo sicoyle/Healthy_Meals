@@ -15,7 +15,7 @@ $('#chunky_soup_button').click(function() {
     payload = {
         name: "Thai Coconut Chicken Soup", 
         quantity: quantity,
-        id: 11,
+        id: 12,
         cost: 8, 
         picture_path: "/img/menuPage/chunckysoup.jpg"
     }
