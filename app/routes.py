@@ -319,12 +319,37 @@ class UserClass(Resource):
     
     def get(self):
         user = UserModel.query.all()
-        return jsonify(uesrs = user_schema_many.dump(user).data) 
+        return jsonify(users = user_schema_many.dump(user).data) 
+
+class GetNextItemId(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+        self.args = parser.parse_args()
+    
+    def get(self):
+        items = ItemModel.query.all()
+        if(len(items) is 0):
+            next_item_id = 1
+        else:
+            next_item_id = len(items) + 1
+        """
+        Need to check that the number of items + 1 does not have an id in the databsae
+        (so that no two items have the same id)
+        if it does exist, check what number between 1 and len(items) is an id that does not exist and give that item that id number
+
+        """
+
+        return jsonify(next_item_id=next_item_id)
+
+
+
+
 
 
 
 
 api.add_resource(UserClass, '/user')
-api.add_resource(CartItem, '/add_cart_item')
+api.add_resource(CartItem, '/user/cart')
+api.add_resource(GetNextItemId, '/items/get_next_id')
 api.add_resource(Food, '/food')
 api.add_resource(Ingredient, '/food/ingredients')
