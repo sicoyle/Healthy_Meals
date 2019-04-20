@@ -83,9 +83,11 @@ def cart():
     for item in user.items:
         subtotal = subtotal + (item.cost * item.quantity)
     
+    subtotal = round(subtotal, 2)
     tax = subtotal * .0825
-
+    tax = round(tax, 2)
     total = tax + subtotal
+    total = round(total, 2)
 
     return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
 

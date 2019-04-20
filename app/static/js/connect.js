@@ -22,7 +22,7 @@ $('#chunky_soup_button').click(function() {
         quantity: quantity,
         id: next_item_id,
         cost: 8, 
-        picture_path: "/img/menuPage/chunckysoup.jpg"
+        picture_path: "img/menuPage/chunckysoup.jpg"
     }
 
     $.post(url_cart, payload, function(data, status) {
