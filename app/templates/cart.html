@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.styles.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.styles.min.css') }}">
 {% endblock %}
 
 {% block content %}
 <div>
+    <p>
+        {% if num_items %}
+        <div>{{ num_items }}</div>
+        {% endif %}
+    </p>
+
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+
                 <div class="card">
                     <div class="card-header">
                         <h2>Cart</h2>
@@ -22,31 +29,37 @@
                                 <h4>Amount </h4>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="media">
-                                    <div><img class="rounded-circle mr-3" src="{{ url_for('static', filename='img/user-photo3.jpg') }}" width="50"
-                                            height="50"></div>
-                                    <div class="media-body">
-                                        <h4><a href="#">Flu-Flu-Item #1</a><span class="badge badge-success">In
-                                                Stock</span></h4>
-                                        <p class="text-muted">Description blah blah blah<br>
-                                        </p>
+
+                        {% for i in range(3) %}
+
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="media">
+                                        <div><img class="rounded-circle mr-3"
+                                                src="{{ url_for('static', filename='img/user-photo3.jpg') }}" width="50"
+                                                height="50"></div>
+                                        <div class="media-body">
+                                            <h4><a href="#">{{ user_items[i].name }}</a><span class="badge badge-success">In
+                                                    Stock</span></h4>
+                                            <p class="text-muted">Description blah blah blah<br>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <p><span class="h3">$100 </span><br>
+                                        <strong> </strong><a href="#">View Details</a></p>
+                                    <p></p>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i
+                                                class="fa fa-pencil"></i> Edit</button><button class="btn btn-primary"
+                                            type="button"> <i class="fa fa-trash-o"></i></button></div>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                                <p><span class="h3">$100 </span><br>
-                                    <strong> </strong><a href="#">View Details</a></p>
-                                <p></p>
-                            </div>
-                            <div class="col-md-3 text-right">
-                                <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i
-                                            class="fa fa-pencil"></i> Edit</button><button class="btn btn-primary"
-                                        type="button"> <i class="fa fa-trash-o"></i></button></div>
-                            </div>
-                        </div>
-                        <div class="row">
+                        
+                            {% endfor %}
+                        <!-- <div class="row">
                             <div class="col-md-5">
                                 <div class="media">
                                     <div><img class="rounded-circle mr-3" src="assets/img/user-photo4.jpg" width="50"
@@ -69,7 +82,7 @@
                                         type="button"> <i class="fa fa-trash-o"></i></button></div>
                                 <p> </p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -110,5 +123,5 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{{ url_for('static', filename='js/connect.js') }}"></script>
+<script src="{{ url_for('static', filename='js/connect.js') }}"></script>
 {% endblock %}

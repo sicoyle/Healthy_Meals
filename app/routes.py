@@ -75,7 +75,10 @@ def index():
 
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
-    return render_template('cart.html')
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    print(user)
+
+    return render_template('cart.html', user_items = user.items)
 
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
