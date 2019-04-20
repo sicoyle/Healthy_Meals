@@ -80,10 +80,15 @@ class UserModel(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
 
-    address = db.Column(db.String(64), index=True, unique=False)
+    first_name = db.Column(db.String(64), index=True, unique=False)
+    last_name = db.Column(db.String(64), index=True, unique=False)
+    address_line_1 = db.Column(db.String(64), index=True, unique=False)
+    address_line_2 = db.Column(db.String(64), index=True, unique=False)
+    city = db.Column(db.String(64), index=True, unique=False)
     state = db.Column(db.String(64), index=True, unique=False)
-    zip = db.Column(db.String(64), index=True, unique=False)
+    zip_code = db.Column(db.String(64), index=True, unique=False)
     phone_number = db.Column(db.String(64), index=True, unique=False)
+    picture = db.Column(db.String(64), index=True, unique=False)
 
     orders = db.relationship('OrderModel', backref='previous_orders')
     items = db.relationship('ItemModel', backref='my_items')

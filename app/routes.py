@@ -105,7 +105,7 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = UserModel.query.filter_by(username=form.username.data).first()
+        user = UserModel.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
@@ -122,7 +122,8 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = UserModel(username=form.username.data, email=form.email.data)
+        user = UserModel(first_name=form.first_name.data, email=form.email.data)
+        user.username = user.email
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -141,21 +142,27 @@ def profile():
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        current_user.username = form.username.data
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
         current_user.email = form.email.data
-        current_user.address = form.address.data
+        current_user.address_line_1 = form.address_line_1.data
+        current_user.address_line_2 = form.address_line_2.data
+        current_user.city = form.city.data
         current_user.state = form.state.data
-        current_user.zip = form.zip.data
+        current_user.zip_code = form.zip_code.data
         current_user.phone_number = form.phone_number.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('profile'))
     elif request.method == 'GET':
-        form.username.data = current_user.username
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
         form.email.data = current_user.email
-        form.address.data = current_user.address
+        form.address_line_1.data = current_user.address_line_1
+        form.address_line_2.data = current_user.address_line_2
+        form.city.data = current_user.city
         form.state.data = current_user.state
-        form.zip.data = current_user.zip
+        form.zip_code.data = current_user.zip_code
         form.phone_number.data = current_user.phone_number
         #return redirect(url_for('profile'))
     return render_template('edit_profile.html', title='Edit Profile', form=form)
