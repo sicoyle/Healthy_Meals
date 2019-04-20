@@ -78,7 +78,16 @@ def cart():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     print(user)
 
-    return render_template('cart.html', user_items = user.items)
+    subtotal = 0
+
+    for item in user.items:
+        subtotal = subtotal + (item.cost * item.quantity)
+    
+    tax = subtotal * .0825
+
+    total = tax + subtotal
+
+    return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
 
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():

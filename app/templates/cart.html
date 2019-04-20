@@ -30,35 +30,35 @@
                             </div>
                         </div>
 
-                        {% for i in range(3) %}
+                        {% for i in range(num_user_items) %}
 
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="media">
-                                        <div><img class="rounded-circle mr-3"
-                                                src="{{ url_for('static', filename='img/user-photo3.jpg') }}" width="50"
-                                                height="50"></div>
-                                        <div class="media-body">
-                                            <h4><a href="#">{{ user_items[i].name }}</a><span class="badge badge-success">In
-                                                    Stock</span></h4>
-                                            <p class="text-muted">Description blah blah blah<br>
-                                            </p>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="media">
+                                    <div><img class="rounded-circle mr-3"
+                                            src="{{ url_for('static', filename='img/user-photo3.jpg') }}" width="50"
+                                            height="50"></div>
+                                    <div class="media-body">
+                                        <h4><a href="#">{{ user_items[i].name }}</a><span class="badge badge-success">In
+                                                Stock</span></h4>
+                                        <p class="text-muted">Description blah blah blah<br>
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <p><span class="h3">$100 </span><br>
-                                        <strong> </strong><a href="#">View Details</a></p>
-                                    <p></p>
-                                </div>
-                                <div class="col-md-3 text-right">
-                                    <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i
-                                                class="fa fa-pencil"></i> Edit</button><button class="btn btn-primary"
-                                            type="button"> <i class="fa fa-trash-o"></i></button></div>
-                                </div>
                             </div>
-                        
-                            {% endfor %}
+                            <div class="col-md-4">
+                                <p><span class="h3">{{ user_items[i].cost * user_items[i].quantity }} </span><br>
+                                    <strong> </strong><a href="#">View Details</a></p>
+                                <p></p>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i
+                                            class="fa fa-pencil"></i> Edit</button><button class="btn btn-primary"
+                                        type="button"> <i class="fa fa-trash-o"></i></button></div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
                         <!-- <div class="row">
                             <div class="col-md-5">
                                 <div class="media">
@@ -94,22 +94,26 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-5">
-                                <h4 class="text-left">Items:</h4>
+                                <h4 class="text-left">Subtotal: </h4>
                             </div>
+
                             <div class="col-md-7">
-                                <h4>$calculatedAmt </h4>
+                                <h4>{{ subtotal }}</h4>
                             </div>
+
                             <div class="col-md-5">
                                 <h4 class="text-left">Tax:</h4>
                             </div>
+
                             <div class="col-md-7">
-                                <h4 class="text-left">$calculatedTax</h4>
+                                <h4 class="text-left">{{ tax }}</h4>
                             </div>
+
                             <div class="col-md-5">
                                 <h4 class="text-left">Order Total:</h4>
                             </div>
                             <div class="col-md-7">
-                                <h4 class="text-left">$calculatedTotal</h4>
+                                <h4 class="text-left">{{ total }}</h4>
                             </div>
                         </div><button class="btn btn-primary text-center bg-warning" type="button">Proceed to
                             Checkout</button>
