@@ -33,14 +33,17 @@
                         <div class="col-3 col-sm-3">
                             <h6 class="d-sm-flex justify-content-sm-start align-items-sm-start"></h6>
                             <h6>{{ user_items[i].name }}</h6><a href="#" style="font-size: 13px;">View Details</a></div>
-                        <div class="col">
-                            <h6 class="text-center d-sm-flex justify-content-sm-start align-items-sm-start"></h6>
-                            <h6 class="text-center">{{ user_items[i].quantity }}</h6>
+                        <div class="col-3">
+                            <div class="d-flex align-items-center">
+                                <div class="btn btn-items btn-items-decrease">-</div>
+                                    <input type="text" value="{{ user_items[i].quantity }}" class="form-control text-center border-0 border-md input-items">
+                                <div class="btn btn-items btn-items-increase">+</div>
+                            </div>
                         </div>
                         <div class="col">
                             <h6 class="text-center">{{user_items[i].cost * user_items[i].quantity}}</h6>
                         </div>
-                        <div class="col"><a href="#" style="padding: 5px;">Edit</a><a href="#" style="padding: 5px;">Delete</a></div>
+                        <div class="col"><a href="#" style="padding: 5px;">Delete</a></div>
                     </div>
 
                     {% endfor %}
@@ -75,5 +78,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="{{ url_for('static', filename='js/connect.js') }}"></script>
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
 {% endblock %}
