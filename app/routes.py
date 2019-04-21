@@ -91,6 +91,10 @@ def cart():
 
     return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
 
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    return render_template('checkout.html')
+
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
     food = FoodModel.query.all()

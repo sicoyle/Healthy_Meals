@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.styles.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="container" style="font-family: 'Noto Serif KR', serif; padding-bottom:50px;">
+        <div class="row">
+            <div class="col" style="border: 10px;">
+                <h1 class="text-center" style="padding: 20px;">Your Order</h1>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/connect.js') }}"></script>
+{% endblock %}
