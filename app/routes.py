@@ -102,6 +102,7 @@ def cart():
 
     return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
 
+<<<<<<< HEAD
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
     return render_template('checkout.html')
@@ -114,6 +115,8 @@ def block_menu():
     #Query all food items for the menu
     return render_template('block_menu.html', food=food)
 
+=======
+>>>>>>> parent of e78f706... added checkout page (where submit order button will be) that appears after you press proceed to checkout in the cart page.
 @app.route('/menu', methods=['GET', 'POST'])
 def menu():
     food = FoodModel.query.all()
