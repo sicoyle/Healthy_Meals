@@ -98,6 +98,16 @@ def menu():
     #Query all food items for the menu
     return render_template('menu.html', food=food)
 
+@app.route('/packages', methods=['GET', 'POST'])
+def packages():
+    food = FoodModel.query.all()
+    food.sort(key=lambda x: x.id)
+    #Query all food items for the menu
+    return render_template('packages.html', food=food)
+
+@app.route('/gift', methods=['GET', 'POST'])
+def gift():
+    return render_template('gift.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -137,9 +147,16 @@ def profile():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     return render_template('profile.html', user=user)
 
+@app.route('/orders', methods=['GET'])
+@login_required
+def orders():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    return render_template('orders.html', user=user)
+
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     form = EditProfileForm()
     if form.validate_on_submit():
         current_user.first_name = form.first_name.data
@@ -165,7 +182,7 @@ def edit_profile():
         form.zip_code.data = current_user.zip_code
         form.phone_number.data = current_user.phone_number
         #return redirect(url_for('profile'))
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
+    return render_template('edit_profile.html', title='Edit Profile', form=form, user=user)
         
 
 @app.route('/logout')

@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_chunky" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="chunky_soup_button" style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_chunky" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="chunky_soup_button" style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
                     </div>
                 </div>  
             </div>
@@ -94,7 +94,7 @@
                                 <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[1].iconPath) }}" /></div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_tomato" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="tomato_soup_button" style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_tomato" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="tomato_soup_button" style="background-color: #bdecb6;" data-dismiss="modal" type="button">Add to Cart</button></div>
                     </div>
                 </div>  
             </div>
@@ -131,7 +131,7 @@
                                 <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[2].iconPath) }}" /></div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_bean" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="bean_soup_button" style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_bean" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="bean_soup_button" style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
                     </div>
                 </div>  
             </div>
@@ -180,7 +180,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_feta" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="feta_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_feta" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="feta_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -221,7 +221,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -266,7 +266,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_lettuce_cups" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="lettuce_cups_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_lettuce_cups" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="lettuce_cups_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -303,7 +303,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_gnudi" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="gnudi_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_gnudi" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="gnudi_button" data-dismiss="modal" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -340,7 +340,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_salmon_cake" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="salmon_cake_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_salmon_cake" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="salmon_cake_button" data-dismiss="modal" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -392,7 +392,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_chick_pea" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_chick_pea" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" data-dismiss="modal" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -432,7 +432,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_cauliflower_box" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="cauliflower_box_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_cauliflower_box" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="cauliflower_box_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -473,7 +473,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_southwest" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="southwest_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_southwest" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="southwest_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -524,7 +524,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_protein_bar" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="protein_bar_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_protein_bar" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="protein_bar_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -564,7 +564,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -604,7 +604,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -652,7 +652,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -690,7 +690,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -728,7 +728,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -766,7 +766,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -816,7 +816,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -854,7 +854,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  
@@ -892,7 +892,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
                         </div>
                     </div>
                 </div>  

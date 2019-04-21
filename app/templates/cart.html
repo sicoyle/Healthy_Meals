@@ -14,15 +14,20 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 offset-md-0 offset-lg-0 offset-xl-0">
-                    <div class="row" style="background-color: white;">
+                <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 offset-md-0 offset-lg-0 offset-xl-0" style="background-color: white;">
+                    <div class="row">
                         <div class="col-md-12">
                             <h1 style="color: #7ea978;">Cart</h1>
                         </div>
                     </div>
-                    
+                    {% if num_user_items == 0 %}
+                    <div class="row d-flex d-sm-flex d-xl-flex">
+                        <div class="col">
+                            <h2 style="color: black; text-align: center; padding-top: 40px">Empty</h2>
+                        </div>
+                    </div>
+                    {% else %}
                     {% for i in range(num_user_items) %}
-
                     <div class="row d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center">
                         <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='/img/menuPage/chunckySoup.jpg') }}"></div>
                         <div class="col-3 col-sm-3">
@@ -39,6 +44,7 @@
                     </div>
 
                     {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="col-10 col-sm-8 col-md-4 col-lg-4 col-xl-4 offset-1 offset-sm-2 offset-md-1 offset-lg-1 offset-xl-1">
                     <div class="row" style="background-color: white;">
