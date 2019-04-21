@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
 
 <head>
@@ -9,6 +10,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Artifika">
+=======
+<html class="text-dark">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <!-- Determines title of page based on title argument passed in -->
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Farmacy Meals</title>
+    {% endif %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+>>>>>>> master
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+KR">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.styles.min.css') }}">
     {% block css %} {% endblock %}
@@ -16,6 +33,7 @@
 
 <body>
 
+<<<<<<< HEAD
     <!-- Start Navbar -->
     <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="padding: 14px;">
         <div class="container-fluid"><a class="navbar-brand" href="/front_page"
@@ -50,16 +68,65 @@
             </div>
         </div>
     </nav>
+=======
+    <!-- Begin Navbar -->
+    <div>
+        <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="padding: 14px;">
+            <div class="container-fluid"><a class="navbar-brand" href="/"
+                    style="height: 35px;margin: 0px;font-size: 31px; width: 253px;padding: 0px;">Farmacy
+                    Meals</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
+                        class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse flex-shrink-1" id="navcol-1">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/menu"
+                                style="font-size: 24px;">Menu</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/packages"
+                                style="font-size: 25px;">Packages</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/gift"
+                                style="font-size: 25px;">Gift</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/cart"
+                                style="font-size: 25px;">Cart</a></li>
+                    </ul>
+                    {% if current_user.username %}
+                    </ul>
+                    <div class="nav-item dropdown ml-auto" style="font-size: 23px; font-family: 'Noto Serif KR', serif;"><a
+                            class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false"
+                            style="color:#82b87a;" href="#">Hi,
+                            {{ current_user.first_name }}&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
+                                href="/profile">My Profile</a><a class="dropdown-item" role="presentation"
+                                href="/orders">Orders
+                            </a><a class="dropdown-item" role="presentation" href="/logout">Sign Out</a></div>
+                    </div>
+                    {% else %}
+                    </ul>
+                    <span class="ml-auto navbar-text actions"> <a class="btn btn-light action-button" role="button"
+                            href="/login" style="background-color: #bdecb6;">Log in</a></span>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+>>>>>>> master
     <!-- End Navbar -->
 
     {% block content %} {% endblock %}
 
+<<<<<<< HEAD
     <!-- Start Footer -->
     <div class="footer-clean">
         <footer>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-sm-4 col-md-2 item">
+=======
+    <!-- Begin Footer -->
+    <div class="footer-clean">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 col-md-3 item">
+>>>>>>> master
                         <h3>Services</h3>
                         <ul>
                             <li><a href="#">Menu</a></li>
@@ -67,7 +134,11 @@
                             <li><a href="#">Gift</a></li>
                         </ul>
                     </div>
+<<<<<<< HEAD
                     <div class="col-sm-4 col-md-2 item">
+=======
+                    <div class="col-sm-4 col-md-3 item">
+>>>>>>> master
                         <h3>About</h3>
                         <ul>
                             <li><a href="#">Company</a></li>
@@ -75,23 +146,40 @@
                             <li><a href="#">Restaurant</a></li>
                         </ul>
                     </div>
+<<<<<<< HEAD
                     <div class="col-sm-4 col-md-2 item">
                         <h3>Customer Support</h3>
                         <ul>
                             <li><a href="#">Phone Number</a></li>
+=======
+                    <div class="col-sm-4 col-md-3 item">
+                        <h3></h3>
+                        <ul></ul>
+                        <h3>Customer Support:</h3>
+                        <ul>
+                            <li>Phone-Number</li>
+>>>>>>> master
                             <li></li>
                             <li></li>
                         </ul>
                     </div>
+<<<<<<< HEAD
                     <div class="col-md-4 col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"
                                 style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-twitter"
                                 style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-instagram"
                                 style="color: rgb(75,76,77);"></i></a>
                         <p class="copyright">Company Name © 2017</p>
+=======
+                    <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a
+                            href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i
+                                class="icon ion-social-instagram"></i></a>
+                        <p class="copyright">Farmacy Meals © 2019</p>
+>>>>>>> master
                     </div>
                 </div>
             </div>
         </footer>
+<<<<<<< HEAD
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
@@ -100,3 +188,14 @@
 </body>
 
 </html>
+=======
+
+    </div>
+    <!-- End Footer -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    {% block js %} {% endblock %}
+
+</body>
+>>>>>>> master

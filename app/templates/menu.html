@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>MenuPage</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Artifika">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+KR">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.styles.min.css') }}">
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.styles.min.css') }}">
+{% endblock %}
 
+<<<<<<< HEAD
 </head>
 
 <body style="font-family: 'Noto Serif KR', serif;">
@@ -177,183 +170,906 @@
                                 {{ food[8].name }}</h4>
                             <p class="text-left" style="font-family: 'Noto Serif KR', serif;">
                                 {{ food[8].withInformation }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center"
-                        style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Boxes</h1>
-                </div>
-            </div>
-            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
-                style="padding-top: 20px;">
-                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0"
-                    style="padding-bottom: 15px;"><img class="img-fluid"
-                        src="{{ url_for('static', filename=food[10].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
-                        {{ food[10].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[10].withInformation }}</p>
-                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[10].iconPath) }}">
-                </div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
-                        class="img-fluid" src="{{ url_for('static', filename=food[11].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
-                        {{ food[11].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[11].withInformation }}</p>
-                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[11].iconPath) }}">
-                </div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
-                        class="img-fluid" src="{{ url_for('static', filename=food[12].picturePath) }}">
-                    <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
-                        {{ food[12].name }}</h4>
-                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[12].withInformation }}</p>
-                    <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[12].iconPath) }}">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center"
-                        style="padding: 20px;border-top: 1px solid;color: #7ea978;border-bottom: 1px solid;">Sweets</h1>
-                </div>
-            </div>
-            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
-                style="padding-top: 20px;">
-                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0"
-                    style="padding-bottom: 15px;"><img class="img-fluid"
-                        src="{{ url_for('static', filename=food[14].picturePath) }}">
-                    <h4 class="text-left flex-shrink-1 flex-nowrap"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[14].name }}</h4><img
-                        class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[14].iconPath) }}">
-                </div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
-                        class="img-fluid" src="{{ url_for('static', filename=food[15].picturePath) }}">
-                    <h4 class="text-left d-flex"
-                        style="font-size: 24px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
-                        {{ food[15].name }}</h4><img
-                        class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[15].iconPath) }}">
-                </div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
-                        class="img-fluid" src="{{ url_for('static', filename=food[16].picturePath) }}">
-                    <h4 class="text-left flex-shrink-1 flex-nowrap"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[16].name }}</h4><img
-                        class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
-                        src="{{ url_for('static', filename=food[16].iconPath) }}">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center"
-                        style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Beverages
-                    </h1>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center" style="padding-top: 20px;">
-                <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid"
-                        src="{{ url_for('static', filename=food[18].picturePath) }}">
-                    <h4 class="text-left"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[18].name }}</h4>
-                </div>
-                <div class="col-9 col-sm-8 col-md-3 col-xl-3" style="padding-bottom: 15px;"><img class="img-fluid"
-                        src="{{ url_for('static', filename=food[19].picturePath) }}">
-                    <h4 class="text-left"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[19].name }}</h4>
-                </div>
-                <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid"
-                        src="{{ url_for('static', filename=food[20].picturePath) }}">
-                    <h4 class="text-left"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[20].name }}</h4>
-                </div>
-                <div class="col-9 col-sm-8 col-md-3" style="padding-bottom: 15px;"><img class="img-fluid"
-                        src="{{ url_for('static', filename=food[21].picturePath) }}">
-                    <h4 class="text-left"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[21].name }}</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="padding-top: 20px;">
-                    <h1 class="text-center"
-                        style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Elixirs
-                    </h1>
-                </div>
-            </div>
-            <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
-                style="padding-top: 20px;padding-bottom: 20px;">
-                <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0"
-                    style="padding-bottom: 15px;"><img class="img-fluid"
-                        src="{{ url_for('static', filename=food[22].picturePath) }}">
-                    <h4 class="text-left"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[22].name }}</h4>
-                </div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
-                        class="img-fluid" src="{{ url_for('static', filename=food[23].picturePath) }}">
-                    <h4 class="text-left"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
-                        {{ food[23].name }}</h4>
-                </div>
-                <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;"><img
-                        class="img-fluid" src="{{ url_for('static', filename=food[24].picturePath) }}">
-                    <h4 class="text-left d-xl-flex"
-                        style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding: 5px;">{{ food[24].name }}
-                    </h4>
-                </div>
+=======
+{% block content %}
+<main>
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col" style="border: 10px;">
+                <h1 class="text-center" style="padding: 20px;">Our Menu</h1>
             </div>
         </div>
-    </main>
-    <div class="footer-clean">
-        <footer>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-sm-4 col-md-2 item">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Menu</a></li>
-                            <li><a href="#">Packages</a></li>
-                            <li><a href="#">Gift</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 col-md-2 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#">Company</a></li>
-                            <li><a href="#">Our Team</a></li>
-                            <li><a href="#">Restaurant</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 col-md-2 item">
-                        <h3>Customer Support</h3>
-                        <ul>
-                            <li><a href="#">Phone Number</a></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"
-                                style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-twitter"
-                                style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-instagram"
-                                style="color: rgb(75,76,77);"></i></a>
-                        <p class="copyright">Company Name © 2017</p>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center"
+                    style="color: #7ea978;padding: 20px;border-bottom: 1px solid;border-top: 1px solid;">Soups</h1>
             </div>
-        </footer>
+        </div>
+        <div class="row text-left d-flex d-sm-flex justify-content-center justify-content-sm-center"
+            style="padding-top: 20px;">
+            <!-- Chunky Soup Food div-->
+            <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" data-style="padding-bottom: 15px;"
+                onclick="toggleChunkyModal()"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[0].picturePath) }}">
+                <h4 class="text-break text-left"
+                    style="font-size: 25px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[0].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[0].withInformation }}</p>
+                <img class="d-md-flex justify-content-md-start"
+                    src="{{ url_for('static', filename=food[0].iconPath) }}">
+            </div>
+            <!-- Chunky Soup Modal -->
+            <div class="modal fade" id="chunky_soup_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">Thai Coconut Chicken Soup</h4></div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">with Lemon Grass and Ginger</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col">
+                                    <img class="img-fluid" src="{{ url_for('static', filename='img/menuPage/chunckysoup.jpg') }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Free Range Chicken<br />Natural Chicken Stock<br />Shiitake Mushrooms<br />Leeks<br />Carrots<br />Garlic<br />Ginger Lemongrass<br />Lime Juice<br />Coconut Milk<br />Kafir Leaf<br /></p>
+                                </div>
+                            </div>
+                            <div class="row d-lg-flex">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename='img/menuPage/GF.png') }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_chunky" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="chunky_soup_button" style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Tomato Soup -->
+            <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;" onclick="toggleTomatoModal()"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[1].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-size: 25px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[1].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[1].withInformation }}</p>
+                <img class="d-md-flex justify-content-md-start"
+                    src="{{ url_for('static', filename=food[1].iconPath) }}">
+            </div>
+            <!-- Tomato Soup Modal -->
+            <div class="modal fade" id="tomato_soup_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[1].name }}</h4></div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[1].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[1].picturePath) }}"/></div>
+                                    <div class="col">
+                                        <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                            <p class="text-left">Roma tomatoes<br />Garlic<br />Onions<br />Leeks<br />Celery<br />Carrots<br />Vegetable Stock<br />Basil<br /></p>
+                                    </div>
+                                </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[1].iconPath) }}" /></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_tomato" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="tomato_soup_button" style="background-color: #bdecb6;" data-dismiss="modal" type="button">Add to Cart</button></div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Black Bean Soup -->
+            <div class="col-9 col-sm-7 col-md-4 col-xl-3 offset-0 offset-sm-0" style="padding-bottom: 15px;" onclick="toggleBlackBeanModal()"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[2].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-size: 23px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[2].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[2].withInformation }}</p>
+                <img class="d-md-flex justify-content-md-start"
+                    src="{{ url_for('static', filename=food[2].iconPath) }}">
+            </div>
+            <!-- Black Bean Modal -->
+            <div class="modal fade" id="bean_soup_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[2].name }}</h4></div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[2].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[2].picturePath) }}"/></div>
+                                    <div class="col">
+                                        <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                            <p class="text-left">Black beans<br />Vegetable stock<br />Red Onions<br />Garlic<br />Cumin<br />Coriander<br /></p>
+                                    </div>
+                                </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[2].iconPath) }}" /></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_bean" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="bean_soup_button" style="background-color: #bdecb6;" type="button">Add to Cart</button></div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <!-- Salad Heading -->
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center" style="color: #7ea978;padding: 20px;border-bottom: 1px solid;border-top: 1px solid;">Salads</h1>
+            </div>
+        </div>
+        <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+            style="padding-top: 20px;">
+            <!-- Feta Salad -->
+            <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 offset-0 offset-sm-0 offset-md-0"
+                style="padding-bottom: 15px;" onclick="toggleFetaSaladModal()"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[3].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[3].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[3].withInformation }}</p>
+                <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[3].iconPath) }}">
+            </div>
+            <!-- Feta Salad Modal -->
+            <div class="modal fade" id="feta_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[3].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[3].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[3].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Organic Field Greens<br />Cucumbers<br />Tomatoes<br />Carrots<br />Sweet Bell Peppers<br />Black Olives<br />Feta<br />Apple Cider Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[3].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_feta" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="feta_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Fruit Salad -->
+            <div class="col-9 col-sm-7 col-md-5 col-lg-4 col-xl-3 offset-0 offset-sm-0 offset-md-1 offset-lg-1 offset-xl-2"
+                style="padding-bottom: 15px;" onclick="toggleFruitSaladModal()"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[4].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[4].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[4].iconPath) }}">
+            </div>
+            <!-- Fruit Salad Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="padding-top: 20px;">
+                <h1 class="text-center bg-light" style="color: #7ea978;padding: 20px;border-bottom: 1px solid;border-top: 1px solid;">Entrees</h1>
+            </div>
+        </div>
+        <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center" style="padding-top: 20px;">
+            <!-- Butter Lettuce Cups -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleLettuceCupsModal()" data-toggle="modal" data-target="test" style="padding-bottom: 15px;">
+                <img class="img-fluid"src="{{ url_for('static', filename=food[6].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[6].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[6].withInformation }}</p>
+                <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start" src="{{ url_for('static', filename=food[6].iconPath) }}">
+            </div>
+            <!-- Butter Lettuce Cups Modal -->
+            <div class="modal fade" id="lettuce_cups_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[6].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[6].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[6].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Chicken Breasts<br />Red Peppers<br />Shallots<br />Garlic<br />Scallions<br />Shiitake Mushrooms<br />Carrots<br />Ginger<br />Cilantro<br />Sauce-Natural Peanut Butter<br />Coconut Milk<br />Sriracha<br />Tamarin<br />Agave<br />Rice Wine Vinegar<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[6].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_lettuce_cups" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="lettuce_cups_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>    
+            <!-- Free Range Chicken Gnudi -->
+            <div class="col-9 col-sm-7 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleGnudiModal()" style="padding-bottom: 15px;"><img class="img-fluid" src="{{ url_for('static', filename=food[7].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">{{ food[7].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[7].withInformation }}</p>
+                <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start" src="{{ url_for('static', filename=food[7].iconPath) }}">
+            </div>
+            <!-- Free Range Chicken Gnudi Modal -->
+            <div class="modal fade" id="gnudi_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[7].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[7].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[7].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Ground Free Range Chicken Breasts<br />Brown Free Range Egg<br />Shallots<br />Cumin<br />Chick Pea Flour<br />Olive Oil<br />Garlic<br />Spaghetti Squash<br />Parsley<br />Chives<br />Yogurt</p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[7].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_gnudi" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="gnudi_button" data-dismiss="modal" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Baked Atlantic Salmon Cakes -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleSalmonCakeModal()"
+                style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[8].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[8].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">
+                    {{ food[8].withInformation }}</p>
+            </div>
+            <!-- Baked Atlantic Salmon Cakes Modal -->
+            <div class="modal fade" id="salmon_cake_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[8].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[8].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[8].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Fresh Atlantic Salmon<br />Scallions<br />Homemade Aioli<br />Lemon Juice<br />Red Onion<br />Asparagus
+                                                Sauce-Yogurt<br />Garlic<br />Cucumber<br />Red Onion<br />Lemon Juice<br />Dill<br /></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_salmon_cake" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="salmon_cake_button" data-dismiss="modal" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>    
+        </div>
+        <!-- Boxes Header -->
+        <div class="row">
+            <div class="col" style="padding-top: 20px;">
+                <h1 class="text-center"
+                    style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Boxes</h1>
+            </div>
+        </div>
+        <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+            style="padding-top: 20px;">
+            <!-- Moroccan Chick Pea Quinoa Box -->
+            <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleChickPeaModal()"
+                style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[10].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[10].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[10].withInformation }}</p>
+                <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[10].iconPath) }}">
+            </div>
+            <!-- Moroccan Chick Pea Quinoa Box -->
+            <div class="modal fade" id="chick_pea_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[10].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[10].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[10].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Quinoa<br />Chick Peas<br />Carrots<br />Golden Raisins<br />Pistachios<br />Scallions<br />Dates<br />Parsley
+                                            <br />Dressing-Honey<br />Lemon<br />Olive Oil<br />Cumin<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[10].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_chick_pea" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" id="fruit_salad_button" data-dismiss="modal" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Sweet and Spicy Cauliflower Box -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleCauliflowerModal()" style="padding-bottom: 15px;"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[11].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[11].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[11].withInformation }}</p>
+                <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[11].iconPath) }}">
+            </div>
+            <!-- Sweet and Spicy Cauliflower Box Modal -->
+            <div class="modal fade" id="cauliflower_box_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[11].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[11].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[11].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Cauliflower<br />Maple<br />Tamari<br />Sriracha<br />Olive Oil<br />Red Peppers<br />Brown Rice<br />Onions<br />Parsley<br />Chives<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[11].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_cauliflower_box" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="cauliflower_box_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Southwest Box -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[12].picturePath) }}">
+                <h4 class="text-left" style="font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[12].name }}</h4>
+                <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[12].withInformation }}</p>
+                <img class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[12].iconPath) }}">
+            </div>
+            <!-- Southwest Box Modal -->
+            <div class="modal fade" id="southwest_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[12].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[12].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[12].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Sweet Potatoes<br />Cumin<br />Paprika<br />Garlic<br />Olive Oil<br />Black Beans<br />Brown Rice<br />Onions<br />Tomatoes<br />Cilantro<br />Red Onion
+                                            <br />Sour Cream Cashews<br />Lemon Juice<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[12].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_southwest" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="southwest_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+>>>>>>> master
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <!-- Sweets Header -->
+        <div class="row">
+            <div class="col" style="padding-top: 20px;">
+                <h1 class="text-center"
+                    style="padding: 20px;border-top: 1px solid;color: #7ea978;border-bottom: 1px solid;">Sweets</h1>
+            </div>
+        </div>
+        <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+            style="padding-top: 20px;">
+            <!-- Chocolate Almond Protein Bar -->
+            <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleProteinBarModal()"
+                style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[14].picturePath) }}">
+                <h4 class="text-left flex-shrink-1 flex-nowrap"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[14].name }}</h4><img
+                    class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[14].iconPath) }}">
+            </div>
+            <!-- Chocolate Almond Protein Bar Modal -->
+            <div class="modal fade" id="protein_bar_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[14].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[14].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[14].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[14].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_protein_bar" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="protein_bar_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Lemon Blueberry Scone -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[15].picturePath) }}">
+                <h4 class="text-left d-flex"
+                    style="font-size: 24px;font-family: 'Noto Serif KR', serif;padding-top: 15px;">
+                    {{ food[15].name }}</h4><img
+                    class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[15].iconPath) }}">
+            </div>
+            <!-- Lemon Blueberry Scone Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Chocolate Hazelnut Brownie -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[16].picturePath) }}">
+                <h4 class="text-left flex-shrink-1 flex-nowrap"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[16].name }}</h4><img
+                    class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-start"
+                    src="{{ url_for('static', filename=food[16].iconPath) }}">
+            </div>
+            <!-- Chocolate Hazelnut Brownie Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <!-- Beverages Header-->
+        <div class="row">
+            <div class="col" style="padding-top: 20px;">
+                <h1 class="text-center"
+                    style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Beverages
+                </h1>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center" style="padding-top: 20px;">
+            <!-- Cold Beat Down Juice -->
+            <div class="col-9 col-sm-8 col-md-3" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[18].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[18].name }}</h4>
+            </div>
+            <!-- Cold Beat Down Juice Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Chocolate Almond Bombe -->
+            <div class="col-9 col-sm-8 col-md-3 col-xl-3" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[19].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[19].name }}</h4>
+            </div>
+            <!-- Chocolate Almond Bombe Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Chocolate Kale Smoothie -->
+            <div class="col-9 col-sm-8 col-md-3" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[20].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[20].name }}</h4>
+            </div>
+            <!-- Chocolate Kale Smoothie Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Tropical Blast Smoothie -->
+            <div class="col-9 col-sm-8 col-md-3" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[21].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[21].name }}</h4>
+            </div>
+            <!-- Tropical Blast Smoothie Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <!-- Elixirs Header -->
+        <div class="row">
+            <div class="col" style="padding-top: 20px;">
+                <h1 class="text-center"
+                    style="padding: 20px;color: #7ea978;border-bottom: 1px solid;border-top: 1px solid;">Elixirs
+                </h1>
+            </div>
+        </div>
+        <div class="row text-center d-flex d-sm-flex justify-content-center justify-content-sm-center"
+            style="padding-top: 20px;padding-bottom: 20px;">
+            <!-- Elderberry Elixir -->
+            <div class="col-9 col-sm-8 col-md-4 col-lg-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleSouthwestModal()"
+                style="padding-bottom: 15px;"><img class="img-fluid"
+                    src="{{ url_for('static', filename=food[22].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[22].name }}</h4>
+            </div>
+            <!-- Elderberry Elixir Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Pineapple Elixir -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[23].picturePath) }}">
+                <h4 class="text-left"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding-bottom: 5px;">
+                    {{ food[23].name }}</h4>
+            </div>
+            <!-- Pineapple Elixir Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <!-- Mixed Berry Elixir -->
+            <div class="col-9 col-sm-8 col-md-4 col-xl-3 offset-0 offset-sm-0" onclick="toggleSouthwestModal()" style="padding-bottom: 15px;"><img
+                    class="img-fluid" src="{{ url_for('static', filename=food[24].picturePath) }}">
+                <h4 class="text-left d-xl-flex"
+                    style="font-family: 'Noto Serif KR', serif;padding-top: 15px;padding: 5px;">{{ food[24].name }}
+                </h4>
+            </div>
+            <!-- Mixed Berry Elixi Modal -->
+            <div class="modal fade" id="fruit_salad_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header flex-fill">
+                            <h4 class="modal-title" style="font-family: 'Noto Serif KR', serif;">{{ food[4].name }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-left" style="font-family: 'Noto Serif KR', serif;">{{ food[4].withInformation }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="font-size: auto;">
+                                <div class="col"><img class="img-fluid" src="{{ url_for('static', filename=food[4].picturePath) }}"/>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-left" style="font-family: 'Noto Serif KR', serif;">Ingredients</h3>
+                                        <p class="text-left">Roasted Pineapple<br />Dried Apricots<br />Raisins<br />Grapes<br />Parmesan<br />Vanilla Bean Vinaigrette<br /></p>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 15px;">
+                                <div class="col-lg-10 col-xl-11 offset-lg-0 offset-xl-0 text-left d-lg-flex"><img src="{{ url_for('static', filename=food[4].iconPath) }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Cancel</button><input class="input-number" id="quantity_fruit" style="text-align: center;" type="number" value="1" min="1" max="10"><button class="btn btn-primary" data-dismiss="modal" id="fruit_salad_button" style="background-color: #bdecb6;" type="button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='js/connect.js') }}"></script>
-</body>
+</main>
+{% endblock %}
 
-</html>
+{% block js %}
+<script src="{{ url_for('static', filename='js/connect.js') }}"></script>
+{% endblock %}

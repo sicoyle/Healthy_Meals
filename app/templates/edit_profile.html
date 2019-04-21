@@ -1,20 +1,29 @@
+{% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.styles.min.css') }}">
+{% endblock %}
 
-<!DOCTYPE html>
-
-<html>
-
-	{% block content %}
+{% block content %}
+<main>
+    <!--
     <h1>Edit Profile</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+                {{ form.first_name.label }}<br>
+                {{ form.first_name(size=32) }}<br>
+                {% for error in form.last_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
         </p>
+        <p>
+                {{ form.last_name.label }}<br>
+                {{ form.last_name(size=32) }}<br>
+                {% for error in form.last_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
         <p>
             {{ form.email.label }}<br>
             {{ form.email(cols=50, rows=4) }}<br>
@@ -23,11 +32,25 @@
             {% endfor %}
 		</p>
 		<p>
-            {{ form.address.label }}<br>
-            {{ form.address(cols=50, rows=4) }}<br>
-            {% for error in form.address.errors %}
+            {{ form.address_line_1.label }}<br>
+            {{ form.address_line_1(cols=50, rows=4) }}<br>
+            {% for error in form.address_line_1.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
+        </p>
+        <p>
+                {{ form.address_line_2.label }}<br>
+                {{ form.address_line_2(cols=50, rows=4) }}<br>
+                {% for error in form.address_line_2.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+        </p>
+        <p>
+                {{ form.city.label }}<br>
+                {{ form.city(cols=50, rows=4) }}<br>
+                {% for error in form.city.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
         </p>
         <p>
             {{ form.state.label }}<br>
@@ -37,9 +60,9 @@
             {% endfor %}
         </p>
         <p>
-            {{ form.zip.label }}<br>
-            {{ form.zip(cols=50, rows=4) }}<br>
-            {% for error in form.zip.errors %}
+            {{ form.zip_code.label }}<br>
+            {{ form.zip_code(cols=50, rows=4) }}<br>
+            {% for error in form.zip_code.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
 		</p>
@@ -52,6 +75,49 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+    -->
+    <div class="container-fluid profile profile-view" id="profile">
+        <form>
+            <div class="form-row profile-row">
+                <div class="col-sm-8 col-md-5 col-lg-4 col-xl-3 offset-sm-2 offset-md-0 offset-lg-0 d-flex d-xl-flex flex-column relative" style="padding: 30px;">
+                    <div class="avatar"></div><img class="img-fluid" src="assets/img/_Male_Profile_Round_Circle_Users-512.png">
+                    <div class="custom-file"><input type="file" class="custom-file-input"><input type="file" class="custom-file-input"><label class="custom-file-label">Upload File</label></div>
+                </div>
+                <div class="col-sm-10 col-md-6 col-lg-6 offset-sm-1 offset-md-1 offset-lg-2 offset-xl-3">
+                    <h1 class="text-center">Person's Names Profile </h1>
+                    <div class="form-row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>Firstname </label><input class="form-control" type="text" name="firstname"></div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group"><label>Lastname </label><input class="form-control" type="text" name="lastname"></div>
+                        </div>
+                    </div>
+                    <div class="form-group"><label>Email </label><input class="form-control" type="email" autocomplete="off" required="" name="email"></div>
+                    <div class="form-group"><label>Address Line 1</label><input class="form-control" type="email" autocomplete="off" required="" name="email"></div>
+                    <div class="form-group"><label>Address Line 2</label><input class="form-control" type="email" autocomplete="off" required="" name="email"></div>
+                    <div class="form-row flex-row">
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="form-group"><label>City</label><input class="form-control" type="password" name="password" autocomplete="off" required=""></div>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-4">
+                            <div class="form-group"><label>State</label><input class="form-control" type="password" name="confirmpass" autocomplete="off" required=""></div>
+                        </div>
+                        <div class="col"><label>Zip Code</label><input class="form-control" type="text"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-lg-12 col-xl-12 text-right"><button class="btn btn-light" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);" type="button">Change Password</button><button class="btn btn-light" onclick="location.href='/profile'" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);"
+                                type="button">Cancel</button><a class="btn btn-light" role="button" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,255,255);">Save</a></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/connect.js') }}"></script>
 {% endblock %}
 
 

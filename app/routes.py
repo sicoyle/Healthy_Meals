@@ -69,7 +69,6 @@ def facebook_login():
     return render_template('front_page.html')
 
 @app.route('/', methods=['GET', 'POST'])
-
 @app.route('/index', methods=['GET', 'POST'])
 def index():
     return render_template('front_page.html')
@@ -78,13 +77,34 @@ def index():
 def front_page():
     return render_template('front_page.html')
 
+<<<<<<< HEAD
 @app.route('/test', methods=['GET', 'POST'])
 def test():
     return render_template('Sams_Login.html')
 
+=======
+>>>>>>> master
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
-    return render_template('cart.html')
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    print(user)
+
+    subtotal = 0
+
+    for item in user.items:
+        subtotal = subtotal + (item.cost * item.quantity)
+    
+    subtotal = round(subtotal, 2)
+    tax = subtotal * .0825
+    tax = round(tax, 2)
+    total = tax + subtotal
+    total = round(total, 2)
+
+    return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
+
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    return render_template('checkout.html')
 
 @app.route('/block_menu', methods=['GET', 'POST'])
 def block_menu():
@@ -98,10 +118,19 @@ def block_menu():
 def menu():
     food = FoodModel.query.all()
     food.sort(key=lambda x: x.id)
-    print("test")
     #Query all food items for the menu
     return render_template('menu.html', food=food)
 
+@app.route('/packages', methods=['GET', 'POST'])
+def packages():
+    food = FoodModel.query.all()
+    food.sort(key=lambda x: x.id)
+    #Query all food items for the menu
+    return render_template('packages.html', food=food)
+
+@app.route('/gift', methods=['GET', 'POST'])
+def gift():
+    return render_template('gift.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -109,7 +138,7 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = UserModel.query.filter_by(username=form.username.data).first()
+        user = UserModel.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
@@ -126,7 +155,8 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = UserModel(username=form.username.data, email=form.email.data)
+        user = UserModel(first_name=form.first_name.data, email=form.email.data)
+        user.username = user.email
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -140,29 +170,42 @@ def profile():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     return render_template('profile.html', user=user)
 
+@app.route('/orders', methods=['GET'])
+@login_required
+def orders():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    return render_template('orders.html', user=user)
+
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     form = EditProfileForm()
     if form.validate_on_submit():
-        current_user.username = form.username.data
+        current_user.first_name = form.first_name.data
+        current_user.last_name = form.last_name.data
         current_user.email = form.email.data
-        current_user.address = form.address.data
+        current_user.address_line_1 = form.address_line_1.data
+        current_user.address_line_2 = form.address_line_2.data
+        current_user.city = form.city.data
         current_user.state = form.state.data
-        current_user.zip = form.zip.data
+        current_user.zip_code = form.zip_code.data
         current_user.phone_number = form.phone_number.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('profile'))
     elif request.method == 'GET':
-        form.username.data = current_user.username
+        form.first_name.data = current_user.first_name
+        form.last_name.data = current_user.last_name
         form.email.data = current_user.email
-        form.address.data = current_user.address
+        form.address_line_1.data = current_user.address_line_1
+        form.address_line_2.data = current_user.address_line_2
+        form.city.data = current_user.city
         form.state.data = current_user.state
-        form.zip.data = current_user.zip
+        form.zip_code.data = current_user.zip_code
         form.phone_number.data = current_user.phone_number
         #return redirect(url_for('profile'))
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
+    return render_template('edit_profile.html', title='Edit Profile', form=form, user=user)
         
 
 @app.route('/logout')
@@ -292,5 +335,82 @@ class Ingredient(Resource):
         else:
             return abort(503, 'The ingredient did not exist')
 
+
+class CartItem(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+
+        parser.add_argument('name', type=str)
+        parser.add_argument('quantity', type=int)
+        parser.add_argument('cost', type=int)
+        parser.add_argument('id', type=int)
+        parser.add_argument('picture_path', type=str)
+
+        self.args = parser.parse_args()
+    
+    def get(self):
+        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+        return jsonify(items=user.items) 
+    
+    def post(self):
+        print("Were in post nowwww!")
+        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+        try:
+            print("INSIDE THE TRY BLOCK")
+            new_item = ItemModel(**self.args)
+            new_item.user_id = current_user.id
+            db.session.add(new_item)
+            db.session.commit()
+        except:
+            return abort(502, "Item was not added to the users cart")
+        
+        return jsonify(message='Cart item successfully created!')
+
+class UserClass(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+
+        # parser.add_argument('name', type=str)
+        # parser.add_argument('quantity', type=int)
+        # parser.add_argument('cost', type=int)
+        # parser.add_argument('id', type=int)
+        # parser.add_argument('picture_path', type=str)
+
+        self.args = parser.parse_args()
+    
+    def get(self):
+        user = UserModel.query.all()
+        return jsonify(users = user_schema_many.dump(user).data) 
+
+class GetNextItemId(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+        self.args = parser.parse_args()
+    
+    def get(self):
+        items = ItemModel.query.all()
+        if(len(items) is 0):
+            next_item_id = 1
+        else:
+            next_item_id = len(items) + 1
+        """
+        Need to check that the number of items + 1 does not have an id in the databsae
+        (so that no two items have the same id)
+        if it does exist, check what number between 1 and len(items) is an id that does not exist and give that item that id number
+
+        """
+
+        return jsonify(next_item_id=next_item_id)
+
+
+
+
+
+
+
+
+api.add_resource(UserClass, '/user')
+api.add_resource(CartItem, '/user/cart')
+api.add_resource(GetNextItemId, '/items/get_next_id')
 api.add_resource(Food, '/food')
 api.add_resource(Ingredient, '/food/ingredients')
