@@ -164,7 +164,6 @@ def edit_profile():
     form = EditProfileForm(request.form)
     print(form.validate_on_submit())
     if form.validate_on_submit():
-        print('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP!')
         current_user.first_name = form.first_name.data
         current_user.last_name = form.last_name.data
         current_user.email = form.email.data
@@ -177,9 +176,8 @@ def edit_profile():
         db.session.commit()
         print("just posted")
         flash('Your changes have been saved.')
-        return redirect(url_for('edit_profile'))
+        return redirect(url_for('profile'))
     elif request.method == 'GET':
-        print('GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG')
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
@@ -189,10 +187,8 @@ def edit_profile():
         form.city.data = current_user.city
         form.state.data = current_user.state
         form.zip_code.data = current_user.zip_code
-        #return redirect(url_for('profile'))
-
-    return render_template('edit_profile.html', title='Edit Profile', form=form)
-        
+        return render_template('edit_profile.html', title='Edit Profile', form=form)
+    return render_template('profile.html', user=user)
 
 @app.route('/logout')
 def logout():
