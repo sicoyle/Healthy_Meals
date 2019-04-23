@@ -1,188 +1,82 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>Cart Page</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.min.css') }}">
-        <!-- <link rel="stylesheet" href="assets/css/styles.min.css"> -->
-    </head>
-    
+{% extends "base.html" %}
 
-    <body>
-        <div>
-            <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="padding: 14px;">
-                <div class="container-fluid"><a class="navbar-brand" href="/"
-                        style="height: 47px;margin: 0px;font-size: 31px;font-family: Artifika, serif;width: 253px;padding: 0px;">Farmacy
-                        Meals</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
-                            class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse d-lg-flex flex-shrink-1" id="navcol-1">
-                        <ul class="nav navbar-nav d-xl-flex">
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="/menu"
-                                    style="font-size: 24px;font-family: 'Noto Serif KR', serif;">Menu</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#"
-                                    style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Packages</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="#"
-                                    style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Gift</a></li>
-                            <li class="nav-item" role="presentation"><a class="nav-link" href="/cart"
-                                    style="font-size: 25px;font-family: 'Noto Serif KR', serif;">Cart</a></li>
-                        </ul>
-                        
-                        <span class="ml-auto navbar-text actions"> <a class="btn btn-light action-button" role="button"
-                                href="/login" style="background-color: #bdecb6;">Log in</a></span>
-                    </div>
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.styles.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <!-- Cart Container-->
+    <div class="container" style="font-family: 'Noto Serif KR', serif; padding-bottom:50px;">
+            <div class="row">
+                <div class="col" style="border: 10px;">
+                    <h1 class="text-center" style="padding: 20px;">Your Cart</h1>
                 </div>
-            </nav>
-        </div>
-    </body>
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>trythis</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="assets/css/styles.min.css">
-    </head>
-    
-    <body>
-        <div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Cart</h2>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <h4>Name </h4>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <h4>Amount </h4>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="media">
-                                            <div><img class="rounded-circle mr-3" src="assets/img/user-photo3.jpg" width="50" height="50"></div>
-                                            <div class="media-body">
-                                                <h4><a href="#">Flu-Flu-Item #1</a></h4>
-                                                <p class="text-muted">Description blah blah blah<br>
-    </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p><span class="h3">$100 </span><br>
-    <strong> </strong><a href="#">View Details</a></p>
-                                        <p></p>
-                                    </div>
-                                    <div class="col-md-3 text-right">
-                                        <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i class="fa fa-pencil"></i> Edit</button><button class="btn btn-primary" type="button"> <i class="fa fa-trash-o"></i></button></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="media">
-                                            <div><img class="rounded-circle mr-3" src="assets/img/user-photo4.jpg" width="50" height="50"></div>
-                                            <div class="media-body">
-                                                <h4><a href="#">Flu-Flu- Item #2</a></h4>
-                                                <p class="text-muted">Description blah blah blah</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p><span class="h3">$100 </span><br>
-    <strong> </strong><a href="#">View Details</a></p>
-                                        <p></p>
-                                    </div>
-                                    <div class="col-md-3 text-right">
-                                        <div class="btn-group" role="group"><button class="btn btn-primary" type="button"><i class="fa fa-pencil"></i> Edit </button><button class="btn btn-primary" type="button"> <i class="fa fa-trash-o"></i></button></div>
-                                        <p> </p>
-                                    </div>
-                                </div>
-                            </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 offset-md-0 offset-lg-0 offset-xl-0" style="background-color: white;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 style="color: #7ea978;">Cart</h1>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h2>Order Summary</h2>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <h4 class="text-left">Items:</h4>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <h4>$calculatedAmt </h4>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <h4 class="text-left">Tax:</h4>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <h4 class="text-left">$calculatedTax</h4>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <h4 class="text-left">Order Total:</h4>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <h4 class="text-left">$calculatedTotal</h4>
-                                    </div>
-                                </div><button class="btn btn-primary text-center bg-warning" type="button">Proceed to Checkout</button></div>
+                    {% if num_user_items == 0 %}
+                    <div class="row d-flex d-sm-flex d-xl-flex">
+                        <div class="col">
+                            <h2 style="color: black; text-align: center; padding-top: 40px">Empty</h2>
                         </div>
+                    </div>
+                    {% else %}
+                    {% for i in range(num_user_items) %}
+                    <div class="row d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center">
+                        <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='/img/menuPage/chunckySoup.jpg') }}"></div>
+                        <div class="col-3 col-sm-3">
+                            <h6 class="d-sm-flex justify-content-sm-start align-items-sm-start"></h6>
+                            <h6>{{ user_items[i].name }}</h6><a href="#" style="font-size: 13px;">View Details</a></div>
+                        <div class="col-3">
+                            <div class="d-flex align-items-center">
+                                <div class="btn btn-items btn-items-decrease">-</div>
+                                    <input type="text" value="{{ user_items[i].quantity }}" class="form-control text-center border-0 border-md input-items">
+                                <div class="btn btn-items btn-items-increase">+</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h6 class="text-center">{{user_items[i].cost * user_items[i].quantity}}</h6>
+                        </div>
+                        <div class="col"><a href="#" style="padding: 5px;">Delete</a></div>
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-10 col-sm-8 col-md-4 col-lg-4 col-xl-4 offset-1 offset-sm-2 offset-md-1 offset-lg-1 offset-xl-1">
+                    <div class="row" style="background-color: white;">
+                        <div class="col-12 col-sm-12">
+                            <h2>Order Summary</h2>
+                        </div>
+                    </div>
+                    <div class="row" style="border-left: 1px solid;border-right: 1px solid;border-color: #7ea978; text-align: right;">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <h5>Subtotal:</h5>
+                            <h5>Tax:</h5>
+                            <h5>Total:</h5>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="text-align: right;">
+                            <h5>{{ subtotal }}</h5>
+                            <h5>{{ tax }}</h5>
+                            <h5>{{ total }}</h5>
+                        </div>
+                    </div>
+                    <div class="row" style="background-color: white;">
+                        <div class="col-lg-12 offset-xl-0 text-right" style="padding-top: 10px;padding-bottom: 10px;border: 1px solid;border-color: #7ea978;"><button class="btn btn-primary" onclick="location.href='/checkout'" style="border: none;" type="button">Proceed to Checkout</button></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer-clean">
-            <footer>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-sm-4 col-md-2 item">
-                            <h3>Services</h3>
-                            <ul>
-                                <li><a href="#">Menu</a></li>
-                                <li><a href="#">Packages</a></li>
-                                <li><a href="#">Gift</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4 col-md-2 item">
-                            <h3>About</h3>
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">Our Team</a></li>
-                                <li><a href="#">Restaurant</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-4 col-md-2 item">
-                            <h3>Customer Support</h3>
-                            <ul>
-                                <li><a href="#">Phone Number</a></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"
-                                    style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-twitter"
-                                    style="color: rgb(75,76,77);"></i></a><a href="#"><i class="icon ion-social-instagram"
-                                    style="color: rgb(75,76,77);"></i></a>
-                            <p class="copyright">Company Name © 2017</p>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    </body>
-    
-    
-</html>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+{% endblock %}

@@ -28,9 +28,9 @@
             {{ form.hidden_tag() }}
             <div class="illustration"><i class="icon ion-android-person"></i></div>
             <p>
-                {{ form.username.label }}<br>
-                {{ form.username(class_="form-group") }}<br>
-                {% for error in form.username.errors %}
+                {{ form.email.label }}<br>
+                {{ form.email(class_="form-group") }}<br>
+                {% for error in form.email.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>

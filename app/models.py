@@ -80,12 +80,18 @@ class UserModel(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
 
-    address = db.Column(db.String(64), index=True, unique=False)
+    first_name = db.Column(db.String(64), index=True, unique=False)
+    last_name = db.Column(db.String(64), index=True, unique=False)
+    address_line_1 = db.Column(db.String(64), index=True, unique=False)
+    address_line_2 = db.Column(db.String(64), index=True, unique=False)
+    city = db.Column(db.String(64), index=True, unique=False)
     state = db.Column(db.String(64), index=True, unique=False)
-    zip = db.Column(db.String(64), index=True, unique=False)
+    zip_code = db.Column(db.String(64), index=True, unique=False)
     phone_number = db.Column(db.String(64), index=True, unique=False)
+    picture = db.Column(db.String(64), index=True, unique=False)
 
-    orders = db.relationship('OrderModel', backref='related_orders')
+    orders = db.relationship('OrderModel', backref='previous_orders')
+    items = db.relationship('ItemModel', backref='my_items')
 
     system_controller_id = db.Column(db.Integer, db.ForeignKey('system.id'))
 
@@ -97,6 +103,7 @@ class UserModel(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
 
 """
 class UserModel(db.Model):
@@ -153,6 +160,8 @@ class OrderModel(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
 
+    order_items = db.relationship('ItemModel', backref='order_items')
+
     def __repr__(self):
         return '<Order {}>'.format(self.name)
 
@@ -188,10 +197,14 @@ class ItemModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=False)
-    cost = db.Column(db.Float, primary_key=True)
+    cost = db.Column(db.Float, unique=False)
+    # order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
+    # type = db.Column(db.String(64), index=True, unique=False)
+    picture_path = db.Column(db.String(64), index=True, unique=False)
+    quantity = db.Column(db.Integer, index=True, unique=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'))
-    type = db.Column(db.String(64), index=True, unique=False)
-    picture = db.Column(db.String(64), index=True, unique=False)
 
     def __repr__(self):
         return '<Item {}>'.format(self.name)
