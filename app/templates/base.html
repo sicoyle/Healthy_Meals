@@ -13,8 +13,7 @@
     {% endif %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Artifika">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Belgrano">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+KR">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.styles.min.css') }}">
     {% block css %} {% endblock %}
 </head>
@@ -25,29 +24,29 @@
     <div>
         <nav class="navbar navbar-light navbar-expand-lg navigation-clean-button" style="padding: 14px;">
             <div class="container-fluid"><a class="navbar-brand" href="/"
-                    style="height: 35px;margin: 0px;font-size: 31px;font-family: Artifika, serif;width: 253px;padding: 0px;">Farmacy
+                    style="height: 35px;margin: 0px;font-size: 31px; width: 253px;padding: 0px;">Farmacy
                     Meals</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span
                         class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse flex-shrink-1" id="navcol-1">
                     <ul class="nav navbar-nav">
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/menu"
                                 style="font-size: 24px;">Menu</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#"
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/packages"
                                 style="font-size: 25px;">Packages</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#"
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/gift"
                                 style="font-size: 25px;">Gift</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/cart"
-                                style="font-size: 25px;">Order</a></li>
+                                style="font-size: 25px;">Cart</a></li>
                     </ul>
                     {% if current_user.username %}
                     </ul>
-                    <div class="nav-item dropdown" style="font-size: 22px; font-family: 'Noto Serif KR', serif;"><a
+                    <div class="nav-item dropdown ml-auto" style="font-size: 23px; font-family: 'Noto Serif KR', serif;"><a
                             class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false"
                             style="color:#82b87a;" href="#">Hi,
-                            {{ current_user.username }}&nbsp;</a>
+                            {{ current_user.first_name }}&nbsp;</a>
                         <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation"
                                 href="/profile">My Profile</a><a class="dropdown-item" role="presentation"
-                                href="#">Orders
+                                href="/orders">Orders
                             </a><a class="dropdown-item" role="presentation" href="/logout">Sign Out</a></div>
                     </div>
                     {% else %}
@@ -102,6 +101,7 @@
                 </div>
             </div>
         </footer>
+
     </div>
     <!-- End Footer -->
 

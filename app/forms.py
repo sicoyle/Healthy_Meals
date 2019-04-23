@@ -10,43 +10,36 @@ from wtforms.validators import DataRequired, Length
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    #username = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
 
 class RegistrationForm(FlaskForm):
-    #username = StringField('Username', validators=[DataRequired(), Email()])
-    firstname = StringField('Firstname', validators=[DataRequired()])
-    lastname = StringField('Lastname', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
-    def validate_username(self, email):
-        user = UserModel.query.filter_by(email=email.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different email.')
-
     def validate_email(self, email):
         user = UserModel.query.filter_by(email=email.data).first()
         if user is not None:
-            raise ValidationError('Please use a different email address.')
+            raise ValidationError('E-mail has already been used')
 
 
 class EditProfileForm(FlaskForm):
-    #username = StringField('Email', validators=[DataRequired(), Email()])
-    firstname = StringField('Firstname', validators=[DataRequired()])
-    lastname = StringField('Lastname', validators=[DataRequired()])    
+    first_name = StringField('First Name', validators=[DataRequired()])
+    last_name = StringField('Last Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    address = StringField('Address', validators=[DataRequired()])
+    address_line_1 = StringField('Address Line 1', validators=[DataRequired()])
+    address_line_2 = StringField('Address Line 2', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
     state = StringField('State', validators=[DataRequired()])
-    zip = StringField('Zip', validators=[DataRequired()])
-    phone_number = StringField('Phone')
+    zip_code = StringField('Zip Code', validators=[DataRequired()])
+    phone_number = StringField('Phone Number')
     submit = SubmitField('Submit')
 
 
