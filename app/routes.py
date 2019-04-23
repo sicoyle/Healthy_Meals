@@ -161,7 +161,8 @@ def orders():
 @login_required
 def edit_profile():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
-    form = EditProfileForm()
+    form = EditProfileForm(request.form)
+    print(form.validate_on_submit())
     if form.validate_on_submit():
         print('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP!')
         current_user.first_name = form.first_name.data
