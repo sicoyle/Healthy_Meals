@@ -1,0 +1,206 @@
+.info .description, .info h4 {
+    font-family: "Open Sans", sans-serif
+}
+
+input[type=checkbox].css-checkbox {
+    position: absolute;
+    z-index: -1000;
+    left: -1000px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0
+}
+
+input[type=checkbox].css-checkbox+label.css-label {
+    padding-left: 35px;
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    line-height: 30px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    vertical-align: middle;
+    cursor: pointer
+}
+
+.info h4::after, .info::after {
+    display: block;
+    position: absolute;
+    content: ""
+}
+
+input[type=checkbox].css-checkbox:checked+label.css-label {
+    background-position: 0 -30px
+}
+
+label.css-label {
+    background-image: url(http://csscheckbox.com/checkboxes/u/csscheckbox_2e5ac342c462fb9a5023b3d13705e60b.png);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none
+}
+
+button.btn.btn-default.login {
+    padding: 5px;
+    width: 90%;
+    border-radius: 0;
+    height: 2em;
+    background: #26C281;
+    border: 0;
+    margin: 5px 10px
+}
+
+input.styled {
+    background: #888!important;
+    border: none!important;
+    color: #000!important
+}
+
+.checkbox:before {
+    border-radius: 0
+}
+
+nav.navbar.navbar-default.navbar-fixed-top {
+    background: #26C281;
+    border: 0;
+    color: #fff
+}
+
+.checkbox label, .radio label {
+    color: gray
+}
+
+.checkbox, .radio {
+    float: left;
+    margin: 5px 10px
+}
+
+.register, .remember {
+    float: right;
+    margin: 5px 20px 5px 10px
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 300px
+}
+
+.input-login {
+    width: 90%;
+    margin: 5px 10px
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: transparent
+}
+
+li.active {
+    background: #00B16A;
+    box-shadow: 0 1px 0 0 #00B16A
+}
+
+.navbar-default .navbar-nav>.active>a {
+    background-color: #00B16A;
+    box-shadow: 0 1px 0 0 #00B16A;
+    background-image: none
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    background: #00B16A
+}
+
+.info::after {
+    top: -8px;
+    left: 23px;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+
+.info h4::after {
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background: #3b86c4
+}
+
+.block, .info, .product {
+    display: block;
+    position: relative
+}
+
+div.container {
+    margin-top: 60px
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    background-color: #00B16A;
+    color: #fff
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #2c3e50
+}
+
+.block {
+    width: 295px;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2)
+}
+
+.buttons, .product img {
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px
+}
+
+.info {
+    padding: 20px
+}
+
+.buttons, .buttons a {
+    position: absolute;
+    display: block
+}
+
+.details {
+    border-top: 1px solid #e5e5e5;
+    padding: 18px 20px
+}
+
+.buttons {
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, .5);
+    opacity: 0;
+    -webkit-transition: opacity .25s ease-in;
+    -ms-transition: opacity .25s ease-in;
+    -moz-transition: opacity .25s ease-in;
+    -o-transition: opacity .25s ease-in;
+    transition: opacity .25s ease-in
+}
+
+.product:hover .buttons, .product:hover a {
+    opacity: 1
+}
+
+.buttons a {
+    left: 50px;
+    width: 155px;
+    border-radius: 2px; //padding:15px 10px 15px 65px;//font-family:Helvetica,sans-serif;text-transform:uppercase;color:#fff;text-decoration:none;opacity:0}a.buy{top:20%}a.preview{bottom:20%}.info h4{position:relative;padding:0 0 20px;margin:0 0 20px;font-weight:700;font-size:19px;line-height:25px;color:#372f2b;letter-spacing:-1px}.info .description{display:block;padding-bottom:20px;font-size:14px;font-weight:600;color:#5f5f5f}.info .price,.time{font-weight:700;color:#372f2b}.info .price{font-family:"Open Sans",Helvetica,Arial,sans-serif;font-size:24px;line-height:26px}.time{font-family:"Open Sans",sans-serif;font-size:14px;background:url(../img/clock-icon.png) 0 2px no-repeat}.rating{unicode-bidi:bidi-override;direction:rtl;font-size:15px}.rating span.star{font-family:FontAwesome;font-weight:400;font-style:normal;display:inline-block}.rating span.star:hover{cursor:pointer}.rating span.star:before{content:"\f006";padding-right:5px;color:#999}.rating span.star:hover:before,.rating span.star:hover~span.star:before{content:"\f005";color:#e3cf7a}

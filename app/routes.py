@@ -6,7 +6,7 @@ from flask import jsonify, abort
 from sqlalchemy.exc import DatabaseError
 from app.serializers import system_schema_many, admin_schema_many, user_schema_many, item_schema, item_schema_many, order_schema_many, package_schema_many, food_schema_many, ingredient_schema_many, gift_card_schema_many
 
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app import app
 from app.forms import LoginForm
 from flask_login import current_user, login_user
@@ -20,6 +20,7 @@ from app.forms import RegistrationForm, EditProfileForm
 from app.forms import PostForm
 from app import facebook_blueprint, facebook
 from app import google_blueprint, google
+import stripe
 
 api = Api(app)
 app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
@@ -28,6 +29,28 @@ app.register_blueprint(google_blueprint, url_prefix='/google_login')
 @app.route('/google83147c170400ef36.html')
 def verify_google():
     return render_template('google83147c170400ef36.html')
+
+public_key = 'pk_test_Fs2ousnaCNa2XTKGWaW92AIZ00GeY4lpyM'
+private_key = 'sk_test_gFsB8Xw8duRIDbERY87hO38u009Zp6jexQ'
+
+stripe.api_key = private_key
+
+@app.route('/pay_item')
+def pay_item():
+    return render_template('pay_item.html', public_key=public_key)
+
+@app.route('/pay', methods=['POST'])
+def pay():
+    customer = stripe.Customer.create(email=request.form['stripeEmail'], source=request.form['stripeToken'])
+
+    charge = stripe.Charge.create(
+        customer=customer.id, 
+        amount=9900, 
+        currency='usd', 
+        description='Elixir'
+    )
+
+    return redirect(url_for('index'))
 
 @app.route('/google_login')
 def google_login():
