@@ -607,3 +607,5 @@ $('#fruit_salad_button').click(function() {
 
     console.log(quantity)
 })
+
+$("#modal").iziModal();

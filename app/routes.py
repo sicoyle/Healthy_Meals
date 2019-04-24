@@ -52,6 +52,8 @@ def pay():
 
     return redirect(url_for('index'))
 
+@app.route('/delete_cart_item')
+
 @app.route('/google_login')
 def google_login():
     if not google.authorized:
