@@ -187,7 +187,7 @@ def edit_profile():
         form.city.data = current_user.city
         form.state.data = current_user.state
         form.zip_code.data = current_user.zip_code
-        return render_template('edit_profile.html', title='Edit Profile', form=form)
+        return render_template('edit_profile.html', title='Edit Profile', form=form, user=user)
     return render_template('profile.html', user=user)
 
 @app.route('/logout')
