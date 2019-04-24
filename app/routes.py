@@ -52,7 +52,13 @@ def pay():
 
     return redirect(url_for('index'))
 
-@app.route('/delete_cart_item')
+@app.route('/delete_guest_cart_item', methods=['POST'])
+def delete_guest_cart_item(): 
+    guest_cart = session["items"]
+    del guest_cart[int(request.form['index'])]
+    session["items"] = guest_cart
+
+    return redirect(url_for('cart'))
 
 @app.route('/google_login')
 def google_login():

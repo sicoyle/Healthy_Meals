@@ -43,7 +43,7 @@
                         <div class="col">
                             <h6 class="text-center">{{food_items[i]['cost'] * food_items[i]['quantity']}}</h6>
                         </div>
-                        <div class="col"><a href="#" style="padding: 5px;">Delete</a></div>
+                        <div class="col"><a href="#" onclick="deleteItem({{ i }})" style="padding: 5px;">Delete</a></div>
                     </div>
 
                     {% endfor %}
@@ -78,5 +78,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/guest_cart.js') }}"></script>
 {% endblock %}
