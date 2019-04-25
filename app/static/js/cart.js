@@ -19,33 +19,45 @@ $('.btn-items-increase').on('click', function () {
 
 });
 
-function updateCart(index) {
+function addToCartQuantity(index) {
 
     // Create identifier to grab integer value from DOM
     identifier = "#" + index
 
     // Query that element from the DOM
-    updated_quantity = $(identifier).val()
+    updated_quantity = document.getElementById(identifier)
 
     payload = {
         "item_index": index, 
-        "updated_quantity": updated_quantity
+        "updated_quantity": updated_quantity.value
     }
 
     url_cart = "/user/cart"
 
-    // $.put(url_cart, payload, function() {
-    //     console.log("index")
-    // });
-    
-    $.ajax({
-        type: 'PUT', 
-        url: url_cart, 
-        contentType: 'application/json',
-        data:JSON.stringify(payload)
+    $.post(url_cart, payload, function() {
+        console.log("Sent over wire?")
+        document.location.reload()
 
     })
-    console.log(updated_quantity)
 
 
 }
+
+// payload = {
+//     //     "item_index": index, 
+//     //     "updated_quantity": updated_quantity
+//     // }
+
+//     // url_cart = "/user/cart"
+
+//     // console.log(updated_quantity)
+
+//     // // $.put(url_cart, payload, function() {
+//     // //     console.log("index")
+//     // // });
+//     // // $.ajax({
+//     // //     type: 'PUT', 
+//     // //     url: url_cart, 
+//     // //     contentType: 'application/json',
+//     // //     data:JSON.stringify(payload)
+//     // // })

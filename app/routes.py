@@ -29,6 +29,14 @@ app.register_blueprint(google_blueprint, url_prefix='/google_login')
 def verify_google():
     return render_template('google83147c170400ef36.html')
 
+# @app.route('/delete_guest_cart_item', methods=['POST'])
+# def delete_guest_cart_item(): 
+#     guest_cart = session["items"]
+#     del guest_cart[int(request.form['index'])]
+#     session["items"] = guest_cart
+
+#     return redirect(url_for('cart'))
+
 @app.route('/google_login')
 def google_login():
     if not google.authorized:
@@ -80,8 +88,13 @@ def cart():
 
     subtotal = 0
 
+ 
+
     for item in user.items:
+        print(item.cost)
+        print(item.quantity)
         subtotal = subtotal + (item.cost * item.quantity)
+
     
     subtotal = round(subtotal, 2)
     tax = subtotal * .0825
@@ -341,6 +354,10 @@ class CartItem(Resource):
             print("INSIDE THE TRY BLOCK")
             new_item = ItemModel(**self.args)
             new_item.user_id = current_user.id
+            # quantity = request.form.get('updated_quantity')
+            # item_index_in_cart = request.form['index']
+            # print(quantity)
+            # print(item_index_in_cart)
             db.session.add(new_item)
             db.session.commit()
         except:
@@ -348,16 +365,25 @@ class CartItem(Resource):
         
         return jsonify(message='Cart item successfully created!')
 
-    def put(self):
-        print("in put now!")
+    # def put(self):
+    #     print("in put now!")
 
-        user = UserModel.query.filter_by(username=current_user.username).first_or_404()
-        try:
-            print("INSIDE THE TRY BLOCK")
-            # current_user.items.
-            db.session.commit()
+    #     user = UserModel.query.filter_by(username=current_user.username).first_or_404()
+    #     try:
+    #         print("INSIDE THE TRY BLOCK in Routes")
+    #         #cart = session["items"]
+    #         #user.items.id = int(request.form['index'])
+    #         #user.items.quantity = int(request.form['updated_quantity'])
+    #         #session["items"] = cart
+    #         quantity = request.form.get('updated_quantity')
+    #         item_index_in_cart = request.form['index']
+    #         console.log(quantity)
+    #         console.log(item_index_in_cart)
+    #        # db.session.commit()
+    #     except:
+    #         return abort(502, "Item was not updated in the users cart")
 
-        return jsonify(message='Cart item successfully updated!')
+    #     return jsonify(message='Cart item successfully updated!')
 
 class UserClass(Resource):
     def __init__(self):
