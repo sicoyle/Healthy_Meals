@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="post" style="text-align: center;" class="form-group">
+        {{ form.firstname.label }}<br>
+        {{ form.firstname(class_="form-control") }}<br>
+
+        {{ form.lastname.label }}<br>
+        {{ form.lastname(class_="form-control") }}<br>
+        
+        {{ form.email.label }}<br>
+        {{ form.email(class_="form-control") }}<br>
+
+        {{ form.address.label }}<br>
+        {{ form.address(class_="form-control") }}<br>
+
+        {{ form.phone_number.label }}<br>
+        {{ form.phone_number(class_="form-control") }}<br>
+
+        {{ form.state.label }}<br>
+        {{ form.state(class_="form-control") }}<br>
+
+        {{ form.zip.label }}<br>
+        {{ form.zip(class_="form-control") }}<br>
+
+        {{ form.submit(class_="btn btn-primary btn-block")}}
+    </form>
+</body>
+</html>

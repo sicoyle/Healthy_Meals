@@ -76,38 +76,89 @@
         <p>{{ form.submit() }}</p>
     </form>
     -->
+    
     <div class="container-fluid profile profile-view" id="profile">
-        <form>
+        <form action="" method="post" class="form-group">
+                {{ form.hidden_tag() }}
             <div class="form-row profile-row">
                 <div class="col-sm-8 col-md-5 col-lg-4 col-xl-3 offset-sm-2 offset-md-0 offset-lg-0 d-flex d-xl-flex flex-column relative" style="padding: 30px;">
                     <div class="avatar"></div><img class="img-fluid" src="assets/img/_Male_Profile_Round_Circle_Users-512.png">
                     <div class="custom-file"><input type="file" class="custom-file-input"><input type="file" class="custom-file-input"><label class="custom-file-label">Upload File</label></div>
                 </div>
                 <div class="col-sm-10 col-md-6 col-lg-6 offset-sm-1 offset-md-1 offset-lg-2 offset-xl-3">
-                    <h1 class="text-center">Person's Names Profile </h1>
+                    <h1 class="text-center" style="padding-bottom: 30px;">{{ user.first_name}}'s Profile </h1>
                     <div class="form-row">
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group"><label>Firstname </label><input class="form-control" type="text" name="firstname"></div>
+                            <div class="form-group" style="padding-bottom: 12px;"><h5 style="color: #7ea978;">First name </h5>
+                                {{ form.first_name(class_="form-control") }}
+                                {% for error in form.first_name.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
-                            <div class="form-group"><label>Lastname </label><input class="form-control" type="text" name="lastname"></div>
+                            <div class="form-group" style="padding-bottom: 12px;"><h5 style="color: #7ea978;">Last name </h5>
+                                {{ form.last_name(class_="form-control") }}
+                                {% for error in form.last_name.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group"><label>Email </label><input class="form-control" type="email" autocomplete="off" required="" name="email"></div>
-                    <div class="form-group"><label>Address Line 1</label><input class="form-control" type="email" autocomplete="off" required="" name="email"></div>
-                    <div class="form-group"><label>Address Line 2</label><input class="form-control" type="email" autocomplete="off" required="" name="email"></div>
-                    <div class="form-row flex-row">
+                    <div class="form-group" style="padding-bottom: 12px;"><h5 style="color: #7ea978;">Email </h5>
+                        {{ form.email(class_="form-control") }}
+                        {% for error in form.email.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group" style="padding-bottom: 12px;"><h5 style="color: #7ea978;">Phone Number </h5>
+                        {{ form.phone_number(class_="form-control") }}
+                        {% for error in form.phone_number.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group" style="padding-bottom: 12px;"><h5 style="color: #7ea978;">Address Line 1</h5>
+                        {{ form.address_line_1(class_="form-control") }}
+                        {% for error in form.address_line_1.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group" style="padding-bottom: 12px;"><h5 style="color: #7ea978;">Address Line 2</h5>
+                        {{ form.address_line_2(class_="form-control") }}
+                        {% for error in form.address_line_2.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-row flex-row" style="padding-bottom: 12px;">
                         <div class="col-sm-12 col-md-4 col-lg-4">
-                            <div class="form-group"><label>City</label><input class="form-control" type="password" name="password" autocomplete="off" required=""></div>
+                            <div class="form-group"><h5 style="color: #7ea978;">City</h5>
+                                {{ form.city(class_="form-control") }}
+                                {% for error in form.city.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </div>
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-4">
-                            <div class="form-group"><label>State</label><input class="form-control" type="password" name="confirmpass" autocomplete="off" required=""></div>
+                            <div class="form-group"><h5 style="color: #7ea978;">State</h5>
+                                {{ form.state(class_="form-control") }}
+                                {% for error in form.state.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                            </div>
                         </div>
-                        <div class="col"><label>Zip Code</label><input class="form-control" type="text"></div>
+                        <div class="col"><h5 style="color: #7ea978;">Zip Code</h5>
+                            {{ form.zip_code(class_="form-control") }}
+                            {% for error in form.zip_code.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
                     </div>
                     <div class="form-row">
-                        <div class="col-lg-12 col-xl-12 text-right"><button class="btn btn-light" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);" type="button">Change Password</button><button class="btn btn-light" onclick="location.href='/profile'" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);"
-                                type="button">Cancel</button><a class="btn btn-light" role="button" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,255,255);">Save</a></div>
+                        <div class="col-lg-12 col-xl-12 text-right">
+                            <button class="btn btn-light" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);" type="button">Change Password</button>
+                            <button class="btn btn-light" onclick="location.href='/profile'" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,254,254);" type="button">Cancel</button>
+                            <input type="submit" value="Submit" class="btn btn-light" role="button" style="border-radius: 20px;background-color: #bdecb6;color: rgb(255,255,255);">
+                        </div>
                     </div>
                 </div>
             </div>
