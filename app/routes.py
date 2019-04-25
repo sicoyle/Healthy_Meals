@@ -193,18 +193,18 @@ def edit_profile():
 @app.route('/change_password', methods=['GET', 'POST'])
 @login_required
 def change_password():
+    error = None
     form = ChangePasswordForm()
     if form.validate_on_submit():
         if current_user.verify_password(form.old_password.data):
-            print("password verified")
             current_user.set_password(form.password.data)
             db.session.commit()
             flash('Your password has been updated.')
             return redirect(url_for('profile'))
         else:
-            print("else statement")
-            flash('Invalid password.')
-    return render_template("change_password.html", form=form)
+            error = 'Old password does not match'
+            flash('Invalid password.', 'error')
+    return render_template("change_password.html", form=form, error=error)
 
 @app.route('/logout')
 def logout():
