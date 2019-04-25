@@ -347,6 +347,17 @@ class CartItem(Resource):
         
         return jsonify(message='Cart item successfully created!')
 
+    def put(self):
+        print("in put now!")
+
+        user = UserModel.query.filter_by(username=current_user.username).first_or_404()
+        try:
+            print("INSIDE THE TRY BLOCK")
+            # current_user.items.
+            db.session.commit()
+
+        return jsonify(message='Cart item successfully updated!')
+
 class UserClass(Resource):
     def __init__(self):
         parser = reqparse.RequestParser()
