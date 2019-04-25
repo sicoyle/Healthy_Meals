@@ -16,7 +16,7 @@ from flask_login import login_required
 from flask import request
 from werkzeug.urls import url_parse
 from app import db
-from app.forms import RegistrationForm, EditProfileForm
+from app.forms import RegistrationForm, EditProfileForm, ChangePasswordForm, PasswordResetRequestForm, PasswordResetForm
 from app.forms import PostForm
 from app import facebook_blueprint, facebook
 from app import google_blueprint, google
@@ -189,6 +189,22 @@ def edit_profile():
         form.zip_code.data = current_user.zip_code
         return render_template('edit_profile.html', title='Edit Profile', form=form, user=user)
     return render_template('profile.html', user=user)
+
+@app.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        if current_user.verify_password(form.old_password.data):
+            print("password verified")
+            current_user.set_password(form.password.data)
+            db.session.commit()
+            flash('Your password has been updated.')
+            return redirect(url_for('profile'))
+        else:
+            print("else statement")
+            flash('Invalid password.')
+    return render_template("change_password.html", form=form)
 
 @app.route('/logout')
 def logout():
