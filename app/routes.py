@@ -139,12 +139,22 @@ def register():
     if form.validate_on_submit():
         user = UserModel(first_name=form.first_name.data, email=form.email.data)
         user.username = user.email
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+        if len(form.password.data) < 8:
+            error='Make sure your password is at least 8 letters'
+            flash('Invalid password.', 'error')
+        elif re.search('[0-9]',form.password.data) is None:
+            error='Make sure your password has a number in it'
+        elif re.search('[A-Z]',form.password.data) is None: 
+            error='Make sure your password has a capital letter in it'
+        else:
+            user.set_password(form.password.data)
+            db.session.add(user)
+            db.session.commit()
+            flash('Congratulations, you are now a registered user!')
+            return redirect(url_for('login'))
+    flash('Invalid password.', 'error')
+        #return redirect(url_for('register'))
+    return render_template('register.html', title='Register', form=form, error=error)
 
 @app.route('/profile', methods=['GET'])
 @login_required

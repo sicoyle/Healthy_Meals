@@ -18,8 +18,13 @@
         {{ form.hidden_tag() }}
 	<div class="illustration"><i class="icon ion-android-person"></i></div>
         <p>
+            {% if error %}
+            <span class=error style="color: red;">{{ error }}</span>
+            {% endif %}
+        </p>
+        <p>
             {{ form.first_name.label }}<br>
-	    {{ form.first_name(class_="form-group") }}<br>
+	        {{ form.first_name(class_="form-group") }}<br>
             {% for error in form.first_name.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
