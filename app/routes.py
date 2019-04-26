@@ -104,6 +104,8 @@ def cart():
 
     return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
 
+
+
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
     return render_template('checkout.html')
@@ -379,13 +381,15 @@ class CartItem(Resource):
          
             item_id.quantity = new_updated_quantity
           
-
             db.session.commit()
 
         except:
             return abort(502, "Item was not updated in the users cart")
 
         return redirect(url_for('cart'))
+        #return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
+
+
 
 class UserClass(Resource):
     def __init__(self):

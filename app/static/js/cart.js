@@ -41,6 +41,8 @@ function updateQuantity(index) {
         data:JSON.stringify(payload)
     })
 
+    document.location.reload()
+    document.location.reload()
 
 }
 
