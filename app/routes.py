@@ -354,23 +354,7 @@ class CartItem(Resource):
             print("INSIDE THE TRY BLOCK")
             new_item = ItemModel(**self.args)
             new_item.user_id = current_user.id
-            # print("this is user.items.id: ")
-            # for item in user.items:
-            #     print(item.id)
-
-            # new_quantity = request.get_data('updated_quantity')
-            # print("this is the new quantity")
-            # print(new_quantity)
-            #print("this is the user.item.quantity")
-
-            #new_quantity = int(request.form.get('updated_quantity'))
-            #print(new_quantity)
-
-            #item.quantity = new_quantity
-            #print(item.quantity)
-            # item_index_in_cart = request.form['index']
-            # print(quantity)
-            # print(item_index_in_cart)
+           
             db.session.add(new_item)
             db.session.commit()
         except:
@@ -388,33 +372,20 @@ class CartItem(Resource):
             print("INSIDE THE TRY BLOCK in Routes")
             new_item_index = int(request.get_json()['item_index'])
             new_updated_quantity = int(request.get_json()['updated_quantity'])
-            #cart = session["items"]
-            #user.items.id = int(request.form['index'])
-            #user.items.quantity = int(request.form['updated_quantity'])
-            #session["items"] = cart
-            # quantity = request.form.get('updated_quantity')
-            # item_index_in_cart = request.form['index']
-            # console.log(quantity)
-            # console.log(item_index_in_cart)
+    
             item_id = user.items[new_item_index]
-            print(item_id)
-
-            #food_item = ItemModel.query.filter_by(id=new_item_index).first_or_404()
-            #print(food_item)
-            
-            cart_item = ItemModel.query.filter_by(id=item_id+1)
-            print(cart_item)
-
-            #user.items[new_item_index].quantity = new_updated_quantity
-            print("this is the new quantity")
-            #print(user.items[new_item_index].quantity)
-            #if user.items[item_index]
+            #print("this is item_id")
+            #print(item_id)
+         
+            item_id.quantity = new_updated_quantity
+          
 
             db.session.commit()
+
         except:
             return abort(502, "Item was not updated in the users cart")
 
-        return jsonify(message='in PUT...Cart item successfully updated!')
+        return redirect(url_for('cart'))
 
 class UserClass(Resource):
     def __init__(self):

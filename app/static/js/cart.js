@@ -34,35 +34,13 @@ function updateQuantity(index) {
     console.log(payload)
     url_cart = "/user/cart"
 
-    // $.post(url_cart, payload, function() {
-    //     console.log("Sent over wire?")
-    //     document.location.reload()
-
-    // })
     $.ajax({
         type: 'PUT', 
         url: url_cart, 
         contentType: 'application/json',
         data:JSON.stringify(payload)
     })
-    document.location.reload()
+
+
 }
 
-// payload = {
-//     //     "item_index": index, 
-//     //     "updated_quantity": updated_quantity
-//     // }
-
-//     // url_cart = "/user/cart"
-
-//     // console.log(updated_quantity)
-
-//     // // $.put(url_cart, payload, function() {
-//     // //     console.log("index")
-//     // // });
-//     // // $.ajax({
-//     // //     type: 'PUT', 
-//     // //     url: url_cart, 
-//     // //     contentType: 'application/json',
-//     // //     data:JSON.stringify(payload)
-//     // // })
