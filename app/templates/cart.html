@@ -36,14 +36,14 @@
                         <div class="col-3">
                             <div class="d-flex align-items-center">
                                 <div class="btn btn-items btn-items-decrease">-</div>
-                                    <input type="text" value="{{ user_items[i].quantity }}" class="form-control text-center border-0 border-md input-items">
+                                    <input id="#{{i}}" type="text" value="{{ user_items[i].quantity }}" class="form-control text-center border-0 border-md input-items">
                                 <div class="btn btn-items btn-items-increase">+</div>
                             </div>
                         </div>
                         <div class="col">
                             <h6 class="text-center">{{user_items[i].cost * user_items[i].quantity}}</h6>
                         </div>
-                        <div class="col"><a href="#" style="padding: 5px;">Delete</a></div>
+                        <div class="col"><a style="padding: 5px;" onclick="updateQuantity({{i}})" >Update</a></div>
                     </div>
 
                     {% endfor %}
