@@ -19,7 +19,7 @@ $('.btn-items-increase').on('click', function () {
 
 });
 
-function addToCartQuantity(index) {
+function updateQuantity(index) {
 
     // Create identifier to grab integer value from DOM
     identifier = "#" + index
@@ -31,16 +31,21 @@ function addToCartQuantity(index) {
         "item_index": index, 
         "updated_quantity": updated_quantity.value
     }
-
+    console.log(payload)
     url_cart = "/user/cart"
 
-    $.post(url_cart, payload, function() {
-        console.log("Sent over wire?")
-        document.location.reload()
+    // $.post(url_cart, payload, function() {
+    //     console.log("Sent over wire?")
+    //     document.location.reload()
 
+    // })
+    $.ajax({
+        type: 'PUT', 
+        url: url_cart, 
+        contentType: 'application/json',
+        data:JSON.stringify(payload)
     })
-
-
+    document.location.reload()
 }
 
 // payload = {
