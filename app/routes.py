@@ -133,6 +133,7 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    error = None
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
