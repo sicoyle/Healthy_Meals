@@ -96,6 +96,18 @@ def facebook_login():
 def index():
     return render_template('index.html')
 
+@app.route('/delete_guest_item', methods=['POST'])
+def delete_guest_item():
+    index = int(request.form["index"])
+    guest_cart = session["items"]
+
+    del guest_cart[index]
+
+    session["items"] = guest_cart
+    
+    return redirect(url_for('cart'))
+    
+
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
 
@@ -117,12 +129,9 @@ def cart():
         return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
     
     except:
-        print(" \n\n------------- PRINTING ITEMS ------------- ")
-        for item in session["items"]:
-            print(item, "\n\n")
 
         for item in session["items"]:
-            subtotal = subtotal + item['cost']
+            subtotal = subtotal + (item["cost"] * item["quantity"])
         
         subtotal = round(subtotal, 2)
         tax = subtotal * .0825

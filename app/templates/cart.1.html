@@ -43,7 +43,7 @@
                         <div class="col">
                             <h6 class="text-center">{{food_items[i]['cost'] * food_items[i]['quantity']}}</h6>
                         </div>
-                        <div class="col"><a href="#" style="padding: 5px;">Delete</a></div>
+                        <div onclick="deleteGuestItem({{ i}} )" class="col"><a href="#" style="padding: 5px;">Delete</a></div>
                     </div>
 
                     {% endfor %}
