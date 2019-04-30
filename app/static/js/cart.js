@@ -21,3 +21,14 @@ function deleteGuestItem(index) {
         window.location.reload()
     })
 }
+
+function deleteUserItem(index) {
+    url = "/delete_user_item"
+    payload = {
+        index: index
+    }
+
+    $.post(url, payload, function() {
+        window.location.reload()
+    })
+}

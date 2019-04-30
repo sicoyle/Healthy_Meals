@@ -106,6 +106,15 @@ def delete_guest_item():
     session["items"] = guest_cart
     
     return redirect(url_for('cart'))
+
+@app.route('/delete_user_item', methods=['POST'])
+def delete_user_item():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    index = int(request.form["index"])
+
+    del user.items[index]
+    db.session.commit()
+    return redirect(url_for('cart'))
     
 
 @app.route('/cart', methods=['GET', 'POST'])
@@ -139,7 +148,7 @@ def cart():
         total = tax + subtotal
         total = round(total, 2)
 
-        return render_template('cart.1.html', food_items = session["items"], subtotal = subtotal, tax = tax, total = total)
+        return render_template('guest_cart.html', food_items = session["items"], subtotal = subtotal, tax = tax, total = total)
 
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
