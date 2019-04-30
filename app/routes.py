@@ -131,23 +131,28 @@ def gift():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
         user = UserModel.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
+            error = 'Incorrect password.'
+            if user is None:
+                error = 'User not found. Please try a different email address.'
             flash('Invalid username or password')
-            return redirect(url_for('login'))
+            return render_template('login.html', title='Sign In', form=form, error=error)
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    return render_template('login.html', title='Sign In', form=form)
+    return render_template('login.html', title='Sign In', form=form, error=error)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    error = None
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
@@ -186,10 +191,11 @@ def orders():
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+    error = None
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     form = EditProfileForm(request.form)
-    print(form.validate_on_submit())
     if form.validate_on_submit():
+
         current_user.first_name = form.first_name.data
         current_user.last_name = form.last_name.data
         current_user.email = form.email.data
@@ -198,6 +204,9 @@ def edit_profile():
         current_user.address_line_2 = form.address_line_2.data
         current_user.city = form.city.data
         current_user.state = form.state.data
+        if form.state.data == 'Select State':
+            error = "Select a state."
+            return render_template('edit_profile.html', title='Edit Profile', form=form, user=user, error=error)
         current_user.zip_code = form.zip_code.data
         db.session.commit()
         print("just posted")
@@ -213,8 +222,8 @@ def edit_profile():
         form.city.data = current_user.city
         form.state.data = current_user.state
         form.zip_code.data = current_user.zip_code
-        return render_template('edit_profile.html', title='Edit Profile', form=form, user=user)
-    return render_template('profile.html', user=user)
+        return render_template('edit_profile.html', title='Edit Profile', form=form, user=user, error=error)
+    return render_template('profile.html', user=user, error=error)
 
 @app.route('/change_password', methods=['GET', 'POST'])
 @login_required
