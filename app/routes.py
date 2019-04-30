@@ -89,14 +89,11 @@ def cart():
 
     subtotal = 0
 
- 
-
     for item in user.items:
         print(item.cost)
         print(item.quantity)
         subtotal = subtotal + (item.cost * item.quantity)
 
-    
     subtotal = round(subtotal, 2)
     tax = subtotal * .0825
     tax = round(tax, 2)
@@ -104,8 +101,6 @@ def cart():
     total = round(total, 2)
 
     return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
-
-
 
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
@@ -148,6 +143,7 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    error = None
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
@@ -180,8 +176,17 @@ def profile():
 @app.route('/orders', methods=['GET'])
 @login_required
 def orders():
+    #admin = AdminModel.query.filter_by(name=current_admin.name).first_or_404() 
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
-    return render_template('orders.html', user=user)
+
+    if request.method == 'GET':
+        past_order_items = OrderModel.query.all()
+        past_order_items = item_schema_many.dump(past_order_items)
+        #return jsonify(past_order_items) 
+        return render_template('orders.html', user=user, past_items = user.orders, num_order_items = len(user.orders))
+    
+    return render_template('orders.html', user=user, past_items = user.orders, num_order_items = len(user.orders))
+
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
@@ -382,7 +387,8 @@ class CartItem(Resource):
     def get(self):
         cart_items = ItemModel.query.all()
         cart_items = item_schema_many.dump(cart_items)
-        return jsonify(cart_items)   
+        return jsonify(cart_items)  
+
     def post(self):
         print("Were in post nowwww!")
         user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
