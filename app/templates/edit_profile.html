@@ -141,9 +141,11 @@
                         <div class="col-sm-12 col-md-4 col-lg-4">
                             <div class="form-group"><h5 style="color: #7ea978;">State</h5>
                                 {{ form.state(class_="form-control") }}
-                                {% for error in form.state.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                                {% endfor %}
+                                <p>
+                                    {% if error %}
+                                    <span class=error style="color: red;">{{ error }}</span>
+                                    {% endif %}
+                                </p>
                             </div>
                         </div>
                         <div class="col"><h5 style="color: #7ea978;">Zip Code</h5>
