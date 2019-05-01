@@ -33,22 +33,43 @@ function deleteUserItem(index) {
     })
 }
 
-function placeUserOrder(user_items) {
+var user; 
+
+function placeUserOrder(user_id, total) {
+    url_number_orders = "/orders/get_next_id"
     url = "/place_user_order"
+    user_route = "/user"
 
-    console.log()
+    var next_order_id = $.get(url_number_orders, function( data ) {
+        console.log("DID IT? 1")
+    });
 
-    first_name = $("#user_first_name").val()
-    last_name = $("#user_last_name").val()
-    address = $("#user_address").val()
+    // user = $.get(user_route, function( data ) {
+    //     console.log("DID IT? 2")
+    // })
 
-    payload = {
-        first_name: first_name, 
-        last_name: last_name,
-        address: address    
-    }
+    $.ajax({
+        dataType: "json", 
+        url: user_route
+    }).done(function(obj) {
+        user = obj
+        console.log("USER: ", user["users"][user_id - 1]["items"])
+        
+        payload = {
+            id: next_order_id,
+            order_items: user["users"][user_id - 1]["items"],
+            cost: total,
+            completed: false, 
+            user_id: user["users"][user_id - 1]["id"], 
+            admin_id: 0
+        }
+        console.log("USER: ", user["users"][user_id - 1]["items"])
+        console.log("PAYLOAD: ", payload)
 
-    $.post(url, payload, function() {
-        console.log("DID IT?")
+        $.post(url, payload, function() {
+            console.log("DID IT? 3")
+        })
     })
+
+    
 }

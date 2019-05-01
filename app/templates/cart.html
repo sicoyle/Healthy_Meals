@@ -53,14 +53,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <form onclick="placeUserOrder()" action="{{ url_for('pay') }}" method="POST">
+                    <form onclick="placeUserOrder( {{ user.id }}, {{ total }} )" action="{{ url_for('pay') }}" method="POST">
                         <!-- Put my own public key from dashboard -->
                         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                            data-key="{{ public_key }}" data-amount="999" data-name="Brent Redmon"
+                            data-key="{{ public_key }}" data-amount="{{ total * 100 }}" data-name="Brent Redmon"
                             data-description="Widget"
                             data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                             data-locale="auto">
-                            </script>
+                        </script>
                     </form>
                 </div>
             </div>

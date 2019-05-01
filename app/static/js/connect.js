@@ -25,6 +25,8 @@ $('#chunky_soup_button').click(function() {
         picture_path: "img/menuPage/chunckysoup.jpg"
     }
 
+    console.log("PAYLOAD: ", payload)
+
     $.post(url_cart, payload, function(data, status) {
         console.log("${data} and status ${status}")
     }); 

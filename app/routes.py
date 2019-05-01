@@ -1,10 +1,10 @@
 from app import app, db
 from flask import session, Session
 from flask_restful import Resource, Api, reqparse
-from app.models import SystemModel, AdminModel, UserModel, ItemModel, OrderModel, PackageModel, FoodModel, IngredientModel, GiftCardModel
+from app.models import AdminModel, UserModel, ItemModel, OrderModel, PackageModel, FoodModel, IngredientModel, GiftCardModel
 from flask import jsonify, abort
 from sqlalchemy.exc import DatabaseError
-from app.serializers import system_schema_many, admin_schema_many, user_schema_many, item_schema, item_schema_many, order_schema_many, package_schema_many, food_schema_many, ingredient_schema_many, gift_card_schema_many
+from app.serializers import admin_schema_many, user_schema_many, item_schema, item_schema_many, order_schema_many, package_schema_many, food_schema_many, ingredient_schema_many, gift_card_schema_many
 
 from flask import render_template, flash, redirect, url_for, request
 from app import app
@@ -21,6 +21,7 @@ from app.forms import PostForm
 from app import facebook_blueprint, facebook
 from app import google_blueprint, google
 import stripe
+import random
 
 api = Api(app)
 app.register_blueprint(facebook_blueprint, url_prefix='/facebook_login')
@@ -107,11 +108,6 @@ def delete_guest_item():
     
     return redirect(url_for('cart'))
 
-@app.route('/place_user_order', methods=['POST'])
-def place_user_order():
-    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
-    
-
 
 @app.route('/delete_user_item', methods=['POST'])
 def delete_user_item():
@@ -141,7 +137,7 @@ def cart():
         total = tax + subtotal
         total = round(total, 2)
 
-        return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
+        return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total, user = user)
     
     except:
 
@@ -485,14 +481,80 @@ class GetNextItemId(Resource):
         return jsonify(next_item_id=next_item_id)
 
 
+class PlaceUserOrder(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+        self.args = parser.parse_args()
 
 
+    def post(self):
+        print("Trying to make order for user")
+
+        # Query for the user
+        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+
+        # Make a new order
+        new_order = OrderModel(**self.args)
+
+        # Relate the order back to the user?
+        new_order.user_id = current_user.id
+
+        # Add to db
+        db.session.add(new_item)
+        db.session.commit()
+
+class GetNextOrderID(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+        self.args = parser.parse_args()
+    
+    def get(self):
+        orders = OrderModel.query.all()
+        if(len(orders) is 0):
+            next_order_id = 1
+        else:
+            next_order_id = len(orders) + 1
+        """
+        Need to check that the number of items + 1 does not have an id in the databsae
+        (so that no two items have the same id)
+        if it does exist, check what number between 1 and len(items) is an id that does not exist and give that item that id number
+
+        """
+
+        return jsonify(next_order_id=next_order_id)
+
+class Admins(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+
+        parser.add_argument('id', type=int)
+        parser.add_argument('name', type=str)
+
+        self.args = parser.parse_args()
+    
+    def get(self):
+        admin = AdminModel.query.all()
+        return jsonify(admin=admin_schema_many.dump(admin).data) 
+
+    def post(self):
+        try:
+            new_admin = AdminModel(**self.args)
+            db.session.add(new_admin)
+            db.session.commit()
+
+        except DatabaseError:
+            return abort(500, 'Admin not added to database!')
+
+        return jsonify(message='Admin successfully created!')
 
 
+        
 
-
+api.add_resource(GetNextOrderID, '/orders/get_next_id')
+api.add_resource(PlaceUserOrder, '/place_user_order')
 api.add_resource(UserClass, '/user')
 api.add_resource(CartItem, '/user/cart')
 api.add_resource(GetNextItemId, '/items/get_next_id')
 api.add_resource(Food, '/food')
 api.add_resource(Ingredient, '/food/ingredients')
+api.add_resource(Admins, '/admin')
