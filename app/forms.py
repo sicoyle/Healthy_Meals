@@ -7,7 +7,9 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import UserModel
 from wtforms import StringField, TextField, SubmitField
 from wtforms.validators import DataRequired, Length
-
+from wtforms import SelectField
+import wtforms
+from flask_wtf.file import FileField, FileAllowed
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
@@ -37,9 +39,20 @@ class EditProfileForm(FlaskForm):
     address_line_1 = StringField('Address Line 1', validators=[DataRequired()])
     address_line_2 = StringField('Address Line 2', validators=[DataRequired()])
     city = StringField('City', validators=[DataRequired()])
-    state = StringField('State', validators=[DataRequired()])
+
+    STATE_ABBREV = ('Select State', 'AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
+                'HI', 'ID', 'IL', 'IN', 'IO', 'KS', 'KY', 'LA', 'ME', 'MD', 
+                'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 
+                'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
+                'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY')
+
+    
+
+    state = wtforms.SelectField(label='State', 
+        choices=[(state, state) for state in STATE_ABBREV])    
     zip_code = StringField('Zip Code', validators=[DataRequired()])
     phone_number = StringField('Phone Number')
+    picture = FileField('Update Profile Picture', validators=[DataRequired(), FileAllowed(['jpg', 'png'], 'Invalid file type. Input jpg or png.')])
     submit = SubmitField('Submit')
 
 class ChangePasswordForm(FlaskForm):

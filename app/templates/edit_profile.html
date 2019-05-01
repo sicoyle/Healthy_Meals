@@ -78,12 +78,21 @@
     -->
     
     <div class="container-fluid profile profile-view" id="profile">
-        <form action="" method="post" class="form-group">
+        <form action="" method="post" class="form-group" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
             <div class="form-row profile-row">
                 <div class="col-sm-8 col-md-5 col-lg-4 col-xl-3 offset-sm-2 offset-md-0 offset-lg-0 d-flex d-xl-flex flex-column relative" style="padding: 30px;">
-                    <div class="avatar"></div><img class="img-fluid" src="assets/img/_Male_Profile_Round_Circle_Users-512.png">
-                    <div class="custom-file"><input type="file" class="custom-file-input"><input type="file" class="custom-file-input"><label class="custom-file-label">Upload File</label></div>
+                    <!--
+                    <div class="form-group custom-file">
+                        {{ form.picture.label() }}
+                        {{ form.picture(class="form-control-file") }}
+                        
+                        {% if form.picture.error %}
+                            <span class=error style="color: red;">{{ error }}</span>
+                        {% endif %}
+                        
+                        
+                    </div>-->
                 </div>
                 <div class="col-sm-10 col-md-6 col-lg-6 offset-sm-1 offset-md-1 offset-lg-2 offset-xl-3">
                     <h1 class="text-center" style="padding-bottom: 30px;">{{ user.first_name}}'s Profile </h1>
@@ -141,9 +150,11 @@
                         <div class="col-sm-12 col-md-4 col-lg-4">
                             <div class="form-group"><h5 style="color: #7ea978;">State</h5>
                                 {{ form.state(class_="form-control") }}
-                                {% for error in form.state.errors %}
-                                <span style="color: red;">[{{ error }}]</span>
-                                {% endfor %}
+                                <p>
+                                    {% if error %}
+                                    <span class=error style="color: red;">{{ error }}</span>
+                                    {% endif %}
+                                </p>
                             </div>
                         </div>
                         <div class="col"><h5 style="color: #7ea978;">Zip Code</h5>

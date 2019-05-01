@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 7d8eeb7c4ddb
+Revision ID: c6e520c4b61b
 Revises: 
-Create Date: 2019-04-23 17:49:31.544598
+Create Date: 2019-05-01 15:47:00.533598
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7d8eeb7c4ddb'
+revision = 'c6e520c4b61b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -83,7 +83,7 @@ def upgrade():
     sa.Column('state', sa.String(length=64), nullable=True),
     sa.Column('zip_code', sa.String(length=64), nullable=True),
     sa.Column('phone_number', sa.String(length=64), nullable=True),
-    sa.Column('picture', sa.String(length=64), nullable=True),
+    sa.Column('image_file', sa.String(length=20), nullable=False),
     sa.Column('system_controller_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['system_controller_id'], ['system.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -93,9 +93,9 @@ def upgrade():
     op.create_index(op.f('ix_user_city'), 'user', ['city'], unique=False)
     op.create_index(op.f('ix_user_email'), 'user', ['email'], unique=True)
     op.create_index(op.f('ix_user_first_name'), 'user', ['first_name'], unique=False)
+    op.create_index(op.f('ix_user_image_file'), 'user', ['image_file'], unique=False)
     op.create_index(op.f('ix_user_last_name'), 'user', ['last_name'], unique=False)
     op.create_index(op.f('ix_user_phone_number'), 'user', ['phone_number'], unique=False)
-    op.create_index(op.f('ix_user_picture'), 'user', ['picture'], unique=False)
     op.create_index(op.f('ix_user_state'), 'user', ['state'], unique=False)
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=False)
     op.create_index(op.f('ix_user_zip_code'), 'user', ['zip_code'], unique=False)
@@ -137,9 +137,9 @@ def downgrade():
     op.drop_index(op.f('ix_user_zip_code'), table_name='user')
     op.drop_index(op.f('ix_user_username'), table_name='user')
     op.drop_index(op.f('ix_user_state'), table_name='user')
-    op.drop_index(op.f('ix_user_picture'), table_name='user')
     op.drop_index(op.f('ix_user_phone_number'), table_name='user')
     op.drop_index(op.f('ix_user_last_name'), table_name='user')
+    op.drop_index(op.f('ix_user_image_file'), table_name='user')
     op.drop_index(op.f('ix_user_first_name'), table_name='user')
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_index(op.f('ix_user_city'), table_name='user')
