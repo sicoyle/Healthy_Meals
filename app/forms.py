@@ -9,6 +9,7 @@ from wtforms import StringField, TextField, SubmitField
 from wtforms.validators import DataRequired, Length
 from wtforms import SelectField
 import wtforms
+from flask_wtf.file import FileField, FileAllowed
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
@@ -51,6 +52,7 @@ class EditProfileForm(FlaskForm):
         choices=[(state, state) for state in STATE_ABBREV])    
     zip_code = StringField('Zip Code', validators=[DataRequired()])
     phone_number = StringField('Phone Number')
+    picture = FileField('Update Profile Picture', validators=[DataRequired(), FileAllowed(['jpg', 'png'], 'Invalid file type. Input jpg or png.')])
     submit = SubmitField('Submit')
 
 class ChangePasswordForm(FlaskForm):
