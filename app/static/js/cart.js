@@ -32,3 +32,23 @@ function deleteUserItem(index) {
         window.location.reload()
     })
 }
+
+function placeUserOrder(user_items) {
+    url = "/place_user_order"
+
+    console.log()
+
+    first_name = $("#user_first_name").val()
+    last_name = $("#user_last_name").val()
+    address = $("#user_address").val()
+
+    payload = {
+        first_name: first_name, 
+        last_name: last_name,
+        address: address    
+    }
+
+    $.post(url, payload, function() {
+        console.log("DID IT?")
+    })
+}

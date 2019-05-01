@@ -154,13 +154,11 @@ class OrderModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     order_items = db.relationship('ItemModel', backref='related_order')
-    cost = db.Column(db.Float, primary_key=True)
-    completed = db.Column(db.Boolean, primary_key=True)
+    cost = db.Column(db.Float)
+    completed = db.Column(db.Boolean)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
-
-    order_items = db.relationship('ItemModel', backref='order_items')
 
     def __repr__(self):
         return '<Order {}>'.format(self.name)

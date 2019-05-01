@@ -107,6 +107,12 @@ def delete_guest_item():
     
     return redirect(url_for('cart'))
 
+@app.route('/place_user_order', methods=['POST'])
+def place_user_order():
+    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+    
+
+
 @app.route('/delete_user_item', methods=['POST'])
 def delete_user_item():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
