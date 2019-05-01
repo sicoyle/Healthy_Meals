@@ -189,10 +189,20 @@ def orders():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     return render_template('orders.html', user=user)
 
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form.picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static/profile_pics', 'picture_fn')
+    form_picture.save(picture_path)
+
+    return picture_fn
+
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     error = None
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     form = EditProfileForm(request.form)
     if form.validate_on_submit():
@@ -206,7 +216,7 @@ def edit_profile():
         current_user.state = form.state.data
         if form.state.data == 'Select State':
             error = "Select a state."
-            return render_template('edit_profile.html', title='Edit Profile', form=form, user=user, error=error)
+            return render_template('edit_profile.html', title='Edit Profile', form=form, user=user, error=error, image_file=image_file)
         current_user.zip_code = form.zip_code.data
         db.session.commit()
         print("just posted")
@@ -222,8 +232,8 @@ def edit_profile():
         form.city.data = current_user.city
         form.state.data = current_user.state
         form.zip_code.data = current_user.zip_code
-        return render_template('edit_profile.html', title='Edit Profile', form=form, user=user, error=error)
-    return render_template('profile.html', user=user, error=error)
+        return render_template('edit_profile.html', title='Edit Profile', form=form, user=user, error=error, image_file=image_file)
+    return render_template('profile.html', user=user, error=error, image_file=image_file)
 
 @app.route('/change_password', methods=['GET', 'POST'])
 @login_required
