@@ -4,7 +4,7 @@ from flask_restful import Resource, Api, reqparse
 from app.models import SystemModel, AdminModel, UserModel, ItemModel, OrderModel, PackageModel, FoodModel, IngredientModel, GiftCardModel
 from flask import jsonify, abort
 from sqlalchemy.exc import DatabaseError
-from app.serializers import system_schema_many, admin_schema_many, user_schema_many, item_schema_many, order_schema_many, package_schema_many, food_schema_many, ingredient_schema_many, gift_card_schema_many
+from app.serializers import system_schema_many, admin_schema_many, user_schema_many, item_schema, item_schema_many, order_schema_many, package_schema_many, food_schema_many, ingredient_schema_many, gift_card_schema_many
 
 from flask import render_template, flash, redirect, url_for
 from app import app
@@ -84,15 +84,59 @@ def index():
 
 @app.route('/cart', methods=['GET', 'POST'])
 def cart():
-    user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
-    print(user)
 
     subtotal = 0
 
-    for item in user.items:
-        print(item.cost)
-        print(item.quantity)
-        subtotal = subtotal + (item.cost * item.quantity)
+    try:
+        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+        #print(user)
+
+
+        for item in user.items:
+            print(item.cost)
+            print(item.quantity)
+            subtotal = subtotal + (item.cost * item.quantity)
+
+        subtotal = round(subtotal, 2)
+        tax = subtotal * .0825
+        tax = round(tax, 2)
+        total = tax + subtotal
+        total = round(total, 2)
+
+        return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
+
+    except:
+        for item in session["items"]:
+            subtotal = subtotal + (item["cost"] * item["quantity"])
+
+        subtotal = round(subtotal, 2)
+        tax = subtotal * .0825
+        tax = round(tax, 2)
+        total = tax + subtotal
+        total = round(total, 2)
+
+        return render_template('cart.1.html', food_items = session["items"], subtotal = subtotal, tax = tax, total = total)
+ 
+@app.route('/update_guest_item', methods=['PUT'])
+def update_guest_item():
+    index = int(request.get_json()["index"])
+    print("Helller in /update_guest_item route in ROUTES.py**********************************************************************")
+
+    print("index: " , index)
+
+    updated_quantity = int(request.get_json()["updated_quantity"])
+    guest_cart = session["items"]
+    print("************************", guest_cart)
+    print("updated_quantity: " , updated_quantity)
+    
+    guest_cart[index]['quantity'] = updated_quantity
+
+    subtotal = 0
+
+    print("************************", guest_cart)
+    session["items"] = guest_cart
+    for item in session["items"]:
+            subtotal = subtotal + (item["cost"] * item["quantity"])
 
     subtotal = round(subtotal, 2)
     tax = subtotal * .0825
@@ -100,7 +144,8 @@ def cart():
     total = tax + subtotal
     total = round(total, 2)
 
-    return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
+    return render_template('cart.1.html', food_items = session["items"], subtotal = subtotal, tax = tax, total = total)
+ 
 
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
@@ -390,19 +435,68 @@ class CartItem(Resource):
         return jsonify(cart_items)  
 
     def post(self):
-        print("Were in post nowwww!")
-        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
-        try:
-            print("INSIDE THE TRY BLOCK")
-            new_item = ItemModel(**self.args)
-            new_item.user_id = current_user.id
+
+        # print("Were in post nowwww!")
+        # user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+        # try:
+        #     print("INSIDE THE TRY BLOCK")
+        #     new_item = ItemModel(**self.args)
+        #     new_item.user_id = current_user.id
            
+        #     db.session.add(new_item)
+        #     db.session.commit()
+        # except:
+        #     return abort(502, "Item was not added to the users cart")
+        
+        # return jsonify(message='Cart item successfully created!')
+        try:
+            print("Trying to make cart item for user")
+
+            # Query for the user
+            user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+
+            # Make a new item
+            new_item = ItemModel(**self.args)
+
+            # Relate the item back to the user?
+            new_item.user_id = current_user.id
+
+            # Add to db
             db.session.add(new_item)
             db.session.commit()
         except:
-            return abort(502, "Item was not added to the users cart")
+            print("Trying to make cart item for guest")
+            
+            # Make the item
+            new_item = ItemModel(**self.args)
+
+            # JSONify the item
+            jsonified_item = item_schema.dump(new_item)[0]
+            print("\n\nMY JSON SHIIIIT ------ ", jsonified_item, "\n\n")
+
+            try:
+                # Get the guest cart
+                guest_cart = session["items"]
+
+                # Add the item
+                guest_cart.append(jsonified_item)
+
+                # Update session
+                session["items"] = guest_cart
+
+            except:
+                # If we need to make a new session instance of items
+                session["items"] = []
+                
+                # Add the item to the guest cart
+                guest_cart = session["items"]
+                guest_cart.append(jsonified_item)
+                
+                # Set the session equal to the guest cart
+                session["items"] = guest_cart
         
         return jsonify(message='Cart item successfully created!')
+
 
     def put(self):
         print("in put now!")
