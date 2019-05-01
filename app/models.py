@@ -86,7 +86,7 @@ class UserModel(UserMixin, db.Model):
     state = db.Column(db.String(64), index=True, unique=False)
     zip_code = db.Column(db.String(64), index=True, unique=False)
     phone_number = db.Column(db.String(64), index=True, unique=False)
-    picture = db.Column(db.String(64), index=True, unique=False)
+    image_file = db.Column(db.String(20), index=True, unique=False, nullable=False, default='default.jpg')
 
     orders = db.relationship('OrderModel', backref='previous_orders')
     items = db.relationship('ItemModel', backref='my_items')

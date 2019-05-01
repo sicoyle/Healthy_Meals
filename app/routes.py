@@ -180,7 +180,8 @@ def register():
 @login_required
 def profile():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
-    return render_template('profile.html', user=user)
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template('profile.html', user=user, image_file=image_file)
 
 @app.route('/orders', methods=['GET'])
 @login_required
@@ -195,7 +196,6 @@ def edit_profile():
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
     form = EditProfileForm(request.form)
     if form.validate_on_submit():
-
         current_user.first_name = form.first_name.data
         current_user.last_name = form.last_name.data
         current_user.email = form.email.data
