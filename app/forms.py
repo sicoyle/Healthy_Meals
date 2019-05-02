@@ -52,7 +52,7 @@ class EditProfileForm(FlaskForm):
         choices=[(state, state) for state in STATE_ABBREV])    
     zip_code = StringField('Zip Code', validators=[DataRequired()])
     phone_number = StringField('Phone Number')
-    picture = FileField('Update Profile Picture', validators=[DataRequired(), FileAllowed(['jpg', 'png'], 'Invalid file type. Input jpg or png.')])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'], 'Invalid file type. Input jpg or png.')])
     submit = SubmitField('Submit')
 
 class ChangePasswordForm(FlaskForm):
