@@ -306,20 +306,14 @@ def edit_profile():
 @app.route('/update_guest_item', methods=['PUT'])
 def update_guest_item():
     index = int(request.get_json()["index"])
-    print("Helller in /update_guest_item route in ROUTES.py**********************************************************************")
-
-    print("index: " , index)
 
     updated_quantity = int(request.get_json()["updated_quantity"])
     guest_cart = session["items"]
-    print("************************", guest_cart)
-    print("updated_quantity: " , updated_quantity)
     
     guest_cart[index]['quantity'] = updated_quantity
 
     subtotal = 0
 
-    print("************************", guest_cart)
     session["items"] = guest_cart
     for item in session["items"]:
             subtotal = subtotal + (item["cost"] * item["quantity"])

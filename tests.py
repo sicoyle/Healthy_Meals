@@ -25,6 +25,14 @@ class FlaskTestCases(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         #self.assertTrue(b'Stranger' in response.data)
 
+    def test_cart_page_loads(self):
+        response = self.client.get('/cart')
+        self.assertEqual(response.status_code, 200)
+
+    def test_home_page_loads(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+
     def test_register(self):
         # Register a new account
         response = self.client.post(('/register'), data={
@@ -42,6 +50,8 @@ class FlaskTestCases(unittest.TestCase):
         }, follow_redirects=True)
         
         self.assertEqual(response.status_code, 200)
+
+
 
         # Log out of new account
         #response = self.client.get(('/logout'), follow_redirects=True)
@@ -75,9 +85,6 @@ class FlaskTestCases(unittest.TestCase):
         })
 
         self.assertEqual(response.status_code, 200)
-
-
-
     
 if __name__ == '__main__':
     unittest.main()
