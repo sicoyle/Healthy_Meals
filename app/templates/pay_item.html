@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pay.styles.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="block span3">
+  <div class="product">
+    <img src="http://placehold.it/295x190/333333/FFFFFF">
+    <div class="buttons">
+      <a class="buy btn btn-large btn-info" href="#"><i class="icon-shopping-cart"></i> Add to Cart</a>
+      <a class="preview btn btn-large btn-info" href="#"><i class="icon-eye-open"></i> View item</a>
+    </div>
+  </div>
+
+  <div class="info">
+    <h4>Armillaria luteobubalina is a species of mushroom</h4>
+    <span class="description">
+      Rwanda is a country in central and eastern Africa located a few degrees south of the Ecuator.
+    </span>
+    <span class="price">$62.97</span>
+    <a class="btn btn-info pull-right" href="#"><i class="icon-shopping-cart"></i> Buy Now</a>
+    <form action="{{ url_for('pay') }}" method="POST">
+      <!-- Put my own public key from dashboard -->
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ public_key }}" data-amount="999" data-name="Brent Redmon"
+        data-description="Widget" data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto">
+        </script>
+    </form>
+  </div>
+
+  <div class="details">
+    <span class="time"><i class="icon-time"></i> 12 hours ago</span>
+    <span class="rating pull-right">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+    </span>
+  </div>
+</div>
+{% endblock %}

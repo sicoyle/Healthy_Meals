@@ -1,10 +1,5 @@
 from marshmallow_sqlalchemy import ModelSchema
-from app.models import SystemModel, AdminModel, UserModel, ItemModel, OrderModel, PackageModel, FoodModel, IngredientModel, GiftCardModel
-
-
-class SystemSchema(ModelSchema):
-    class Meta:
-        model = SystemModel
+from app.models import AdminModel, UserModel, ItemModel, OrderModel, PackageModel, FoodModel, IngredientModel, GiftCardModel
 
 
 class AdminSchema(ModelSchema):
@@ -41,9 +36,6 @@ class IngredientSchema(ModelSchema):
 class GiftCardSchema(ModelSchema):
     class Meta:
         model = GiftCardModel
-
-system_schema_many = SystemSchema(many=True)
-system_schema = SystemSchema()
 
 admin_schema_many = AdminSchema(many=True)
 admin_schema = AdminSchema()

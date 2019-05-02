@@ -12,3 +12,4 @@ Flask-Security
 gunicorn
 Flask-Dance
 -e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
+stripe

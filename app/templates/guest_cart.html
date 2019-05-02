@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.styles.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<div>
+    <!-- Cart Container-->
+    <div class="container" style="font-family: 'Noto Serif KR', serif; padding-bottom:50px;">
+            <div class="row">
+                <div class="col" style="border: 10px;">
+                    <h1 class="text-center" style="padding: 20px;">Your Cart</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-7 col-lg-7 col-xl-7 offset-md-0 offset-lg-0 offset-xl-0" style="background-color: white;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 style="color: #7ea978;">Cart</h1>
+                        </div>
+                    </div>
+                    {% if food_items|length == 0 %}
+                    <div class="row d-flex d-sm-flex d-xl-flex">
+                        <div class="col">
+                            <h2 style="color: black; text-align: center; padding-top: 40px">Empty</h2>
+                        </div>
+                    </div>
+                    {% else %}
+                    {% for i in range(food_items|length) %}
+                    <div class="row d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center">
+                        <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='/img/menuPage/chunckySoup.jpg') }}"></div>
+                        <div class="col-3 col-sm-3">
+                            <h6 class="d-sm-flex justify-content-sm-start align-items-sm-start"></h6>
+                            <h6>{{ food_items[i]['name'] }}</h6><a href="#" style="font-size: 13px;">View Details</a></div>
+                        <div class="col-3">
+                            <div class="d-flex align-items-center">
+                                <div class="btn btn-items btn-items-decrease">-</div>
+                                    <input type="text" value="{{ food_items[i]['quantity'] }}" class="form-control text-center border-0 border-md input-items">
+                                <div class="btn btn-items btn-items-increase">+</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h6 class="text-center">{{food_items[i]['cost'] * food_items[i]['quantity']}}</h6>
+                        </div>
+                        <div onclick="deleteGuestItem({{ i }} )" class="col"><a href="#" style="padding: 5px;">Delete</a></div>
+                    </div>
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-10 col-sm-8 col-md-4 col-lg-4 col-xl-4 offset-1 offset-sm-2 offset-md-1 offset-lg-1 offset-xl-1">
+                    <div class="row" style="background-color: white;">
+                        <div class="col-12 col-sm-12">
+                            <h2>Order Summary</h2>
+                        </div>
+                    </div>
+                    <div class="row" style="border-left: 1px solid;border-right: 1px solid;border-color: #7ea978; text-align: right;">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <h5>Subtotal:</h5>
+                            <h5>Tax:</h5>
+                            <h5>Total:</h5>
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6" style="text-align: right;">
+                            <h5>{{ subtotal }}</h5>
+                            <h5>{{ tax }}</h5>
+                            <h5>{{ total }}</h5>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="background-color: white;">
+                        <div class="col-lg-12 offset-xl-0 text-right" style="padding-top: 10px;padding-bottom: 10px;border: 1px solid;border-color: #7ea978;">
+                            {% if subtotal > 0 %}
+                            <button class="btn btn-primary" onclick="location.href='/checkout'" style="border: none;" type="button">
+                                Proceed to Checkout
+                            </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+{% endblock %}

@@ -16,79 +16,41 @@ $('.btn-items-increase').on('click', function () {
 
     var input = $(this).siblings('.input-items');
     input.val(parseInt(input.val(), 10) + 1);
-
 });
 
-function updateQuantity(index) {
-
-    // Create identifier to grab integer value from DOM
-    identifier = "#" + index
-
-    // Query that element from the DOM
-    updated_quantity = document.getElementById(identifier)
-
+function deleteGuestItem(index) {
+    console.log("HERE")
+    url = "/delete_guest_cart_item"
     payload = {
-        "item_index": index, 
-        "updated_quantity": updated_quantity.value
+        index: index
     }
-    console.log(payload)
-    url_cart = "/user/cart"
 
-    $.ajax({
-        type: 'PUT', 
-        url: url_cart, 
-        contentType: 'application/json',
-        data:JSON.stringify(payload)
+    $.post(url, payload, function() {
+        window.location.reload()
     })
-
-    document.location.reload()
-
 }
 
-
-
-$('.btn-guest-items-decrease').on('click', function () {
-    url_cart = "/cart"
-
-    var input = $(this).siblings('.input-items');
-    if (parseInt(input.val(), 10) >= 1) {
-        input.val(parseInt(input.val(), 10) - 1); 
-
-    }
-});
-
-$('.btn-guest-items-increase').on('click', function () {
-    url_cart = "/cart"
-
-    var input = $(this).siblings('.input-items');
-    input.val(parseInt(input.val(), 10) + 1);
-
-});
-
-
-function updateGuestQuantity(index) {
-    url = "/update_guest_item"
-    // Create identifier to grab integer value from DOM
-    identifier = "#" + index
-    console.log("HEEEEEERRRRRRRREEEEEEE")
-    console.log(identifier)
-    console.log("HEEEEEERRRRRRRREEEEEEE")
- 
-    // Query that element from the DOM
-    updated_quantity = document.getElementById(identifier)
-    console.log(updated_quantity.value)
+function deleteUserItem(index) {
+    url = "/delete_user_item"
     payload = {
-        index: index,
-        updated_quantity: updated_quantity.value
+        index: index
     }
-    console.log(payload)
 
-    $.ajax({
-        type: 'PUT', 
-        url: url, 
-        contentType: 'application/json',
-        data:JSON.stringify(payload)
-    }).done(function(){
-        document.location.reload()
+    $.post(url, payload, function() {
+        window.location.reload()
     })
+}
+
+var user; 
+
+function placeUserOrder(user_id, total) {
+    url_number_orders = "/orders/get_next_id"
+    url = "/place_user_order"
+    user_route = "/user"
+
+    $.post(url, function(data, status) {
+        console.log("${data} and status ${status}")
+    }); 
+
+    
 }

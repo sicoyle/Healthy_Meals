@@ -2,9 +2,11 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.styles.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.css">
 {% endblock %}
 
 {% block content %}
+
 <main>
     <div class="container-fluid text-center">
         <div class="row">
@@ -875,5 +877,6 @@
 {% endblock %}
 
 {% block js %}
-<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.js"></script>
+<script src="{{ url_for('static', filename='js/connect.js') }}"></script>
 {% endblock %}
