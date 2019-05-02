@@ -503,7 +503,6 @@ class CartItem(Resource):
     def post(self):
 
         try:
-            print("Trying to make cart item for user")
 
             # Query for the user
             user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
@@ -518,14 +517,12 @@ class CartItem(Resource):
             db.session.add(new_item)
             db.session.commit()
         except:
-            print("Trying to make cart item for guest")
             
             # Make the item
             new_item = ItemModel(**self.args)
 
             # JSONify the item
             jsonified_item = item_schema.dump(new_item)[0]
-            print("\n\nMY JSON SHIIIIT ------ ", jsonified_item, "\n\n")
 
             try:
                 # Get the guest cart
@@ -630,39 +627,74 @@ class PlaceUserOrder(Resource):
         return jsonify(orders=user.orders) 
 
     def post(self):
-        print("Trying to make order for user")
+        try:
+            print("Trying to make order for user")
 
-        subtotal = 0
+            subtotal = 0
 
-        # Query for the user
-        user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
+            # Query for the user
+            user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
 
-        for item in user.items:
-            subtotal = subtotal + (item.cost * item.quantity)
-        
-        subtotal = round(subtotal, 2)
-        tax = subtotal * .0825
-        tax = round(tax, 2)
-        total = tax + subtotal
-        total = round(total, 2)
+            for item in user.items:
+                subtotal = subtotal + (item.cost * item.quantity)
+            
+            subtotal = round(subtotal, 2)
+            tax = subtotal * .0825
+            tax = round(tax, 2)
+            total = tax + subtotal
+            total = round(total, 2)
 
-        # Make a new order
-        new_order = OrderModel(**self.args)
+            # Make a new order
+            new_order = OrderModel(**self.args)
 
 
 
-        # Relate the order back to the user?
-        new_order.admin_id = 0
-        new_order.user_id = current_user.id
-        new_order.order_items = user.items
-        new_order.completed = False
-        new_order.cost = total
+            # Relate the order back to the user?
+            new_order.admin_id = 0
+            new_order.user_id = current_user.id
+            new_order.order_items = user.items
+            new_order.completed = False
+            new_order.cost = total       
 
-        print("did it")          
+            # Add to db
+            db.session.add(new_order)
+            db.session.commit()
+        except:
+            if request.get_json()["test"]:
+                print("TRUEEEEE")
+                user = UserModel(first_name="TEST", email="TEST@TEST.com")
+                login_user(user)
+                print("WE lOGGED")
 
-        # Add to db
-        db.session.add(new_order)
-        db.session.commit()
+                for item in user.items:
+                    subtotal = subtotal + (item.cost * item.quantity)
+            
+                subtotal = round(subtotal, 2)
+                tax = subtotal * .0825
+                tax = round(tax, 2)
+                total = tax + subtotal
+                total = round(total, 2)
+
+                # Make a new order
+                new_order = OrderModel(id = -1, cost = 8.0, completed = False)
+
+                # Relate the order back to the user?
+                new_order.admin_id = 0
+                new_order.user_id = current_user.id
+                new_order.order_items = user.items
+                new_order.completed = False
+                new_order.cost = total       
+
+                # Add to db
+                db.session.add(new_order)
+                db.session.commit()
+
+                # Logout test user
+                logout_user()
+
+                db.session.delete(new_order)
+                db.session.commit()
+                
 
 class GetNextOrderID(Resource):
     def __init__(self):

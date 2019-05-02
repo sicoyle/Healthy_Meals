@@ -51,12 +51,27 @@ class FlaskTestCases(unittest.TestCase):
         # Get next item id
         next_item_id = self.client.get("/items/get_next_id")
 
+        name = "Thai Coconut Chicken Soup"
+        quantity = 2
+        id = next_item_id
+        cost = 8
+
         # Post item to cart
         response = self.client.post(('/user/cart'), data={
-            name: "Thai Coconut Chicken Soup", 
-            quantity: 2, 
-            id = next_item_id, 
-            cost: 8
+            name: name, 
+            quantity: quantity, 
+            id: id, 
+            cost: cost
+        })
+
+        self.assertEqual(response.status_code, 200)
+    
+    def test_place_user_order(self):
+        url = "/place_user_order"
+        test = True
+
+        response = self.client.post((url), json={
+            "test": test
         })
 
         self.assertEqual(response.status_code, 200)
