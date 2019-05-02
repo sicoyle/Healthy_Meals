@@ -4,6 +4,11 @@ from app import app, db
 from app.models import UserModel
 from config import basedir
 from flask import url_for
+from app.forms import LoginForm
+from flask_login import current_user
+from flask_bcrypt import Bcrypt
+from werkzeug.security import check_password_hash
+
 
 class FlaskTestCases(unittest.TestCase):
     def setUp(self):
@@ -44,22 +49,35 @@ class FlaskTestCases(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
         # Log out of new account
-        #response = self.client.get(('/logout'), follow_redirects=True)
-        #self.assertTrue(b'You have been logged out' in response.data)
-    
-    def test_add_to_cart(self):
+        response = self.client.get(('/logout'), follow_redirects=True)
+        self.assertTrue(response.status_code, 200)
+   
+    def test_validate_successful_login_form(self):
+        with app.app_context():
+            form = LoginForm(email='Sam@yahoo.com', password='Password123')
+        self.assertTrue(form.validate())
+
+    def test_check_password(self):
+        # Ensure given password is correct after unhashing
+        user = UserModel.query.filter_by(email='Sam@yahoo.com').first()
+        self.assertTrue(
+          user.check_password_hash(user.password, 'Password123'))
+        self.assertFalse(bcrypt.check_password_hash(user.password, 'foobar'))
+
+
+#    def test_add_to_cart(self):
         # Get next item id
-        next_item_id = self.client.get("/items/get_next_id")
+#        next_item_id = self.client.get("/items/get_next_id")
 
         # Post item to cart
-        response = self.client.post(('/user/cart'), data={
-            name: "Thai Coconut Chicken Soup", 
-            quantity: 2, 
-            id = next_item_id, 
-            cost: 8
-        })
+#        response = self.client.post(('/user/cart'), data={
+#            name: "Thai Coconut Chicken Soup", 
+#            quantity: 2, 
+#            id = next_item_id, 
+#            cost: 8
+#        })
 
-        self.assertEqual(response.status_code, 200)
+#        self.assertEqual(response.status_code, 200)
 
 
 
