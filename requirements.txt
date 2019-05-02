@@ -13,3 +13,4 @@ gunicorn
 Flask-Dance
 -e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
 stripe
+flask_bcrypt
