@@ -51,6 +51,56 @@ function placeUserOrder(user_id, total) {
     $.post(url, function(data, status) {
         console.log("${data} and status ${status}")
     }); 
+}
 
-    
+function updateQuantity(index) {
+
+    // Create identifier to grab integer value from DOM
+    identifier = "#" + index
+
+    // Query that element from the DOM
+    updated_quantity = document.getElementById(identifier)
+
+    payload = {
+        "item_index": index, 
+        "updated_quantity": updated_quantity.value
+    }
+    console.log(payload)
+    url_cart = "/user/cart"
+
+    $.ajax({
+        type: 'PUT', 
+        url: url_cart, 
+        contentType: 'application/json',
+        data:JSON.stringify(payload)
+    })
+
+    document.location.reload()
+}
+
+function updateGuestQuantity(index) {
+    url = "/update_guest_item"
+    // Create identifier to grab integer value from DOM
+    identifier = "#" + index
+    console.log("HEEEEEERRRRRRRREEEEEEE")
+    console.log(identifier)
+    console.log("HEEEEEERRRRRRRREEEEEEE")
+ 
+    // Query that element from the DOM
+    updated_quantity = document.getElementById(identifier)
+    console.log(updated_quantity.value)
+    payload = {
+        index: index,
+        updated_quantity: updated_quantity.value
+    }
+    console.log(payload)
+
+    $.ajax({
+        type: 'PUT', 
+        url: url, 
+        contentType: 'application/json',
+        data:JSON.stringify(payload)
+    }).done(function(){
+        document.location.reload()
+    })
 }
