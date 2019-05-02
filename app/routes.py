@@ -49,7 +49,7 @@ def pay():
         customer=customer.id, 
         amount=9900, 
         currency='usd', 
-        description='Elixir'
+        description='Food'
     )
 
     return redirect(url_for('index'))
@@ -148,7 +148,7 @@ def cart():
         total = tax + subtotal
         total = round(total, 2)
 
-        return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total, user = user)
+        return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total, user = user, public_key=public_key)
     
     except:
         
