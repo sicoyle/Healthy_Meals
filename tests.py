@@ -46,6 +46,20 @@ class FlaskTestCases(unittest.TestCase):
         # Log out of new account
         #response = self.client.get(('/logout'), follow_redirects=True)
         #self.assertTrue(b'You have been logged out' in response.data)
+    
+    def test_add_to_cart(self):
+        # Get next item id
+        next_item_id = self.client.get("/items/get_next_id")
+
+        # Post item to cart
+        response = self.client.post(('/user/cart'), data={
+            name: "Thai Coconut Chicken Soup", 
+            quantity: 2, 
+            id = next_item_id, 
+            cost: 8
+        })
+
+        self.assertEqual(response.status_code, 200)
 
 
 
