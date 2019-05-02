@@ -53,6 +53,14 @@ function placeUserOrder(user_id, total) {
     }); 
 }
 
+function placeGuestOrder() {
+    url = "/place_guest_order"
+
+    $.post(url, function(data, status) {
+        console.log("${data} and status ${status}")
+    })
+}
+
 function updateQuantity(index) {
 
     // Create identifier to grab integer value from DOM

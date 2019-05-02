@@ -167,7 +167,7 @@ def cart():
         total = tax + subtotal
         total = round(total, 2)
 
-        return render_template('guest_cart.html', food_items = session["items"], subtotal = subtotal, tax = tax, total = total)
+        return render_template('guest_cart.html', food_items = session["items"], subtotal = subtotal, tax = tax, total = total, public_key=public_key)
 
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
@@ -605,6 +605,46 @@ class GetNextItemId(Resource):
 
         return jsonify(next_item_id=next_item_id)
 
+class PlaceGuestOrder(Resource):
+    def __init__(self):
+        parser = reqparse.RequestParser()
+
+        parser.add_argument('id', type=str)
+        parser.add_argument('cost', type=float)
+        parser.add_argument('completed', type=bool)
+
+        self.args = parser.parse_args()
+    
+    def post(self):
+        print("Trying to make order for guest")
+
+        subtotal = 0
+
+        for item in session["items"]:
+            subtotal = subtotal + (item["cost"] * item["quantity"])
+            
+        subtotal = round(subtotal, 2)
+        tax = subtotal * .0825
+        tax = round(tax, 2)
+        total = tax + subtotal
+        total = round(total, 2)
+
+        # Make a new order
+        new_order = OrderModel(**self.args)
+
+
+
+        # Relate the order back to the user?
+        new_order.admin_id = 0
+        new_order.user_id = current_user.id
+        new_order.order_items = user.items
+        new_order.completed = False
+        new_order.cost = total       
+
+        # Add to db
+        db.session.add(new_order)
+        db.session.commit()
+
 
 class PlaceUserOrder(Resource):
     def __init__(self):
@@ -745,3 +785,4 @@ api.add_resource(GetNextItemId, '/items/get_next_id')
 api.add_resource(Food, '/food')
 api.add_resource(Ingredient, '/food/ingredients')
 api.add_resource(Admins, '/admin')
+api.add_resource(PlaceGuestOrder, '/place_guest_order')
