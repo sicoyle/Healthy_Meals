@@ -151,9 +151,15 @@ def cart():
         return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total, user = user)
     
     except:
+        
+        try:
+            for item in session["items"]:
+                subtotal = subtotal + (item["cost"] * item["quantity"])
+        except:
+            session["items"] = []
 
-        for item in session["items"]:
-            subtotal = subtotal + (item["cost"] * item["quantity"])
+            for item in session["items"]:
+                subtotal = subtotal + (item["cost"] * item["quantity"])
         
         subtotal = round(subtotal, 2)
         tax = subtotal * .0825
