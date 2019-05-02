@@ -24,30 +24,24 @@
                         <!-- <h1 style="color: #7ea978;">Orders</h1> -->
                     <!-- </div> -->
                 </div>
-                {% if num_order_items == 0 %}
+                {% if orders|length == 0 %}
                 <div class="row d-flex d-sm-flex d-xl-flex">
                     <div class="col">
                         <h2 style="color: black; text-align: center; padding-top: 40px">Empty</h2>
                     </div>
                 </div>
                 {% else %}
-                {% for i in range(num_order_items) %}
+                {% for i in range(orders|length) %}
                 <div class="row d-flex d-sm-flex d-xl-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-xl-center align-items-xl-center">
                     <div class="col d-xl-flex justify-content-xl-center align-items-xl-center"><img class="img-fluid" src="{{ url_for('static', filename='/img/menuPage/chunckySoup.jpg') }}"></div>
                     <div class="col-3 col-sm-3">
                         <h6 class="d-sm-flex justify-content-sm-start align-items-sm-start"></h6>
-                        <h6>{{ user_orders[i].name }}</h6><a href="#" style="font-size: 13px;">View Details</a></div>
-                    <div class="col-3">
-                        <div class="d-flex align-items-center">
-                            <div class="btn btn-items btn-items-decrease">-</div>
-                                <input id="#{{i}}" type="text" value="{{ user_items[i].quantity }}" class="form-control text-center border-0 border-md input-items">
-                            <div class="btn btn-items btn-items-increase">+</div>
-                        </div>
-                    </div>
+                        <h6>{{ orders[i].id }}</h6><a href="#" style="font-size: 13px;">View Details</a></div>
+                    
                     <div class="col">
-                        <!-- <h6 class="text-center">{{user_items[i].cost * user_items[i].quantity}}</h6> -->
+                        
                     </div>
-                    <!-- <div class="col"><a style="padding: 5px;" onclick="updateQuantity({{i}})" >Update</a></div> -->
+                    
                 </div>
 
                 {% endfor %}

@@ -145,7 +145,7 @@ class OrderModel(db.Model):
     order_items = db.relationship('ItemModel', backref='order_items')
 
     def __repr__(self):
-        return '<Order {}>'.format(self.name)
+        return '<Order {}>'.format(self.order_items)
 
 
 """

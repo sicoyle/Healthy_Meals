@@ -250,14 +250,11 @@ def profile():
 def orders():
     #admin = AdminModel.query.filter_by(name=current_admin.name).first_or_404() 
     user = UserModel.query.filter_by(username=current_user.username).first_or_404() 
-
-    if request.method == 'GET':
-        past_order_items = OrderModel.query.all()
-        past_order_items = item_schema_many.dump(past_order_items)
-        #return jsonify(past_order_items) 
-        return render_template('orders.html', user=user, past_items = user.orders, num_order_items = len(user.orders))
     
-    return render_template('orders.html', user=user, past_items = user.orders, num_order_items = len(user.orders))
+    for order in user.orders:
+        print("ORDERRRRRRRR: ", order)
+    
+    return render_template('orders.html', orders=user.orders, num_order_items = len(user.orders), user = user)
 
 
 def save_picture(form_picture):
