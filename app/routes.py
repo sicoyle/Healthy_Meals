@@ -140,6 +140,8 @@ def cart():
         for item in user.items:
             subtotal = subtotal + (item.cost * item.quantity)
         
+        print("LENGTH: ", len(user.items))
+        
         subtotal = round(subtotal, 2)
         tax = subtotal * .0825
         tax = round(tax, 2)
@@ -297,6 +299,35 @@ def edit_profile():
         form.zip_code.data = current_user.zip_code
         return render_template('edit_profile.html', title='Edit Profile', form=form, user=user, error=error, image_file=image_file)
     return render_template('profile.html', user=user, error=error, image_file=image_file)
+
+@app.route('/update_guest_item', methods=['PUT'])
+def update_guest_item():
+    index = int(request.get_json()["index"])
+    print("Helller in /update_guest_item route in ROUTES.py**********************************************************************")
+
+    print("index: " , index)
+
+    updated_quantity = int(request.get_json()["updated_quantity"])
+    guest_cart = session["items"]
+    print("************************", guest_cart)
+    print("updated_quantity: " , updated_quantity)
+    
+    guest_cart[index]['quantity'] = updated_quantity
+
+    subtotal = 0
+
+    print("************************", guest_cart)
+    session["items"] = guest_cart
+    for item in session["items"]:
+            subtotal = subtotal + (item["cost"] * item["quantity"])
+
+    subtotal = round(subtotal, 2)
+    tax = subtotal * .0825
+    tax = round(tax, 2)
+    total = tax + subtotal
+    total = round(total, 2)
+
+    return render_template('cart.1.html', food_items = session["items"], subtotal = subtotal, tax = tax, total = total)
 
 @app.route('/change_password', methods=['GET', 'POST'])
 @login_required
@@ -539,7 +570,7 @@ class CartItem(Resource):
         except:
             return abort(502, "Item was not updated in the users cart")
 
-        return redirect(url_for('cart'))
+        return jsonify(message="Item was updated in users cart")
         #return render_template('cart.html', user_items = user.items, num_user_items = len(user.items), subtotal=subtotal, tax = tax, total = total)
 
 

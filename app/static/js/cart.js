@@ -73,9 +73,9 @@ function updateQuantity(index) {
         url: url_cart, 
         contentType: 'application/json',
         data:JSON.stringify(payload)
+    }).done(function() {
+        document.location.reload()
     })
-
-    document.location.reload()
 }
 
 function updateGuestQuantity(index) {
