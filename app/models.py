@@ -7,20 +7,6 @@ from app import login
 #import llist
 
 
-"""
-System Controller
-
-This controller will have three paramaters, id (which will be 0), users and admins
-
-This controller will controll the access of all traffic of temporary users coming 
-in and out of the website.
-"""
-class SystemModel(db.Model):
-    __tablename__ = 'system'
-
-    id = db.Column(db.Integer, primary_key=True)
-    admins = db.relationship('AdminModel', backref='system_controller')
-    users = db.relationship('UserModel', backref='system_controller')
 
 """
 Admin Model
@@ -48,7 +34,6 @@ class AdminModel(db.Model):
 
     orders = db.relationship('OrderModel', backref='admin_in_charge')
 
-    system_controller_id = db.Column(db.Integer, db.ForeignKey('system.id'))
 
 
     def __repr__(self):
@@ -92,8 +77,6 @@ class UserModel(UserMixin, db.Model):
 
     orders = db.relationship('OrderModel', backref='previous_orders')
     items = db.relationship('ItemModel', backref='my_items')
-
-    system_controller_id = db.Column(db.Integer, db.ForeignKey('system.id'))
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -153,9 +136,8 @@ class OrderModel(db.Model):
     __tablename__ = "order"
 
     id = db.Column(db.Integer, primary_key=True)
-    order_items = db.relationship('ItemModel', backref='related_order')
-    cost = db.Column(db.Float, primary_key=True)
-    completed = db.Column(db.Boolean, primary_key=True)
+    cost = db.Column(db.Float)
+    completed = db.Column(db.Boolean)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'))
