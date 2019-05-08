@@ -92,6 +92,11 @@ class FlaskTestCases(unittest.TestCase):
 
         user = UserModel.query.filter_by(email='Cassie@yahoo.com').first()
         self.assertTrue(user.id == 1)
+   
+    def test_load_cart_page(self):
+        # Ensure that the cart page properly loads by checking that a bit of text is in the response
+        response = self.client.get('/cart')
+        self.assertTrue(b'Your Cart' in response.data)
 
 if __name__ == '__main__':
     unittest.main()
