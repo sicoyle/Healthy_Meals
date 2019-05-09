@@ -38,7 +38,7 @@ class FlaskTestCases(unittest.TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
-    def test_register(self):
+    def test_register_and_login_logout(self):
         # Register a new account
         response = self.client.post(('/register'), data={
             'email': 'Sam@yahoo.com',
@@ -55,8 +55,6 @@ class FlaskTestCases(unittest.TestCase):
         }, follow_redirects=True)
         
         self.assertEqual(response.status_code, 200)
-
-
 
         # Log out of new account
         response = self.client.get(('/logout'), follow_redirects=True)
@@ -83,6 +81,10 @@ class FlaskTestCases(unittest.TestCase):
         user = UserModel.query.filter_by(email='Cassie@yahoo.com').first()
         self.assertFalse(user.check_password('foobar'))
 
+    def test_authentication(self):
+        user = UserModel.query.filter_by(email='Cassie@yahoo.com').first()
+        self.assertTrue(user.is_authenticated)
+
     def test_get_by_id(self):
     # Ensure id is correct for the current/logged in user
         with self.client:
@@ -92,6 +94,26 @@ class FlaskTestCases(unittest.TestCase):
 
         user = UserModel.query.filter_by(email='Cassie@yahoo.com').first()
         self.assertTrue(user.id == 1)
+        
+    def test_cart(self):
+        user = UserModel.query.filter_by(email='Cassie@yahoo.com').first()
+
+        response = self.client.post(('/user/cart'), data={
+            'id': '1',
+            'name': 'Thai Coconut Chicken Soup',
+            'cost': '8.0',
+            'quantity': '1',
+            'picture_path': 'img/menuPage/chunckysoup.jpg'
+        })   
+
+        self.assertTrue(response.status_code, 200)
+        self.assertTrue(response.status != 400)
+
+    def test_empty_cart(self):
+        response = self.client.get(('user/cart'))
+
+        self.assertFalse(b'Chicken' in response.data)
+        self.assertTrue(b'' in response.data)
 
 if __name__ == '__main__':
     unittest.main()
