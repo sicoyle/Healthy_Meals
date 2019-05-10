@@ -21,7 +21,14 @@ If using for the first time, clear the database
 ```
 ./create_database.sh
 ```
-
+Download and install Postman
+```
+https://www.getpostman.com/
+```
+Run the json document in postman
+```
+Add json document to collections>Run the json document
+```
 Launch the server and go to localhost:5000 in your web browser
 ```
 python main.py
